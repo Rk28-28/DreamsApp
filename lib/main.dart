@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                             primary: Colors.blueAccent,
                           ),
-                          child: Text('Track Sleep'),
+                          child: Text('Track Behaviors'),
                           onPressed: () {
                               // Route here
                           },
