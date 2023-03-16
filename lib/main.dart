@@ -22,10 +22,10 @@ class MyApp extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
-                  child: Text("Sweet Dreams!",style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent), textScaleFactor: 3,)
+                  child: Text("Welcome to the sweet dreams app!",style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent), textScaleFactor: 2.6, textAlign: TextAlign.center,)
                   ,),
                 Container(
-                    margin: const EdgeInsets.only(top: 100),
+                    margin: const EdgeInsets.only(top: 30),
                     child: SizedBox(
                         width: 150,
                         child: ElevatedButton(
