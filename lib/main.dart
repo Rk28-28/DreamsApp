@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-
-import 'dreams/views/dreams_component.dart';
-import 'dreams/presenter/dreams_presenter.dart';
+import 'package:units/dreams/presenter/dreams_sleep_track_presenter.dart';
+import 'dreams/views/dreams_sleep_calc_component.dart';
+import 'dreams/presenter/dreams_sleep_calc_presenter.dart';
+import 'dreams/views/dreams_sleep_track_component.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,7 +52,9 @@ class MyApp extends StatelessWidget {
                           ),
                           child: Text('Track Sleep'),
                           onPressed: () {
-                            // Route here
+                            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                              return TrackSleepScreen();
+                            }));
                           },
                         )
                     )
@@ -88,6 +91,18 @@ class SleepCalcScreen extends StatefulWidget {
 class _SleepCalcScreen extends State<SleepCalcScreen> {
   @override
   Widget build(BuildContext context) {
-    return new HomePage(new SleepCalcPresenter(), title: 'Sweet Dreams', key: Key("UNITS"),);
+    return new CalcHomePage(new SleepCalcPresenter(), title: 'Sweet Dreams', key: Key("UNITS"),);
+  }
+}
+
+class TrackSleepScreen extends StatefulWidget {
+  @override
+  _TrackSleepScreen createState() => _TrackSleepScreen();
+}
+
+class _TrackSleepScreen extends State<TrackSleepScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return new TrackHomePage(new TrackSleepPresenter(), title: 'Sweet Dreams', key: Key("TRACK"),);
   }
 }

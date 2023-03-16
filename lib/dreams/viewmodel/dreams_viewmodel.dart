@@ -1,6 +1,6 @@
 import '../utils/dreams_constant.dart';
 
-class UNITSViewModel {
+class SleepCalcViewModel {
   double _units = 0.0;
   UnitType _unitType = UnitType.WAKE;
   UnitType _unitTypeTime = UnitType.AM;
@@ -62,5 +62,5 @@ class UNITSViewModel {
   String get sleepHourInString => sleepHour != null ? sleepHour.toString():'';
   String get sleepMinuteInString => sleepMinute != null ? sleepMinute.toString():'';
 
-  UNITSViewModel();
+  SleepCalcViewModel();
 }
