@@ -19,6 +19,7 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
     return Scaffold(
       appBar: AppBar(
         title: Text('Sleep Tracker'),
+        // TODO: Implement sleep track home page
       )
     );
   }
@@ -31,6 +32,5 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
 
   @override
   set trackView(TRACKView value) {
-    // TODO: implement trackView
   }
 }

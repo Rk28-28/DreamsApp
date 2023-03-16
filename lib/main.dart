@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:units/dreams/presenter/dreams_behavior_track_presenter.dart';
 import 'package:units/dreams/presenter/dreams_sleep_track_presenter.dart';
+import 'package:units/dreams/views/dreams_track_behavior_component.dart';
 import 'dreams/views/dreams_sleep_calc_component.dart';
 import 'dreams/presenter/dreams_sleep_calc_presenter.dart';
 import 'dreams/views/dreams_sleep_track_component.dart';
@@ -69,7 +71,9 @@ class MyApp extends StatelessWidget {
                           ),
                           child: Text('Track Behaviors'),
                           onPressed: () {
-                              // Route here
+                              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                                return BehaviorTrackScreen();
+                              }));
                           },
                         )
                     )
@@ -104,5 +108,17 @@ class _TrackSleepScreen extends State<TrackSleepScreen> {
   @override
   Widget build(BuildContext context) {
     return new TrackHomePage(new TrackSleepPresenter(), title: 'Sweet Dreams', key: Key("TRACK"),);
+  }
+}
+
+class BehaviorTrackScreen extends StatefulWidget {
+  @override
+  _BehaviorTrackScreen createState() => _BehaviorTrackScreen();
+}
+
+class _BehaviorTrackScreen extends State<BehaviorTrackScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return new BehaviorHomePage(new TrackBehaviorPresenter(), title: 'Sweet Dreams', key: Key("BEHAVIOR"),);
   }
 }
