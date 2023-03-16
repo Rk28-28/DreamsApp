@@ -24,17 +24,53 @@ class MyApp extends StatelessWidget {
                   padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                   child: Text("Sweet Dreams!",style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent), textScaleFactor: 3,)
                   ,),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.blueAccent
-                  ),
-                  child: Text('Begin'),
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
-                      return SplashScreen();
-                    }));
-                  },
-                )
+                Container(
+                    margin: const EdgeInsets.only(top: 100),
+                    child: SizedBox(
+                        width: 150,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.blueAccent,
+                          ),
+                          child: Text('Sleep Calculator'),
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
+                              return SplashScreen();
+                            }));
+                          },
+                        ),
+                    ),
+                ),
+                Container(
+                    margin: const EdgeInsets.only(top: 20),
+                    child: SizedBox(
+                        width: 150,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.blueAccent,
+                          ),
+                          child: Text('Track Sleep'),
+                          onPressed: () {
+                            // Route here
+                          },
+                        )
+                    )
+                ),
+                Container(
+                    margin: const EdgeInsets.only(top: 20),
+                    child: SizedBox(
+                      width: 150,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.blueAccent,
+                          ),
+                          child: Text('Track Sleep'),
+                          onPressed: () {
+                              // Route here
+                          },
+                        )
+                    )
+                ),
               ],
             )
           ),
