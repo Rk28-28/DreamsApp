@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
                           child: Text('Sleep Calculator'),
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
-                              return SplashScreen();
+                              return SleepCalcScreen();
                             }));
                           },
                         ),
@@ -80,14 +80,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class SplashScreen extends StatefulWidget {
+class SleepCalcScreen extends StatefulWidget {
   @override
-  _SplashScreen createState() => _SplashScreen();
+  _SleepCalcScreen createState() => _SleepCalcScreen();
 }
 
-class _SplashScreen extends State<SplashScreen> {
+class _SleepCalcScreen extends State<SleepCalcScreen> {
   @override
   Widget build(BuildContext context) {
-    return new HomePage(new BasicPresenter(), title: 'Sweet Dreams', key: Key("UNITS"),);
+    return new HomePage(new SleepCalcPresenter(), title: 'Sweet Dreams', key: Key("UNITS"),);
   }
 }
