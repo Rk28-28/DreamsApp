@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "916127097898",
+    "project_id": "groupb-dreams-2903a",
+    "storage_bucket": "groupb-dreams-2903a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916127097898:android:ce80f5f91269effef08f53",
+        "android_client_info": {
+          "package_name": "com.example.sweetdreams"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "916127097898-4v7q0jhhf7t8h810sh95gnv2tjuek8hp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUhQnxwJuPMVmAMVp2c3BNCEn9C77rJvk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "916127097898-4v7q0jhhf7t8h810sh95gnv2tjuek8hp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
