@@ -1,5 +1,5 @@
 import '../views/sleep_calc_views/dreams_sleep_calc_view.dart';
-import '../viewmodel/dreams_viewmodel.dart';
+import '../viewmodel/dreams_sleep_calc_viewmodel.dart';
 import '../utils/dreams_constant.dart';
 import '../utils/dreams_utils.dart';
 

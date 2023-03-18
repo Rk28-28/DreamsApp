@@ -160,9 +160,6 @@ class _CalcHomePageState extends State<CalcHomePage> implements UNITSView {
     );
 
     var _mainPartView = Container(
-      color: Colors.grey.shade300,
-      margin: EdgeInsets.all(8.0),
-      padding: EdgeInsets.all(8.0),
       child: SingleChildScrollView(
         child: Form(
           key: _formKey,
