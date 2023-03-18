@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:units/dreams/presenter/dreams_behavior_track_presenter.dart';
 import 'package:units/dreams/presenter/dreams_sleep_track_presenter.dart';
-import 'package:units/dreams/views/dreams_track_behavior_component.dart';
-import 'dreams/views/dreams_sleep_calc_component.dart';
+import 'package:units/dreams/views/behavior_track_views/dreams_track_behavior_component.dart';
+import 'dreams/views/sleep_calc_views/dreams_sleep_calc_component.dart';
 import 'dreams/presenter/dreams_sleep_calc_presenter.dart';
-import 'dreams/views/dreams_sleep_track_component.dart';
+import 'dreams/views/sleep_track_view/dreams_sleep_track_component.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,7 +14,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp( // Home page start
       home: Builder(
         builder: (context) => Scaffold(
           appBar: AppBar(
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
                   padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                   child: Text("Welcome to the sweet dreams app!",style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent), textScaleFactor: 2.6, textAlign: TextAlign.center,)
                   ,),
-                Container(
+                Container( // First button ( Sleep Calculator)
                     margin: const EdgeInsets.only(top: 30),
                     child: SizedBox(
                         width: 150,
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
                             primary: Colors.blueAccent,
                           ),
                           child: Text('Sleep Calculator'),
-                          onPressed: () {
+                          onPressed: () { // Navigator to Sleep Calculator page
                             Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
                               return SleepCalcScreen();
                             }));
@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
                         ),
                     ),
                 ),
-                Container(
+                Container( // Second Button (Track Sleep)
                     margin: const EdgeInsets.only(top: 20),
                     child: SizedBox(
                         width: 150,
@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
                             primary: Colors.blueAccent,
                           ),
                           child: Text('Track Sleep'),
-                          onPressed: () {
+                          onPressed: () { // Navigator to Track Sleep screen
                             Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
                               return TrackSleepScreen();
                             }));
@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
                         )
                     )
                 ),
-                Container(
+                Container( // Third button (Track Behaviors)
                     margin: const EdgeInsets.only(top: 20),
                     child: SizedBox(
                       width: 150,
@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
                             primary: Colors.blueAccent,
                           ),
                           child: Text('Track Behaviors'),
-                          onPressed: () {
+                          onPressed: () { // Navigator to Track Behaviors screen
                               Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
                                 return BehaviorTrackScreen();
                               }));
@@ -86,6 +86,11 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+// ignore: slash_for_doc_comments
+/*****************************
+  Classes used for navigation
+ ****************************/
 
 class SleepCalcScreen extends StatefulWidget {
   @override

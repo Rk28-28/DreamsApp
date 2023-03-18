@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:units/dreams/views/dreams_track_view.dart';
-import '../presenter/dreams_sleep_data_presenter.dart';
-import '../presenter/dreams_sleep_track_presenter.dart';
-import 'dreams_sleep_data_component.dart';
+import 'package:units/dreams/views/sleep_track_view/dreams_sleep_track_view.dart';
+import '../../presenter/dreams_sleep_data_presenter.dart';
+import '../../presenter/dreams_sleep_track_presenter.dart';
+import 'sleep_data_view/dreams_sleep_data_component.dart';
 
 class TrackHomePage extends StatefulWidget{
   final TRACKPresenter trackPresenter;

@@ -1,6 +1,6 @@
-import 'package:units/dreams/views/dreams_track_view.dart';
+import 'package:units/dreams/views/sleep_track_view/dreams_sleep_track_view.dart';
 import '../viewmodel/dreams_track_sleep_viewmodel.dart';
-import '../views/dreams_sleep_data_view.dart';
+import '../views/sleep_track_view/sleep_data_view/dreams_sleep_data_view.dart';
 
 class SLEEPDATAPresenter{
 

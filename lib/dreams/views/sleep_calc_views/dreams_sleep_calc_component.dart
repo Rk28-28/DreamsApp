@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../views/dreams_view.dart';
-import '../presenter/dreams_sleep_calc_presenter.dart';
+import 'dreams_sleep_calc_view.dart';
+import '../../presenter/dreams_sleep_calc_presenter.dart';
 
 class CalcHomePage extends StatefulWidget {
   final UNITSPresenter presenter;
