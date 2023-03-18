@@ -22,8 +22,8 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
           title: Text('Behavior Tracker'),
           // TODO: Implement behavior track home page
         ),
-        body: Center(
-          child: Column( //Outer column
+       // body: Align(
+          body: Column( //Outer column
             children: <Widget>[
 
               Column( //First inner column
@@ -103,21 +103,18 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                   ),
                 ],//children
               ),
-
-        Column(
-          children: [
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: ElevatedButton(
-                  onPressed: () {/*To be implemented. Should clear all entries and send input to database*/},
-                  child: const Text('Enter', style: TextStyle(fontSize: 18.0),))
-                 )
+              Expanded(
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: ElevatedButton(
+                        onPressed: () {}, child: const Text('Enter', style: TextStyle(fontSize: 18.0))
+                    ),
+                  )
+              ),
                     ],
               ),
-            ],
-          ),
-        ),
-    );
+        );
+
   }
 
   @override
