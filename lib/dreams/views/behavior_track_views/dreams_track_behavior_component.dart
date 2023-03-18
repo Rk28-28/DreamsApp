@@ -25,6 +25,7 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
         body: Center(
           child: Column( //Outer column
             children: <Widget>[
+
               Column( //First inner column
                 children: [
 
@@ -74,8 +75,8 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
               Column(//Third inner column
                 children: [
                   const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                    child: Text('How stressed were you today?'),
+                    padding:EdgeInsets.fromLTRB(16,32,16,16),
+                    child: Text('How stressed were you today?', style: TextStyle(fontSize: 18.0),)
                   ),
 
               Slider(
@@ -90,21 +91,29 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                   });
                 },
               ),
-                  Row( //Contains text for slider
+                  Padding(
+                    padding:EdgeInsets.fromLTRB(16,8,32,8),
+                  child: Row( //Contains text for slider
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('1 (little stress)'),
-                      Text('5 (Lots of stress')
-
+                      Text('Little stress'),
+                      Text('Lots of stress')
                     ],
+                  ),
                   ),
                 ],//children
               ),
 
-              ElevatedButton(
-                child: Text('Enter', style: TextStyle(fontSize: 20.0),),
-                onPressed: () { /*To be implemented. Should clear all entries and send input to database*/},
+        Column(
+          children: [
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: ElevatedButton(
+                  onPressed: () {/*To be implemented. Should clear all entries and send input to database*/},
+                  child: const Text('Enter', style: TextStyle(fontSize: 18.0),))
+                 )
+                    ],
               ),
-
             ],
           ),
         ),
