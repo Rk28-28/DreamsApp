@@ -1,9 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:units/dreams/views/sleep_track_view/dreams_sleep_track_view.dart';
 import '../../presenter/dreams_sleep_data_presenter.dart';
 import '../../presenter/dreams_sleep_track_presenter.dart';
 import 'sleep_data_view/dreams_sleep_data_component.dart';
+
 
 class TrackHomePage extends StatefulWidget{
   final TRACKPresenter trackPresenter;
@@ -20,15 +21,31 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
   final TextEditingController _sleepTimeController = TextEditingController();
   final TextEditingController _wakeTimeController = TextEditingController();
 
+  String? _timeWentToBed;
+  String? _timeWokeUp;
+  final _formKey = GlobalKey<FormState>();
+  late String average = 'Average Sleep: 0.0';
+
   // Rating of quality of sleep
   double _sleepRating = 3;
 
+
   // Regular expression for validating time input in format HH:MM am/pm
-  final RegExp _timeRegExp = RegExp(
-    r'^([1-9]|1[0-2]):([0-5][0-9])(am|pm)$',
-    caseSensitive: false,
-    multiLine: false,
-  );
+  String? validateTime(String? input) {
+    final validTime = RegExp(r'^\d{1,2}:\d{2} (am|pm)$');
+    if (!validTime.hasMatch(input ?? '')) {
+      return 'Please enter a valid time (e.g. 3:30 pm)';
+    }
+    return null;
+  }
+  void _submitForm() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save(); // Save the form values
+      setState(() {
+        average = this.widget.trackPresenter.onSubmitClicked(_timeWentToBed!, _timeWokeUp!, _sleepRating)!;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,14 +70,14 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
                     child: TextFormField(
                       controller: _sleepTimeController,
                       decoration: InputDecoration(
-                        labelText: 'GOODNIGHT',
+                        labelText: 'Time Went To Bed',
                         border: OutlineInputBorder(),
                       ),
-                      validator: (value) {
-                        if (value == null || !_timeRegExp.hasMatch(value)) {
-                          return 'Please enter a valid time in format HH:MM am/pm';
-                        }
-                        return null;
+                      keyboardType: TextInputType.datetime,
+                      inputFormatters: [],
+                      validator: validateTime,
+                      onSaved: (String? value) {
+                        _timeWentToBed = value ?? '';
                       },
                     ),
                   ),
@@ -73,14 +90,14 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
                     child: TextFormField(
                       controller: _wakeTimeController,
                       decoration: InputDecoration(
-                        labelText: 'GOOD MORNING',
+                        labelText: 'Time You Woke Up',
                         border: OutlineInputBorder(),
                       ),
-                      validator: (value) {
-                        if (value == null || !_timeRegExp.hasMatch(value)) {
-                          return 'Please enter a valid time in format HH:MM am/pm';
-                        }
-                        return null;
+                      keyboardType: TextInputType.datetime,
+                      inputFormatters: [],
+                      validator: validateTime,
+                      onSaved: (String? value) {
+                        _timeWokeUp = value ?? '';
                       },
                     ),
                   ),
@@ -135,11 +152,18 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
               child: Container(
                 alignment: Alignment.bottomCenter,
                 child: Text(
-                  'Average Sleep Here'
+                    average,
                   //_calculateAverageSleep(), need to create this function
                   //style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
                 ),
               ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _submitForm();
+                setState(() {});
+                },
+              child: Text('Submit'),
             ),
         ],
       ),
@@ -154,7 +178,6 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
     this.widget.trackPresenter.trackView = this;
   }
 
-  @override
   set trackView(TRACKView value) {
   }
 }

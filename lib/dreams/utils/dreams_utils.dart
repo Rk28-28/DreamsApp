@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:units/dreams/utils/dreams_constant.dart';
-import 'dart:math';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 
@@ -53,7 +51,7 @@ List<dynamic> calculator(double hour, double minute, double sleepHour, double sl
 }
 
 bool isEmptyString(String string){
-  return string == null || string.length == 0;
+  return string.length == 0;
 }
 
 Future<int> loadValue() async{
@@ -71,3 +69,24 @@ void saveValue(int value) async{
   SharedPreferences preferences = await SharedPreferences.getInstance();
   preferences.setInt('data', value);
 }
+
+String calculateAverageSleep(String bedTime, String wakeTime) {
+
+    if (bedTime.isNotEmpty && wakeTime.isNotEmpty) {
+      var bedTimeParts = bedTime.split(':');
+      var wakeTimeParts = wakeTime.split(':');
+
+      var bedTimeHours = int.parse(bedTimeParts[0]);
+      var bedTimeMinutes = int.parse(bedTimeParts[1]);
+      var wakeTimeHours = int.parse(wakeTimeParts[0]);
+      var wakeTimeMinutes = int.parse(wakeTimeParts[1]);
+
+      var totalMinutes = (wakeTimeHours * 60 + wakeTimeMinutes) - (bedTimeHours * 60 + bedTimeMinutes);
+      var hours = (totalMinutes / 60).floor();
+      var minutes = totalMinutes % 60;
+
+      var averageSleep = '$hours hours $minutes minutes';
+      return averageSleep;
+    }
+    return 'Average sleep: 0.0';
+  }
