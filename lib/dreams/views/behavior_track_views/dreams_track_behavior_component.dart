@@ -12,6 +12,8 @@ class BehaviorHomePage extends StatefulWidget{
   _BehaviorHomePageState createState() => _BehaviorHomePageState();
 }
 
+  double sliderValue = 1; //To be used with the stress slider
+
 class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIORView {
   @override
   Widget build(BuildContext context) {
@@ -62,6 +64,30 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                 ),
               ]    //children
              ),
+
+              Column(//Third inner column
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                    child: Text('How stressed were you today?'),
+                  ),
+
+              Slider(
+                value: sliderValue,
+                min: 1,
+                max: 5,
+                divisions: 4,
+                label: sliderValue.round().toString(),
+                onChanged: (double value) {
+                  setState(() {
+                    sliderValue = value;
+                  });
+                },
+              ),
+
+                ],//children
+
+              ),
             ],
           ),
         ),
