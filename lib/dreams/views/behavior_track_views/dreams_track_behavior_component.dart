@@ -27,12 +27,16 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                 children: [
 
               const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                child: Text('How much caffeine did you consume today?'),
+                padding: EdgeInsets.fromLTRB(16,32,16,16),
+            //horizontal: 8, vertical: 16),
+                child: Text('How much caffeine did you consume today?',
+                    style: TextStyle(fontSize: 18.0)
+                ),
               ),
 
               const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                padding: EdgeInsets.fromLTRB(16,16,16,32),
+                //EdgeInsets.symmetric(horizontal: 16 , vertical: 16),
                 child: TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -47,15 +51,17 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                 children: [
 
               const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                child: Text('How many calories did you consume today?'),
+                padding: EdgeInsets.fromLTRB(16,32,16,16),
+                child: Text('How many calories did you consume today?',
+                style: TextStyle(fontSize: 18.0)
+                ),
               ),
 
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                padding: EdgeInsets.fromLTRB(16,16,16,32),
                 child: TextFormField(
                   decoration: const InputDecoration(
-                    border: UnderlineInputBorder(),
+                    border: OutlineInputBorder(),
                     labelText: 'Enter calories consumed',
                   ),
                 ),
@@ -66,7 +72,6 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
           ),
         ),
     );
-
   }
 
   @override
