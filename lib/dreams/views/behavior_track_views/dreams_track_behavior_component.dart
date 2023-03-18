@@ -21,13 +21,50 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
           // TODO: Implement behavior track home page
         ),
         body: Center(
-          child: Column(
-              children: <Widget>[
-                TextButton(onPressed: onPressed, child: child), // Enter Button when pressed should 
+          child: Column( //Outer column
+            children: <Widget>[
+              Column( //First inner column
+                children: [
 
-              ],
-            ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                child: Text('How much caffeine did you consume today?'),
+              ),
+
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Enter caffeine consumed (in mL)',
+                  ),
+                ),
+              )],
+
+              ),
+
+              Column( //Second inner column
+                children: [
+
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                child: Text('How many calories did you consume today?'),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                child: TextFormField(
+                  decoration: const InputDecoration(
+                    border: UnderlineInputBorder(),
+                    labelText: 'Enter calories consumed',
+                  ),
+                ),
+                ),
+              ]    //children
+             ),
+            ],
           ),
+        ),
     );
 
   }
