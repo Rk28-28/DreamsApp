@@ -19,8 +19,17 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
         appBar: AppBar(
           title: Text('Behavior Tracker'),
           // TODO: Implement behavior track home page
-        )
+        ),
+        body: Center(
+          child: Column(
+              children: <Widget>[
+                TextButton(onPressed: onPressed, child: child), // Enter Button when pressed should 
+
+              ],
+            ),
+          ),
     );
+
   }
 
   @override
