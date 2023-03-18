@@ -22,8 +22,7 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
           title: Text('Behavior Tracker'),
           // TODO: Implement behavior track home page
         ),
-        body: Center(
-          child: Column( //Outer column
+          body: Column( //Outer column
             children: <Widget>[
 
               Column( //First inner column
@@ -31,7 +30,6 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
 
               const Padding(
                 padding: EdgeInsets.fromLTRB(16,32,16,16),
-            //horizontal: 8, vertical: 16),
                 child: Text('How much caffeine did you consume today?',
                     style: TextStyle(fontSize: 18.0)
                 ),
@@ -39,7 +37,6 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
 
               const Padding(
                 padding: EdgeInsets.fromLTRB(16,16,16,32),
-                //EdgeInsets.symmetric(horizontal: 16 , vertical: 16),
                 child: TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -103,21 +100,18 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                   ),
                 ],//children
               ),
-
-        Column(
-          children: [
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: ElevatedButton(
-                  onPressed: () {/*To be implemented. Should clear all entries and send input to database*/},
-                  child: const Text('Enter', style: TextStyle(fontSize: 18.0),))
-                 )
+              Expanded(
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: ElevatedButton(
+                        onPressed: () {}, child: const Text('Enter', style: TextStyle(fontSize: 18.0))
+                    ),
+                  )
+              ),
                     ],
               ),
-            ],
-          ),
-        ),
-    );
+        );
+
   }
 
   @override
