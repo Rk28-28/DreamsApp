@@ -22,7 +22,6 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
           title: Text('Behavior Tracker'),
           // TODO: Implement behavior track home page
         ),
-       // body: Align(
           body: Column( //Outer column
             children: <Widget>[
 
@@ -31,7 +30,6 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
 
               const Padding(
                 padding: EdgeInsets.fromLTRB(16,32,16,16),
-            //horizontal: 8, vertical: 16),
                 child: Text('How much caffeine did you consume today?',
                     style: TextStyle(fontSize: 18.0)
                 ),
@@ -39,7 +37,6 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
 
               const Padding(
                 padding: EdgeInsets.fromLTRB(16,16,16,32),
-                //EdgeInsets.symmetric(horizontal: 16 , vertical: 16),
                 child: TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
