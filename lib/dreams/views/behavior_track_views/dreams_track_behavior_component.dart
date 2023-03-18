@@ -90,8 +90,21 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                   });
                 },
               ),
+                  Row( //Contains text for slider
+                    children: [
+                      Text('1 (little stress)'),
+                      Text('5 (Lots of stress')
+
+                    ],
+                  ),
                 ],//children
               ),
+
+              ElevatedButton(
+                child: Text('Enter', style: TextStyle(fontSize: 20.0),),
+                onPressed: () { /*To be implemented. Should clear all entries and send input to database*/},
+              ),
+
             ],
           ),
         ),
