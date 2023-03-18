@@ -90,9 +90,7 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                   });
                 },
               ),
-
                 ],//children
-
               ),
             ],
           ),
