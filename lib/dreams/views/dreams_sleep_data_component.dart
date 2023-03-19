@@ -112,7 +112,7 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
                         primary: Colors.blueAccent,
                       ),
                       onPressed: () {
-                        //TODO: implement button functionality.
+                        //TODO: implement button functionality
                       },
                       child: Text('Submit'),
                       //onPressed
