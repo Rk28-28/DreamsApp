@@ -109,6 +109,21 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
                     )
                   ]
               ),
+
+              Column(
+                children: <Widget>[
+                  TextField(
+                    keyboardType: TextInputType.multiline,
+                    minLines: 1,
+                    maxLines: 5,
+                    decoration: InputDecoration(
+                      hintText: 'Enter a short description',
+                      filled: true
+                    ),
+                  )
+                ]
+              ),
+
               Column(
                 children: <Widget>[
                 Container(
@@ -130,6 +145,7 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
                 )
                 ]
               )
+
 
             ]
         )
