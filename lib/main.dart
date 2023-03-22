@@ -1,129 +1,92 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:units/dreams/presenter/dreams_behavior_track_presenter.dart';
-import 'package:units/dreams/presenter/dreams_sleep_track_presenter.dart';
-import 'package:units/dreams/views/behavior_track_views/dreams_track_behavior_component.dart';
-import 'dreams/views/sleep_calc_views/dreams_sleep_calc_component.dart';
-import 'dreams/presenter/dreams_sleep_calc_presenter.dart';
-import 'dreams/views/sleep_track_view/dreams_sleep_track_component.dart';
+import 'package:units/dreams_home_page.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MyApp());
+  await Firebase.initializeApp();
+  runApp(LoginPage()); // Change this to HomePage to get to home page for now
 }
 
-class MyApp extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp( // Home page start
+    return MaterialApp(
+      theme: ThemeData(
+      ),
       home: Builder(
         builder: (context) => Scaffold(
           appBar: AppBar(
             title: Text("Sweet Dreams"),
           ),
           body: Center(
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
-                  child: Text("Welcome to the sweet dreams app!",style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent), textScaleFactor: 2.6, textAlign: TextAlign.center,)
-                  ,),
-                Container( // First button ( Sleep Calculator)
-                    margin: const EdgeInsets.only(top: 30),
-                    child: SizedBox(
-                        width: 150,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blueAccent,
-                          ),
-                          child: Text('Sleep Calculator'),
-                          onPressed: () { // Navigator to Sleep Calculator page
-                            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
-                              return SleepCalcScreen();
-                            }));
-                          },
-                        ),
+            child: Card(
+              margin: EdgeInsets.only(top: 200, bottom: 200, left: 30, right: 30),
+              elevation: 20,
+
+              child: Container(
+                width: double.infinity,
+                height: double.infinity,
+                color: Colors.grey[200], // Color of card
+
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      "Sign In",
+                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                     ),
+
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      child: MaterialButton(
+                        color: Colors.teal[200],
+                        elevation: 10,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+
+                            Container( // Container for Google image
+                              height: 30,
+                              width: 30,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image:
+                                      AssetImage('assets/googlelogo.png'),
+                                      fit: BoxFit.cover
+                                  )
+                              ),
+                            ),
+
+                            SizedBox( // Used for padding
+                              width: 20,
+                            ),
+
+                            Text( // Sign up text
+                                "Sign in with Google"
+                            )
+                          ],
+                        ),
+
+                        onPressed: signup,
+                      ),
+                    ),
+                  ],
                 ),
-                Container( // Second Button (Track Sleep)
-                    margin: const EdgeInsets.only(top: 20),
-                    child: SizedBox(
-                        width: 150,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blueAccent,
-                          ),
-                          child: Text('Track Sleep'),
-                          onPressed: () { // Navigator to Track Sleep screen
-                            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-                              return TrackSleepScreen();
-                            }));
-                          },
-                        )
-                    )
-                ),
-                Container( // Third button (Track Behaviors)
-                    margin: const EdgeInsets.only(top: 20),
-                    child: SizedBox(
-                      width: 150,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blueAccent,
-                          ),
-                          child: Text('Track Behaviors'),
-                          onPressed: () { // Navigator to Track Behaviors screen
-                              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-                                return BehaviorTrackScreen();
-                              }));
-                          },
-                        )
-                    )
-                ),
-              ],
-            )
+              )
+              ),
+            ),
           ),
-        )
-      )
-    );
+        ),
+      );
   }
 }
 
-// ignore: slash_for_doc_comments
-/*****************************
-  Classes used for navigation
- ****************************/
+void signup(){
 
-class SleepCalcScreen extends StatefulWidget {
-  @override
-  _SleepCalcScreen createState() => _SleepCalcScreen();
-}
-
-class _SleepCalcScreen extends State<SleepCalcScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return new CalcHomePage(new SleepCalcPresenter(), title: 'Sweet Dreams', key: Key("UNITS"),);
-  }
-}
-
-class TrackSleepScreen extends StatefulWidget {
-  @override
-  _TrackSleepScreen createState() => _TrackSleepScreen();
-}
-
-class _TrackSleepScreen extends State<TrackSleepScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return new TrackHomePage(new TrackSleepPresenter(), title: 'Sweet Dreams', key: Key("TRACK"),);
-  }
-}
-
-class BehaviorTrackScreen extends StatefulWidget {
-  @override
-  _BehaviorTrackScreen createState() => _BehaviorTrackScreen();
-}
-
-class _BehaviorTrackScreen extends State<BehaviorTrackScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return new BehaviorHomePage(new TrackBehaviorPresenter(), title: 'Sweet Dreams', key: Key("BEHAVIOR"),);
-  }
 }
