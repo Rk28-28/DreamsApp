@@ -12,11 +12,13 @@ class BehaviorHomePage extends StatefulWidget{
   _BehaviorHomePageState createState() => _BehaviorHomePageState();
 }
 
+
   double sliderValue = 1; //To be used with the stress slider
   TextEditingController caffeineController = new TextEditingController(); //To be used to grab input from caffeine text field
   TextEditingController calorieController = new TextEditingController(); //To be used to grab input from caffeine text field
   final regex = RegExp(r"^[0-9]+$"); //Regex for checking validation of input
-
+  final caffeineKey = GlobalKey<FormState>(); //Used to check validation of input
+  final calorieKey = GlobalKey<FormState>();
 
 class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIORView {
   @override
@@ -30,6 +32,7 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
             children: <Widget>[
 
               Column( //First inner column
+                key: caffeineKey,
                 children: [
 
               const Padding(
@@ -44,6 +47,8 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                 child: TextFormField(
                     controller: caffeineController,
                     validator: (value) {
+                      if(value == null || value.isEmpty || regex.hasMatch(value))
+                        return "Error: Input must be digits only";
 
                     },
                     decoration: InputDecoration(
@@ -58,6 +63,7 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
               ),
 
               Column( //Second inner column
+                key: calorieKey,
                 children: [
 
               const Padding(
@@ -72,7 +78,8 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                 child: TextFormField(
                   controller: calorieController,
                   validator: (value) {
-
+                    if(value == null || value.isEmpty || regex.hasMatch(value))
+                      return "Error: Input must be digits only";
                   },
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
@@ -128,6 +135,8 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                     alignment: Alignment.bottomCenter,
                     child: ElevatedButton(
                         onPressed: () {
+                          //if(calorieKey.currentState!.validate() && caffeineKey.currentState!.validate())
+
                           
 
 
