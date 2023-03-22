@@ -18,6 +18,9 @@ void handleRadioValueChanged(int? value) {
 }
 
 class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPDATAView {
+  int _firstGroupValue = -1;
+  int _secondGroupValue = -1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +45,8 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
                       children: <Widget>[
                         Radio<int>(
                           activeColor: Colors.blueAccent.shade700,
-                          value: 0, groupValue: 0, onChanged: handleRadioValueChanged,
+                          //value: 0, groupValue: 0, onChanged: handleRadioValueChanged,
+                          value: 0, groupValue: _firstGroupValue, onChanged: (newValue) => setState(() => _firstGroupValue = newValue!),
                         ),
                         Text(
                           'Yes',
@@ -50,7 +54,8 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
                         ),
                         Radio<int>(
                           activeColor: Colors.blueAccent.shade700,
-                          value: 1, groupValue: 0, onChanged: handleRadioValueChanged,
+                          //value: 1, groupValue: 0, onChanged: handleRadioValueChanged,
+                          value: 1, groupValue: _firstGroupValue, onChanged: (newValue) => setState(() => _firstGroupValue = newValue!),
                         ),
                         Text(
                           'No',
@@ -75,7 +80,8 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
                       children: <Widget>[
                         Radio<int>(
                           activeColor: Colors.blueAccent.shade700,
-                          value: 0, groupValue: 0, onChanged: handleRadioValueChanged,
+                          //value: 0, groupValue: 0, onChanged: handleRadioValueChanged,
+                          value: 2, groupValue: _secondGroupValue, onChanged: (newValue) => setState(() => _secondGroupValue = newValue!),
                         ),
                         Text(
                           'Dream',
@@ -83,7 +89,8 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
                         ),
                         Radio<int>(
                           activeColor: Colors.blueAccent.shade700,
-                          value: 1, groupValue: 0, onChanged: handleRadioValueChanged,
+                          //value: 1, groupValue: 0, onChanged: handleRadioValueChanged,
+                          value: 3, groupValue: _secondGroupValue, onChanged: (newValue) => setState(() => _secondGroupValue = newValue!),
                         ),
                         Text(
                           'Nightmare',
@@ -91,7 +98,8 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
                         ),
                         Radio<int>(
                           activeColor: Colors.blueAccent.shade700,
-                          value: 2, groupValue: 0, onChanged: handleRadioValueChanged,
+                          //value: 2, groupValue: 0, onChanged: handleRadioValueChanged,
+                          value: 4, groupValue: _secondGroupValue, onChanged: (newValue) => setState(() => _secondGroupValue = newValue!),
                         ),
                         Text(
                           'Neither',
