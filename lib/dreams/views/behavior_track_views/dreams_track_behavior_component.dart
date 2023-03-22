@@ -17,8 +17,8 @@ class BehaviorHomePage extends StatefulWidget{
   TextEditingController caffeineController = new TextEditingController(); //To be used to grab input from caffeine text field
   TextEditingController calorieController = new TextEditingController(); //To be used to grab input from caffeine text field
   final regex = RegExp(r"^[0-9]+$"); //Regex for checking validation of input
-  final caffeineKey = GlobalKey<FormState>(); //Used to check validation of input
-  final calorieKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>(); //Used to check validation of input
+  //final calorieKey = GlobalKey<FormState>();
 
 class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIORView {
   @override
@@ -29,10 +29,11 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
           // TODO: Implement behavior track home page
         ),
           body: Column( //Outer column
+          key: _formKey,
             children: <Widget>[
 
               Column( //First inner column
-                key: caffeineKey,
+               // key: _formKey,
                 children: [
 
               const Padding(
@@ -47,9 +48,10 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                 child: TextFormField(
                     controller: caffeineController,
                     validator: (value) {
-                      if(value == null || value.isEmpty || regex.hasMatch(value))
+                      if(value == null || value.isEmpty|| regex.hasMatch(value))
                         return "Error: Input must be digits only";
 
+                      return null;
                     },
                     decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -63,7 +65,7 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
               ),
 
               Column( //Second inner column
-                key: calorieKey,
+               // key: _formKey,
                 children: [
 
               const Padding(
@@ -77,14 +79,17 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                 padding: EdgeInsets.fromLTRB(16,16,16,32),
                 child: TextFormField(
                   controller: calorieController,
-                  validator: (value) {
-                    if(value == null || value.isEmpty || regex.hasMatch(value))
-                      return "Error: Input must be digits only";
-                  },
+
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Enter calories consumed',
                   ),
+                  validator: (value) {
+                    if(value == null || value.isEmpty || regex.hasMatch(value)) {
+                      return "Error: Input must be digits only";
+                    }
+                    return null;
+                  },
                 ),
                 ),
               ]    //children
@@ -135,10 +140,12 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                     alignment: Alignment.bottomCenter,
                     child: ElevatedButton(
                         onPressed: () {
-                          //if(calorieKey.currentState!.validate() && caffeineKey.currentState!.validate())
+                          if(_formKey.currentState!.validate())
+                            {
 
-                          
-
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Processing Data')));
+                                }
 
                         }, child: const Text('Enter', style: TextStyle(fontSize: 18.0))
                     ),
