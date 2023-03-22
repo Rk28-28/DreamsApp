@@ -108,11 +108,10 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
             // Button to enter sleep data
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-                  return SleepDataScreen();
-                }));
+                _submitForm();
+                setState(() {});
               },
-              child: Text('Enter sleep data'),
+              child: Text('Submit'),
             ),
             SizedBox(height: 32.0), // add 16 pixels of spacing
             Text(
@@ -160,10 +159,11 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
             ),
             ElevatedButton(
               onPressed: () {
-                _submitForm();
-                setState(() {});
-                },
-              child: Text('Submit'),
+                Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                  return SleepDataScreen();
+                }));
+              },
+              child: Text('Enter sleep data'),
             ),
         ],
       ),

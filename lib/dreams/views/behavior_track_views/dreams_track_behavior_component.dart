@@ -13,6 +13,10 @@ class BehaviorHomePage extends StatefulWidget{
 }
 
   double sliderValue = 1; //To be used with the stress slider
+  TextEditingController caffeineController = new TextEditingController(); //To be used to grab input from caffeine text field
+  TextEditingController calorieController = new TextEditingController(); //To be used to grab input from caffeine text field
+  final regex = RegExp(r"^[0-9]+$"); //Regex for checking validation of input
+
 
 class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIORView {
   @override
@@ -35,13 +39,19 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                 ),
               ),
 
-              const Padding(
+              Padding(
                 padding: EdgeInsets.fromLTRB(16,16,16,32),
-                child: TextField(
-                  decoration: InputDecoration(
+                child: TextFormField(
+                    controller: caffeineController,
+                    validator: (value) {
+
+                    },
+                    decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'Enter caffeine consumed (in mL)',
+
                   ),
+
                 ),
               )],
 
@@ -60,6 +70,10 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
               Padding(
                 padding: EdgeInsets.fromLTRB(16,16,16,32),
                 child: TextFormField(
+                  controller: calorieController,
+                  validator: (value) {
+
+                  },
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Enter calories consumed',
@@ -100,14 +114,28 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                   ),
                 ],//children
               ),
+
+              Padding(
+                padding:EdgeInsets.fromLTRB(16,8,32,8),
+                child: Text('',
+                  style: TextStyle(fontWeight: FontWeight.bold,
+                      color: Colors.red.withOpacity(1.0)),
+                ),
+
+              ),
               Expanded(
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: ElevatedButton(
-                        onPressed: () {}, child: const Text('Enter', style: TextStyle(fontSize: 18.0))
+                        onPressed: () {
+                          
+
+
+                        }, child: const Text('Enter', style: TextStyle(fontSize: 18.0))
                     ),
                   )
               ),
+
                     ],
               ),
         );
