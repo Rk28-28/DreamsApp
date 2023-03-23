@@ -22,16 +22,12 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
   var _wakeMinuteController = TextEditingController();
   var _bedHourController = TextEditingController();
   var _bedMinuteController = TextEditingController();
-  String _bedHour = "0.0";
-  String _bedMinute = "0.0";
-  String _wakeMinute = "0.0";
-  String _wakeHour = "0.0";
-  var _resultString = '';
-  var _timeString = '';
-  var _message = '';
-  var _value = 0;
-  var _valueBedTime = -1;
-  var _valueWakeTime = -1;
+  int _bedHour = 0;
+  int _bedMinute = 0;
+  int _wakeMinute = 0;
+  int _wakeHour = 0;
+  var _bedAmPm = 0;
+  var _wakeAmPm = 0;
   final FocusNode _bedHourFocus = FocusNode();
   final FocusNode _wakeHourFocus = FocusNode();
   final FocusNode _wakeMinuteFocus = FocusNode();
@@ -49,87 +45,13 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
     this.widget.trackPresenter.trackView = this;
   }
 
-  void handleRadioValueChanged(int? value) {
-    this.widget.trackPresenter.onOptionChanged(value!, wakeHourString: _wakeHour, wakeMinuteString: _wakeMinute );
-  }
-  void handleRadioValueChangedBedTime(int? value) {
-    this.widget.trackPresenter.onBedTimeOptionChanged(value!);
-  }
-  void handleRadioValueChangedWakeTime(int? value) {
-    this.widget.trackPresenter.onWakeTimeOptionChanged(value!);
-  }
 
   void _submission() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      this.widget.trackPresenter.onSubmitClicked(_bedHour, _bedMinute, _wakeMinute, _wakeHour, _sleepRating);
+      this.widget.trackPresenter.onSubmitClicked(_bedHour, _bedMinute, _bedAmPm, _wakeHour,
+          _wakeMinute,_wakeAmPm, _sleepRating);
     }
-  }
-
-
-
-
-    @override
-  void updateResultValue(String resultValue){
-    setState(() {
-      _resultString = resultValue;
-    });
-  }
-  @override
-  void updateTimeString(String timeString){
-    setState(() {
-      _timeString = timeString;
-    });
-  }
-  @override
-  void updateMessage(String message){
-    setState(() {
-      _message = message;
-    });
-  }
-  @override
-  void updateWakeMinute({required String wakeMinute}){
-    setState(() {
-      // ignore: unnecessary_null_comparison
-      _wakeMinuteController.text = wakeMinute != null?wakeMinute:'';
-    });
-  }
-  @override
-  void updateWakeHour({required String wakeHour}){
-    setState(() {
-      // ignore: unnecessary_null_comparison
-      _wakeHourController.text = wakeHour != null?wakeHour:'';
-    });
-  }
-  @override
-  void updateBedHour({required String bedHour}) {
-    setState(() {
-      _bedHourController.text = bedHour != null ? bedHour : '';
-    });
-  }
-  @override
-  void updateBedMinute({required String bedMinute}) {
-    setState(() {
-      _bedMinuteController.text = bedMinute != null ? bedMinute : '';
-    });
-  }
-  @override
-  void updateUnit(int value){
-    setState(() {
-      _value = value;
-    });
-  }
-  @override
-  void updateBedTimeUnit(int value){
-    setState(() {
-      _valueBedTime = value;
-    });
-  }
-  @override
-  void updateWakeTimeUnit(int value){
-    setState(() {
-      _valueWakeTime = value;
-    });
   }
 
   @override
@@ -140,7 +62,11 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
       children: <Widget>[
         Radio<int>(
           activeColor: Colors.blueAccent.shade700,
-          value: 0, groupValue: _valueBedTime, onChanged: handleRadioValueChangedBedTime,
+          value: 0, groupValue: _bedAmPm, onChanged: (value) {
+          setState(() {
+            _bedAmPm = value!;
+          });
+        },
         ),
         Text(
           'AM',
@@ -148,7 +74,11 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
         ),
         Radio<int>(
           activeColor: Colors.blueAccent.shade700,
-          value: 1, groupValue: _valueBedTime, onChanged: handleRadioValueChangedBedTime,
+          value: 1, groupValue: _bedAmPm, onChanged: (value) {
+          setState(() {
+            _bedAmPm = value!;
+          });
+        },
         ),
         Text(
           'PM',
@@ -162,7 +92,11 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
       children: <Widget>[
         Radio<int>(
           activeColor: Colors.blueAccent.shade700,
-          value: 0, groupValue: _valueWakeTime, onChanged: handleRadioValueChangedWakeTime,
+          value: 0, groupValue: _wakeAmPm, onChanged: (value) {
+          setState(() {
+            _wakeAmPm = value!;
+          });
+        },
         ),
         Text(
           'AM',
@@ -170,7 +104,11 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
         ),
         Radio<int>(
           activeColor: Colors.blueAccent.shade700,
-          value: 1, groupValue: _valueWakeTime, onChanged: handleRadioValueChangedWakeTime,
+          value: 1, groupValue: _wakeAmPm, onChanged: (value) {
+          setState(() {
+            _wakeAmPm = value!;
+          });
+        },
         ),
         Text(
           'PM',
@@ -316,7 +254,7 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
         }
       },
       onSaved: (value) {
-        _wakeMinute = value!;
+        _wakeMinute = int.parse(value!);
       },
       decoration: InputDecoration(
           hintText: 'e.g.) 40',
@@ -342,7 +280,7 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
         }
       },
       onSaved: (value) {
-        _wakeHour = value!;
+        _wakeHour = int.parse(value!);
       },
       decoration: InputDecoration(
         hintText: "e.g.) 7",
@@ -368,7 +306,7 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
         }
       },
       onSaved: (value) {
-        _bedHour = value!;
+        _bedHour = int.parse(value!);
       },
       decoration: InputDecoration(
         hintText: 'e.g.) 6',
@@ -394,7 +332,7 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
         }
       },
       onSaved: (value) {
-        _bedMinute = value!;
+        _bedMinute = int.parse(value!);
       },
       decoration: InputDecoration(
         hintText: 'e.g.) 30',
@@ -409,6 +347,8 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
     currentFocus.unfocus();
     FocusScope.of(context).requestFocus(nextFocus);
   }
+
+
 
 
 }

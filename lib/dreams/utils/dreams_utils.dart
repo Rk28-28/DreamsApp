@@ -90,3 +90,25 @@ String calculateAverageSleep(String bedTime, String wakeTime) {
     }
     return 'Average sleep: 0.0';
   }
+
+double calculateHoursSlept(int bedHour, int bedMinute, int bedAmPm, int wakeHour, int wakeMinute, int wakeAmPm) {
+  // Convert bed time and wake time to 24-hour format
+  if (bedAmPm == 1) {
+    bedHour += 12;
+  }
+  if (wakeAmPm == 1) {
+    wakeHour += 12;
+  }
+
+  // Calculate total minutes slept
+  int totalMinutesSlept = ((wakeHour * 60) + wakeMinute) - ((bedHour * 60) + bedMinute);
+
+  // If total minutes slept is negative, add 24 hours to account for overnight sleep
+  if (totalMinutesSlept < 0) {
+    totalMinutesSlept += 1440;
+  }
+
+  // Convert total minutes slept to hours and return result
+  return (totalMinutesSlept / 60);
+}
+
