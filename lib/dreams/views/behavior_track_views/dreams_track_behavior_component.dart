@@ -28,12 +28,14 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
           title: Text('Behavior Tracker'),
           // TODO: Implement behavior track home page
         ),
-          body: Column( //Outer column
-          key: _formKey,
-            children: <Widget>[
+          body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Form( //form
+               key: _formKey,
+               child: Column( //Outer column
+                 children: <Widget>[
 
               Column( //First inner column
-               // key: _formKey,
                 children: [
 
               const Padding(
@@ -54,8 +56,8 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                       return null;
                     },
                     decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter caffeine consumed (in mL)',
+                       border: OutlineInputBorder(),
+                       hintText: 'Enter caffeine consumed (in mL)',
 
                   ),
 
@@ -65,7 +67,6 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
               ),
 
               Column( //Second inner column
-               // key: _formKey,
                 children: [
 
               const Padding(
@@ -154,6 +155,8 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
 
                     ],
               ),
+          ),
+          ),
         );
 
   }
