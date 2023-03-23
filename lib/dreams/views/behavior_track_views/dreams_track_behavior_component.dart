@@ -50,7 +50,7 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                 child: TextFormField(
                     controller: caffeineController,
                     validator: (value) {
-                      if(value == null || value.isEmpty|| regex.hasMatch(value))
+                      if(value == null || value.isEmpty|| !regex.hasMatch(value))
                         return "Error: Input must be digits only";
 
                       return null;
@@ -86,7 +86,7 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                     labelText: 'Enter calories consumed',
                   ),
                   validator: (value) {
-                    if(value == null || value.isEmpty || regex.hasMatch(value)) {
+                    if(value == null || value.isEmpty || !regex.hasMatch(value)) {
                       return "Error: Input must be digits only";
                     }
                     return null;
