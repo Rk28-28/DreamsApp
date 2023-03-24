@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
                         padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                         child: Text("Welcome to the sweet dreams app!",style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent), textScaleFactor: 2.6, textAlign: TextAlign.center,)
                         ,),
-                      Padding(
+                      Padding( // Displays the current user logged in to the app
                         padding: EdgeInsets.only(top: 0, bottom: 20),
                         child: Text(" User: " + FirebaseAuth.instance.currentUser!.displayName!,
                           style: const TextStyle(fontSize: 20))
@@ -79,7 +79,7 @@ class HomePage extends StatelessWidget {
                               )
                           )
                       ),
-                      Container(
+                      Container( // Logout Button
                         margin: const EdgeInsets.only(top: 300),
                         child: SizedBox(
                           width: 150,

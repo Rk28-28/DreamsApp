@@ -3,15 +3,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'dreams_home_page.dart';
 
+// Adapted from dbestech on YouTube
 class AuthenticationService {
   handleAuthState() {
     return StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (BuildContext context, snapshot) {
-          if (snapshot.hasData){
+          if (snapshot.hasData){ // If user is logged in go to HomePage
             return HomePage();
           }
-          else {
+          else { // If user is not logged in go to login page
             return LoginPage();
           }
         });
@@ -101,9 +102,12 @@ class _LoginPageState extends State<LoginPage> {
 
 final FirebaseAuth auth = FirebaseAuth.instance;
 
+// Adapted from ms471841 on GeeksForGeeks
+
 Future<void> signup(BuildContext context) async {
   final GoogleSignIn googleSignIn = GoogleSignIn();
   final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
+
   if (googleSignInAccount != null) {
     final GoogleSignInAuthentication googleSignInAuthentication =
     await googleSignInAccount.authentication;
@@ -111,8 +115,6 @@ Future<void> signup(BuildContext context) async {
         idToken: googleSignInAuthentication.idToken,
         accessToken: googleSignInAuthentication.accessToken);
 
-    // Getting users credential
     UserCredential result = await auth.signInWithCredential(authCredential);
-    User? user = result.user;
   }
 }
