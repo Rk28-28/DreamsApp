@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:units/dreams/presenter/dreams_behavior_track_presenter.dart';
 import 'package:units/dreams/presenter/dreams_sleep_track_presenter.dart';
@@ -22,6 +23,11 @@ class HomePage extends StatelessWidget {
                         padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                         child: Text("Welcome to the sweet dreams app!",style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent), textScaleFactor: 2.6, textAlign: TextAlign.center,)
                         ,),
+                      Padding(
+                        padding: EdgeInsets.only(top: 0, bottom: 20),
+                        child: Text(" User: " + FirebaseAuth.instance.currentUser!.displayName!,
+                          style: const TextStyle(fontSize: 20))
+                      ),
                       Container( // First button ( Sleep Calculator)
                         margin: const EdgeInsets.only(top: 30),
                         child: SizedBox(
@@ -72,6 +78,21 @@ class HomePage extends StatelessWidget {
                                 },
                               )
                           )
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(top: 300),
+                        child: SizedBox(
+                          width: 150,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.redAccent,
+                            ),
+                            child: Text('Logout'),
+                            onPressed: () {
+                              FirebaseAuth.instance.signOut();
+                            },
+                          ),
+                        ),
                       ),
                     ],
                   )

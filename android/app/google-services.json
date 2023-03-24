@@ -15,7 +15,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "916127097898-4v7q0jhhf7t8h810sh95gnv2tjuek8hp.apps.googleusercontent.com",
+          "client_id": "916127097898-2qjtbmofmdsdrs9qj2827qp823iuq9g5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sweetdreams",
+            "certificate_hash": "887f9f84d2912035b6692ea09fbc620e96523180"
+          }
+        },
+        {
+          "client_id": "916127097898-hk3n1k93e1bp60fqi97ipdk3l0ona1ji.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
