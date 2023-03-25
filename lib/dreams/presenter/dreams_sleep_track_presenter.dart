@@ -26,6 +26,7 @@ class TrackSleepPresenter implements TRACKPresenter {
 
 
   TRACKView _view = TRACKView();
+  SleepTrackViewModel viewModel = new SleepTrackViewModel();
 
   TrackSleepPresenter();
   
@@ -38,7 +39,7 @@ class TrackSleepPresenter implements TRACKPresenter {
         bedAmPm, wakeHour, wakeMinute, wakeAmPm);
     print(totalSleepInHours);
     
-// TODO: sends things to databases????
+    viewModel.sendToDatabase(totalSleepInHours);
     }
 
   @override

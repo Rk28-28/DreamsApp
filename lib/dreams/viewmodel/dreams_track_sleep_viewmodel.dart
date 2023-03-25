@@ -1,4 +1,8 @@
-
+import 'dart:io';
+import 'package:intl/intl.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import '../utils/dreams_constant.dart';
 
@@ -15,6 +19,8 @@ class SleepTrackViewModel {
   double wakeHour = 0.0;
   double wakeMinute = 0.0;
   double sleepRating = 0.0;
+
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   double get units => _units;
   set units(double outResult){
@@ -66,6 +72,27 @@ class SleepTrackViewModel {
       _unitTypeTime = UnitType.PM;
     }
   }
+
+  Future<void> sendToDatabase(double sleepTime) async {
+    final User? user = auth.currentUser;
+    final uid = user?.uid;
+
+    DateTime now = new DateTime.now();
+    var formatter = new DateFormat('yyyy-mm-dd');
+    String dateStr = formatter.format(now);
+
+    String sleepTimeStr = sleepTime.toString();
+
+    DatabaseReference ref = FirebaseDatabase.instance.ref("users/");
+    await ref.update({
+      uid!: {
+        "sleep-time": {
+        dateStr: sleepTimeStr,
+        }
+      }
+    });
+  }
+
 
   String get timeInString => _timeType;
   String get messageInString => _message;
