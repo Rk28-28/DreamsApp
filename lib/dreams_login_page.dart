@@ -118,13 +118,16 @@ Future<void> signup(BuildContext context) async {
 
     UserCredential result = await auth.signInWithCredential(authCredential);
 
+    // Get UserID for database
     final User? user = auth.currentUser;
     final uid = user?.uid;
 
     DatabaseReference ref = FirebaseDatabase.instance.ref("users/");
 
+    // Check to see if UserID is already in database
     DatabaseEvent event = await ref.child(uid!).once();
 
+    // If UserID is not in database add a new entry
     if (event.snapshot.value == null) {
       await ref.update({
         uid: {
