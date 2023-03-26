@@ -101,11 +101,10 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-final FirebaseAuth auth = FirebaseAuth.instance;
-
 // Adapted from ms471841 on GeeksForGeeks
 
 Future<void> signup(BuildContext context) async {
+  final FirebaseAuth auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
   final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
 
