@@ -71,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                   )
                 ),
               SizedBox( // Padding from image to Google sign in
-                height: 230,
+                height: 300,
               ),
               Padding(
                 padding: const EdgeInsets.only(left:100, right: 100),
