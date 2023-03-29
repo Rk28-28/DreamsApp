@@ -21,6 +21,16 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
   int _firstGroupValue = -1;
   int _secondGroupValue = -1;
 
+  var _formKey = GlobalKey<FormState>();
+
+
+  void _submission() {
+    if(_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      this.widget.sleepdataPresenter.onSubmitClicked();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -136,6 +146,7 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
                       ),
                       onPressed: () {
                         //TODO: implement button functionality
+                        _submission();
                       },
                       child: Text('Submit'),
                       //onPressed
