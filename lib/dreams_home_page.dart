@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:units/dreams/presenter/dreams_behavior_track_presenter.dart';
 import 'package:units/dreams/presenter/dreams_sleep_track_presenter.dart';
 import 'package:units/dreams/views/behavior_track_views/dreams_track_behavior_component.dart';
+import 'dreams/presenter/dreams_extra_info_presenter.dart';
+import 'dreams/views/extra_info_views/extra_info_component.dart';
 import 'dreams/views/sleep_calc_views/dreams_sleep_calc_component.dart';
 import 'dreams/presenter/dreams_sleep_calc_presenter.dart';
 import 'dreams/views/sleep_track_view/dreams_sleep_track_component.dart';
@@ -25,8 +27,8 @@ class HomePage extends StatelessWidget {
                         ,),
                       Padding( // Displays the current user logged in to the app
                         padding: EdgeInsets.only(top: 0, bottom: 20),
-                        child: Text(" User: " + FirebaseAuth.instance.currentUser!.displayName!,
-                          style: const TextStyle(fontSize: 20))
+                        //child: Text(" User: " + FirebaseAuth.instance.currentUser!.displayName!,
+                         // style: const TextStyle(fontSize: 20))
                       ),
                       Container( // First button ( Sleep Calculator)
                         margin: const EdgeInsets.only(top: 30),
@@ -74,6 +76,23 @@ class HomePage extends StatelessWidget {
                                 onPressed: () { // Navigator to Track Behaviors screen
                                   Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
                                     return BehaviorTrackScreen();
+                                  }));
+                                },
+                              )
+                          )
+                      ),
+                      Container( // Third button (Track Behaviors)
+                          margin: const EdgeInsets.only(top: 20),
+                          child: SizedBox(
+                              width: 150,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.blueAccent,
+                                ),
+                                child: Text('Extra Info'),
+                                onPressed: () { // Navigator to Track Behaviors screen
+                                  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                                    return ExtraInfoScreen();
                                   }));
                                 },
                               )
@@ -140,6 +159,21 @@ class BehaviorTrackScreen extends StatefulWidget {
 class _BehaviorTrackScreen extends State<BehaviorTrackScreen> {
   @override
   Widget build(BuildContext context) {
-    return new BehaviorHomePage(new TrackBehaviorPresenter(), title: 'Sweet Dreams', key: Key("BEHAVIOR"),);
+    return new BehaviorHomePage(
+      new TrackBehaviorPresenter(), title: 'Sweet Dreams',
+      key: Key("BEHAVIOR"),);
   }
 }
+  class ExtraInfoScreen extends StatefulWidget {
+  @override
+  _ExtraInfoScreen createState() => _ExtraInfoScreen();
+  }
+
+  class _ExtraInfoScreen extends State<ExtraInfoScreen> {
+    @override
+    Widget build(BuildContext context) {
+      return new ExtraInfoHomePage(
+        new ExtraInfoPresenter(), title: 'Sweet Dreams',
+        key: Key("EXTRAINFO"),);
+    }
+  }
