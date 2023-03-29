@@ -79,7 +79,7 @@ class SleepTrackViewModel {
 
     // Format date for database
     DateTime now = new DateTime.now();
-    var formatter = new DateFormat('yyyy-mm-dd');
+    var formatter = new DateFormat('yyyy-MM-dd');
     String dateStr = formatter.format(now);
 
     // Convert sleep time to string
@@ -90,7 +90,7 @@ class SleepTrackViewModel {
     // Update user with new sleep time entry
     await ref.update({
       uid!: {
-        "sleep-time": {
+        "sleep-times": {
         dateStr: sleepTimeStr,
         }
       }
