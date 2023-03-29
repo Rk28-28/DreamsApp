@@ -20,6 +20,7 @@ void handleRadioValueChanged(int? value) {
 class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPDATAView {
   int _firstGroupValue = -1;
   int _secondGroupValue = -1;
+  final myController = TextEditingController();
 
   var _formKey = GlobalKey<FormState>();
 
@@ -123,6 +124,7 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
               Column(
                 children: <Widget>[
                   TextField(
+                    controller: myController,
                     keyboardType: TextInputType.multiline,
                     minLines: 1,
                     maxLines: 5,
