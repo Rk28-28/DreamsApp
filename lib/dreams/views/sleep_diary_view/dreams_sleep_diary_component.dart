@@ -54,9 +54,14 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
 
                     controller: diaryEntryController,
                     maxLines: null,
+                    maxLength: 200,
                     expands: true,
                     keyboardType: TextInputType.multiline,
+                    style: TextStyle(fontSize: 25),
                     textAlignVertical: TextAlignVertical.top,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.deny(RegExp("\n")),
+                    ], // Only numbers can be entered
                     /* To be implemented
                     validator: (value) {
                       if(value == null || value.isEmpty|| !regex.hasMatch(value))
@@ -68,7 +73,8 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: 'Talk about dreams you had, your sleeping habits, bedtime routines, etc.',
-                      hintMaxLines: 2,
+                      hintMaxLines: 3,
+
                     ),
 
                   ),
