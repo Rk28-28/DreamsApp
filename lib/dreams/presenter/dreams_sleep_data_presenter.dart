@@ -1,3 +1,4 @@
+import 'package:flutter/src/widgets/editable_text.dart';
 import 'package:units/dreams/viewmodel/dreams_sleep_data_viewmodel.dart';
 import 'package:units/dreams/views/sleep_track_view/dreams_sleep_track_view.dart';
 import '../viewmodel/dreams_track_sleep_viewmodel.dart';
@@ -8,7 +9,7 @@ class SLEEPDATAPresenter{
   set SleepDataView(SLEEPDATAView value){
 
   }
-  void onSubmitClicked(){
+  void onSubmitClicked(int firstGroupValue, int secondGroupValue, TextEditingController myController){
 
   }
 
@@ -20,11 +21,15 @@ class SleepDataPresenter implements SLEEPDATAPresenter{
   SLEEPDATAView _view = SLEEPDATAView();
   SleepDataViewModel viewModel = new SleepDataViewModel();
 
-  SleepDataPresenter() {}
+  SleepDataPresenter();
 
   @override
-  void onSubmitClicked(){
+  void onSubmitClicked(int firstGroupValue, int secondGroupValue, TextEditingController myController){
+    String _sleepFeelings = '';
+    _sleepFeelings = myController.toString();
+    print(myController);
 
+  viewModel.sendToDatabase(_sleepFeelings);
   }
 
   @override

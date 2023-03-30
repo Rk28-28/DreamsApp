@@ -147,5 +147,10 @@ Future<void> signup(BuildContext context) async {
         uid: {"sleep-times": ""},
       });
     }
+    if (event.snapshot.value == null) {
+      await ref.update({
+        uid: {"sleep-information": ""},
+      });
+    }
   }
 }

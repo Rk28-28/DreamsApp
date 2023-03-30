@@ -56,4 +56,5 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
 
   set extraInfoView(EXTRAINFOView value) {
   }
+
 }
