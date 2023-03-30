@@ -29,8 +29,8 @@ class HomePage extends StatelessWidget {
                         ,),
                       Padding( // Displays the current user logged in to the app
                         padding: EdgeInsets.only(top: 0, bottom: 20),
-                        //child: Text(" User: " + FirebaseAuth.instance.currentUser!.displayName!,
-                         // style: const TextStyle(fontSize: 20))
+                        child: Text(" User: " + FirebaseAuth.instance.currentUser!.displayName!,
+                          style: const TextStyle(fontSize: 20))
                       ),
                       Container( // First button ( Sleep Calculator)
                         margin: const EdgeInsets.only(top: 30),
