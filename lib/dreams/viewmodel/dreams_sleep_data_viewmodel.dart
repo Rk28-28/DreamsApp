@@ -11,9 +11,11 @@ class SleepDataViewModel {
 
   FirebaseAuth auth = FirebaseAuth.instance;
 
-  Future<void> sendToDatabase(double sleepTime) async {
+  Future<void> sendToDatabase(String _sleepFeelings) async {
     final User? user = auth.currentUser;
     final uid = user?.uid;
+
+
 
     DatabaseReference ref = FirebaseDatabase.instance.ref("users/");
 
@@ -21,10 +23,10 @@ class SleepDataViewModel {
     await ref.update({
       uid!: {
         "sleep-information": {
-        },
+          _sleepFeelings
         }
       }
-    );
+    });
   }
 
 
