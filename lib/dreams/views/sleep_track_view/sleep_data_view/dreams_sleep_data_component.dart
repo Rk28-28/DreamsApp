@@ -28,7 +28,7 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
   void _submission() {
     if(_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      this.widget.sleepdataPresenter.onSubmitClicked();
+      this.widget.sleepdataPresenter.onSubmitClicked(_firstGroupValue, _secondGroupValue, myController);
     }
   }
 
@@ -147,7 +147,6 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
                         primary: Colors.blueAccent,
                       ),
                       onPressed: () {
-                        //TODO: implement button functionality
                         _submission();
                       },
                       child: Text('Submit'),
