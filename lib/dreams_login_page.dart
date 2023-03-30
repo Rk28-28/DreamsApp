@@ -128,18 +128,19 @@ Future<void> createDatabaseUser() async {
   // Check to see if UserID is already in database
   DatabaseEvent isUserInDB = await ref.child(uid!).once();
 
-  // If UserID is not in database add a new entry
-  if (isUserInDB.snapshot.value == null) {
-    await ref.update({
-      uid: {"sleep-times": ""},
-    });
-  }
-
   DatabaseEvent userSleepTimes = await ref.child(uid+ "sleep-times").once();
 
   if (userSleepTimes.snapshot.value == null) {
     await ref.update({
       uid: {"sleep-times": ""},
+    });
+  }
+
+  // If UserID is not in database add a new entry
+  if (isUserInDB.snapshot.value == null) {
+    await ref.update({
+      uid: {"sleep-times": "",
+        "sleep-information": ""},
     });
   }
 }

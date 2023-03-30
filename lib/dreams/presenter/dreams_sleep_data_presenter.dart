@@ -26,7 +26,7 @@ class SleepDataPresenter implements SLEEPDATAPresenter{
   @override
   void onSubmitClicked(int firstGroupValue, int secondGroupValue, TextEditingController myController){
     String _sleepFeelings = '';
-    _sleepFeelings = myController.toString();
+    _sleepFeelings = myController.text.toString();
     print(myController);
 
   viewModel.sendToDatabase(_sleepFeelings);

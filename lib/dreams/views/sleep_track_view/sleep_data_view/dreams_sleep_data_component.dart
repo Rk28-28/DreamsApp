@@ -26,10 +26,7 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
 
 
   void _submission() {
-    if(_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
       this.widget.sleepdataPresenter.onSubmitClicked(_firstGroupValue, _secondGroupValue, myController);
-    }
   }
 
   @override
