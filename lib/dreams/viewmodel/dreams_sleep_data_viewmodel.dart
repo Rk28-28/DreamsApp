@@ -21,10 +21,10 @@ class SleepDataViewModel {
     await ref.update({
       uid!: {
         "sleep-information": {
-          ,
+        },
         }
       }
-    });
+    );
   }
 
 

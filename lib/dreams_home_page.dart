@@ -8,6 +8,8 @@ import 'dreams/views/extra_info_views/extra_info_component.dart';
 import 'dreams/views/sleep_calc_views/dreams_sleep_calc_component.dart';
 import 'dreams/presenter/dreams_sleep_calc_presenter.dart';
 import 'dreams/views/sleep_track_view/dreams_sleep_track_component.dart';
+import 'package:units/dreams/presenter/dreams_sleep_diary_presenter.dart';
+import 'dreams/views/sleep_diary_view/dreams_sleep_diary_component.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -81,6 +83,23 @@ class HomePage extends StatelessWidget {
                               )
                           )
                       ),
+                      Container( // Fourth button (Sleep Diary)
+                          margin: const EdgeInsets.only(top: 20),
+                          child: SizedBox(
+                              width: 150,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.blueAccent,
+                                ),
+                                child: Text('Sleep Diary'),
+                                onPressed: () { // Navigator to Diary screen
+                                  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                                    return SleepDiaryScreen();//
+                                  }));
+                                },
+                              )
+                          )
+                      ),
                       Container( // Third button (Track Behaviors)
                           margin: const EdgeInsets.only(top: 20),
                           child: SizedBox(
@@ -99,7 +118,7 @@ class HomePage extends StatelessWidget {
                           )
                       ),
                       Container( // Logout Button
-                        margin: const EdgeInsets.only(top: 300),
+                        margin: const EdgeInsets.only(top: 150),
                         child: SizedBox(
                           width: 150,
                           child: ElevatedButton(
@@ -177,3 +196,15 @@ class _BehaviorTrackScreen extends State<BehaviorTrackScreen> {
         key: Key("EXTRAINFO"),);
     }
   }
+class SleepDiaryScreen extends StatefulWidget {
+  @override
+  _SleepDiaryScreen createState() => _SleepDiaryScreen();
+}
+
+class _SleepDiaryScreen extends State<SleepDiaryScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return new SleepDiaryHomePage(new SleepDiaryPresenter(), title: 'Sweet Dreams', key: Key("DiarySleep"),);
+  }
+}
+
