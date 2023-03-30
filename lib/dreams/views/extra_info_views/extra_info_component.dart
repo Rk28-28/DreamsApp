@@ -17,34 +17,36 @@ class ExtraInfoHomePage extends StatefulWidget{
 
 class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAINFOView {
 
-  openLink(String link) async {
-        if (await canLaunchUrlString(link)){
-          await launchUrlString(link);
-        }
-        else {
-          throw "Could not launch $link";
-        }
+  //late Uri _url = Uri.parse('https://flutter.dev');
+
+  _launchURLApp() async {
+    var url = Uri.parse("https://www.geeksforgeeks.org/");
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-        title: Text('Behavior Tracker'),
+        title: Text('Extra Information'),
     // TODO: Implement behavior track home page
     ),
     body: Padding(
         padding: const EdgeInsets.all(16.0),
+      child: Center (
         child: ElevatedButton (
           child: Text("Tips for Better Sleep"),
-          onPressed:() {
-            const url = "https://www.cdc.gov/sleep/about_sleep/sleep_hygiene.html";
-            openLink(url);
-          }
+          onPressed: _launchURLApp
         )
+    ),
     ),
     );
   }
+
 
   @override
   void initState() {
