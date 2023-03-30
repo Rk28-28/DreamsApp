@@ -118,7 +118,7 @@ class HomePage extends StatelessWidget {
                           )
                       ),
                       Container( // Logout Button
-                        margin: const EdgeInsets.only(top: 300),
+                        margin: const EdgeInsets.only(top: 150),
                         child: SizedBox(
                           width: 150,
                           child: ElevatedButton(
