@@ -7,25 +7,25 @@ class SleepDataPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          Container( // Gradient for background
-            height: double.infinity,
-            width: double.infinity,
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomLeft,
-                    colors: [
-                      Colors.tealAccent,
-                      Colors.blue,
-                    ]
-                )
-            ),
-          ),
-
 
         ],
       ),
     );
   }
-
+  Container gradient() {
+    return Container( // Gradient for background
+      height: double.infinity,
+      width: double.infinity,
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Colors.tealAccent,
+                Colors.blue,
+              ]
+          )
+      ),
+    );
+  }
 }

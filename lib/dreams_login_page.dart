@@ -116,6 +116,34 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
+Future<void> createDatabaseUser() async {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
+  // Get UserID for database
+  final User? user = auth.currentUser;
+  final uid = user?.uid;
+
+  DatabaseReference ref = FirebaseDatabase.instance.ref("users/");
+
+  // Check to see if UserID is already in database
+  DatabaseEvent isUserInDB = await ref.child(uid!).once();
+
+  // If UserID is not in database add a new entry
+  if (isUserInDB.snapshot.value == null) {
+    await ref.update({
+      uid: {"sleep-times": ""},
+    });
+  }
+
+  DatabaseEvent userSleepTimes = await ref.child(uid+ "sleep-times").once();
+
+  if (userSleepTimes.snapshot.value == null) {
+    await ref.update({
+      uid: {"sleep-times": ""},
+    });
+  }
+}
+
 // Adapted from ms471841 on GeeksForGeeks
 
 Future<void> signup(BuildContext context) async {
@@ -125,27 +153,14 @@ Future<void> signup(BuildContext context) async {
 
   if (googleSignInAccount != null) {
     final GoogleSignInAuthentication googleSignInAuthentication =
-        await googleSignInAccount.authentication;
+    await googleSignInAccount.authentication;
     final AuthCredential authCredential = GoogleAuthProvider.credential(
         idToken: googleSignInAuthentication.idToken,
         accessToken: googleSignInAuthentication.accessToken);
 
     UserCredential result = await auth.signInWithCredential(authCredential);
 
-    // Get UserID for database
-    final User? user = auth.currentUser;
-    final uid = user?.uid;
-
-    DatabaseReference ref = FirebaseDatabase.instance.ref("users/");
-
-    // Check to see if UserID is already in database
-    DatabaseEvent event = await ref.child(uid!).once();
-
-    // If UserID is not in database add a new entry
-    if (event.snapshot.value == null) {
-      await ref.update({
-        uid: {"sleep-times": ""},
-      });
-    }
+    await createDatabaseUser();
   }
 }
+
