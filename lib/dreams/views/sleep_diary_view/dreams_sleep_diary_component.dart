@@ -19,7 +19,6 @@ class SleepDiaryHomePage extends StatefulWidget{
   final _formKey = GlobalKey<FormState>(); //Used to check validation of input
 
   DateTime now = new DateTime.now();
-  DateTime date = new DateTime(now.year, now.month, now.day); //Gets the current date
   String formattedDate = DateFormat('yyyy-MM-dd').format(now); //Formats the date
 
 
