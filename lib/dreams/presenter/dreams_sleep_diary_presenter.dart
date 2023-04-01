@@ -6,6 +6,7 @@ import 'package:units/dreams/views/sleep_diary_view/dreams_sleep_diary_view.dart
 class BEHAVIORPresenter{
 
   set diaryView(SleepDiaryView value){
+    void onSubmitClicked(String diaryEntry) {}
 
   }
 }

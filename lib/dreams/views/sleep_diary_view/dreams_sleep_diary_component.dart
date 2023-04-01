@@ -84,7 +84,7 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
                   padding: EdgeInsets.fromLTRB(0,16,0,16),
                   child: ElevatedButton(
                     onPressed:() {
-                      sleepDiaryPresenter.onSubmitClicked(getDiaryEntry()); //Submits diary entry to database
+                      this.widget.sleepDiaryPresenter.onSubmitClicked(getDiaryEntry()); //Submits diary entry to database
 
                     ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Processing Data')));
