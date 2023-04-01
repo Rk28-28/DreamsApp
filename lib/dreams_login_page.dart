@@ -141,6 +141,9 @@ Future<void> createDatabaseUser() async {
     await ref.update({
       uid: {"sleep-times": "",
         "sleep-information": "",
+    "Calorie-Data": "",
+    "Caffeine-Consumption": "",
+        "Mood-Value": "",
          "diary-entries": ""},
     });
   }
