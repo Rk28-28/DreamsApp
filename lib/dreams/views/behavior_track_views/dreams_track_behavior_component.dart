@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:units/dreams/presenter/dreams_behavior_track_presenter.dart';
+import '../../presenter/dreams_behavior_track_presenter.dart';
+import '../../presenter/dreams_behavior_track_presenter.dart';
+import '../../presenter/dreams_behavior_track_presenter.dart';
 import 'dreams_behavior_view.dart';
 import 'package:units/dreams/viewmodel/dreams_track_behavior_viewmodel.dart';
 
@@ -145,10 +148,10 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                         onPressed: () {
                           if(_formKey.currentState!.validate())
                             {
+                              this.widget.behaviorPresenter.onSubmitClicked(calorieController.text.toString(), caffeineController.text.toString(),sliderValue);
 
                             ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(content: Text('Processing Data')));
-                            onSubmitClicked(calorieController.text.toString(), caffeineController.text.toString(),sliderValue);
 
                                 }
 
@@ -165,10 +168,6 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
 
   }
   BehaviorTrackViewModel viewModel = new BehaviorTrackViewModel();
-  void onSubmitClicked(String cal, String cafconsumption, double sliderval){
-
-    viewModel.sendToDatabase(cal,cafconsumption,sliderval);
-  }
   @override
   void initState() {
     super.initState();
