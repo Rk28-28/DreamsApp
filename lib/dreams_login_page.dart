@@ -140,7 +140,8 @@ Future<void> createDatabaseUser() async {
   if (isUserInDB.snapshot.value == null) {
     await ref.update({
       uid: {"sleep-times": "",
-        "sleep-information": ""},
+        "sleep-information": "",
+         "diary-entries": ""},
     });
   }
 }

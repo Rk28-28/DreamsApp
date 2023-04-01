@@ -13,7 +13,7 @@ class SleepDiaryHomePage extends StatefulWidget{
   @override
   _SleepDiaryHomePageState createState() => _SleepDiaryHomePageState();
 }
-
+  late final SleepDiaryPresenter sleepDiaryPresenter;
   TextEditingController diaryEntryController = new TextEditingController(); //To be used to grab input from diary entry text field
   //final regex = RegExp(r""); //Regex for checking validation of input - Will work on later
   final _formKey = GlobalKey<FormState>(); //Used to check validation of input
@@ -83,7 +83,13 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
                 Padding(
                   padding: EdgeInsets.fromLTRB(0,16,0,16),
                   child: ElevatedButton(
-                    onPressed:() {/*To be implemented*/},
+                    onPressed:() {
+                      sleepDiaryPresenter.onSubmitClicked(getDiaryEntry()); //Submits diary entry to database
+
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Processing Data')));
+                    },
+
                     child: const Text("Submit", style: TextStyle(fontSize: 18.0)),
                   ),
                 ),
@@ -110,3 +116,10 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
     );
   }
 }
+  //Gets the diary entry
+  String getDiaryEntry()
+  {
+    return diaryEntryController.text;
+  }
+
+
