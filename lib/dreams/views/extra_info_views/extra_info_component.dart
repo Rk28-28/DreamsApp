@@ -30,20 +30,53 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
 
   @override
   Widget build(BuildContext context) {
+    var agePicked;
     return Scaffold(
         appBar: AppBar(
         title: Text('Extra Information'),
     // TODO: Implement behavior track home page
     ),
-    body: Padding(
-        padding: const EdgeInsets.all(16.0),
-      child: Center (
-        child: ElevatedButton (
-          child: Text("Tips for Better Sleep"),
-          onPressed: _launchURLApp
+    body: Column (
+      children: <Widget>[
+        Column(
+          children: [
+
+            const Padding(
+              padding: EdgeInsets.fromLTRB(16, 32, 16, 16),
+              child: Text('Enter your age to see your recommended amount of sleep:',
+                style: TextStyle(fontSize: 18.0))
+            ),
+
+            DropdownButton<int>(
+              value: agePicked,
+              items: <int>[0, 1, 3].map((int value){
+                return DropdownMenuItem<int>(
+                    value: value,
+                    child: Text(value.toString()),
+              );
+              }).toList(),
+              onChanged: (newValue) async {
+                setState(() {
+                  agePicked = newValue;
+                });
+              })
+          ],
+        ),
+        Column(
+          children: [
+            Padding(
+                padding: const EdgeInsets.all(16.0),
+              child: Center (
+                child: ElevatedButton (
+                  child: Text("Tips for Better Sleep"),
+                  onPressed: _launchURLApp
+                )
+            ),
+            ),
+          ]
         )
-    ),
-    ),
+    ]
+    )
     );
   }
 
