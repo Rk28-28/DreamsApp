@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:core';
 
 import 'package:flutter/cupertino.dart';
@@ -6,6 +7,8 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 
+// developed from https://codelabs.developers.google.com/codelabs/flutter-webview#3
+// as a guide
 
 class MyWebView extends StatefulWidget {
   final String url;
@@ -13,41 +16,31 @@ class MyWebView extends StatefulWidget {
   MyWebView({required this.url});
 
   @override
-  _MyWebViewState createState() => _MyWebViewState(url);
+  _MyWebViewState createState() => _MyWebViewState();
 }
 
 class _MyWebViewState extends State<MyWebView> {
-String link ='';
-  _MyWebViewState(String url){
-link = url;
-} //String get url => widget.url;
 
-  WebViewController _controller = WebViewController()
+  late final WebViewController controller;
 
-  ..setJavaScriptMode(JavaScriptMode.unrestricted)
-  ..setBackgroundColor(const Color(0x00000000))
-  ..setNavigationDelegate(
-
-    NavigationDelegate(
-        onProgress: (int progress) {
-  // Update loading bar.
-       },
-  onPageStarted: (String url) {},
-  onPageFinished: (String url) {},
-  onWebResourceError: (WebResourceError error) {},
-    ),
-  )
-  ..loadRequest(Uri.parse('https://www.cdc.gov/sleep/about_sleep/sleep_hygiene.html'));
+  @override
+  void initState() {
+    super.initState();
+    controller = WebViewController()
+      ..loadRequest(
+        Uri.parse(widget.url),
+      );
+  }
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My WebView'),
+        title: Text('Extra Information'),
       ),
       body: WebViewWidget(
-        controller: _controller,
+        controller: controller,
       ),
     );
   }
