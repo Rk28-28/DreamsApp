@@ -88,13 +88,17 @@ class SleepTrackViewModel {
     DatabaseReference ref = FirebaseDatabase.instance.ref("users/");
 
     // Update user with new sleep time entry
-    await ref.update({
-      uid!: {
-        "sleep-times": {
-        dateStr: sleepTimeStr,
-        }
-      }
-    });
+    DatabaseReference databaseRefSleepTime = FirebaseDatabase.instance.ref('users/$uid/sleep-times/');
+
+    final sleepTimeData = {
+      dateStr : sleepTimeStr
+    };
+
+    final Map<String, Map> updateToSleepTime = {};
+
+    updateToSleepTime['$dateStr'] = sleepTimeData;
+
+    databaseRefSleepTime.update(updateToSleepTime);
   }
 
 
