@@ -63,8 +63,20 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
                      _url = 'https://www.cdc.gov/sleep/about_sleep/sleep_hygiene.html';
                     _navigateToWebView(context, _url);
                   }
-                )
+                ),
             ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Center (
+                child: ElevatedButton (
+                    child: Text("Sleep Data and Statistics"),
+                    onPressed: () {
+                      _url = 'https://www.cdc.gov/sleep/data_statistics.html';
+                      _navigateToWebView(context, _url);
+                    }
+                ),
+              ),
             ),
           ]
         )
