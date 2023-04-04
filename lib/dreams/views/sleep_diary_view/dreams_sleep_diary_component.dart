@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:units/dreams/presenter/dreams_sleep_diary_presenter.dart';
 import 'package:units/dreams/views/sleep_diary_view/dreams_sleep_diary_view.dart';
+import 'package:units/dreams/viewmodel/dreams_sleep_diary_viewmodel.dart';
 import 'package:intl/intl.dart';
 
 class SleepDiaryHomePage extends StatefulWidget{
@@ -98,8 +100,12 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: ElevatedButton(
-                          onPressed: () { /*To be implemented*/},
-                          child: const Text('View Diary Entries', style: TextStyle(fontSize: 18.0))
+                          child: const Text('View Diary Entries', style: TextStyle(fontSize: 18.0)),
+                          onPressed: () {  Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const DiaryHistorypage()),
+                          );},
+
                       ),
                     )
                 ),
@@ -116,10 +122,45 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
     );
   }
 }
+class DiaryHistorypage extends StatelessWidget {
+  const DiaryHistorypage();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Diary History'),
+      ),
+      body: Center(
+        child: Container(
+            width: 300,
+            height: 400,
+            child: TextFormField(
+              maxLines: 10,
+              decoration: InputDecoration(
+                border: OutlineInputBorder()
+
+              ),
+            ),
+            //child: Text(
+
+           // ),
+
+            )
+
+        ),
+      );
+  }
+}
+
   //Gets the diary entry
   String getDiaryEntry()
   {
     return diaryEntryController.text;
   }
+
+
+
+
 
 
