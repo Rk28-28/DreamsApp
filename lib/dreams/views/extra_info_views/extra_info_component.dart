@@ -27,7 +27,14 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
       throw 'Could not launch $url';
     }
   }
-
+  void _launchURL() async {
+    const url = 'https://www.cdc.gov/sleep/about_sleep/sleep_hygiene.html';
+    try {
+        await launchUrlString(url);
+    } catch (e) {
+      print('Error launching URL: $e');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     var agePicked;
@@ -69,7 +76,7 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
               child: Center (
                 child: ElevatedButton (
                   child: Text("Tips for Better Sleep"),
-                  onPressed: _launchURLApp
+                  onPressed: _launchURL
                 )
             ),
             ),
