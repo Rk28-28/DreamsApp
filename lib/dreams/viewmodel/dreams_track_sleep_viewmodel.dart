@@ -79,26 +79,18 @@ class SleepTrackViewModel {
 
     // Format date for database
     DateTime now = new DateTime.now();
-    var formatter = new DateFormat('yyyy-MM-dd');
+    var formatter = new DateFormat('yyyy-MM-dd-ms');
     String dateStr = formatter.format(now);
 
     // Convert sleep time to string
     String sleepTimeStr = sleepTime.toString();
 
-    DatabaseReference ref = FirebaseDatabase.instance.ref("users/");
-
     // Update user with new sleep time entry
     DatabaseReference databaseRefSleepTime = FirebaseDatabase.instance.ref('users/$uid/sleep-times/');
 
-    final sleepTimeData = {
-      dateStr : sleepTimeStr
-    };
-
-    final Map<String, Map> updateToSleepTime = {};
-
-    updateToSleepTime['$dateStr'] = sleepTimeData;
-
-    databaseRefSleepTime.update(updateToSleepTime);
+    await databaseRefSleepTime.update({
+      dateStr: sleepTimeStr
+    });
   }
 
 

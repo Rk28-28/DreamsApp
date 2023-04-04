@@ -16,21 +16,14 @@ class SleepDiaryViewModel {
 
     // Format date for database
     DateTime now = new DateTime.now();
-    var formatter = new DateFormat('yyyy-MM-dd');
+    var formatter = new DateFormat('yyyy-MM-dd-ms');
     String dateStr = formatter.format(now);
 
     DatabaseReference databaseRefDiary = FirebaseDatabase.instance.ref('users/$uid/diary-entries/');
 
-    final diaryData = {
-      dateStr : diaryEntryIn
-    };
-
-    final Map<String, Map> updateToEntry = {};
-
-    updateToEntry['$dateStr'] = diaryData;
-
-    databaseRefDiary.update(updateToEntry);
-
+    await databaseRefDiary.update({
+      dateStr: diaryEntryIn
+    });
 
   }
 }

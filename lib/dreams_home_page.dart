@@ -1,15 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:units/dreams/presenter/dreams_behavior_track_presenter.dart';
+import 'package:units/dreams/presenter/dreams_sleep_data_page_presenter.dart';
+import 'package:units/dreams/presenter/dreams_sleep_data_presenter.dart';
 import 'package:units/dreams/presenter/dreams_sleep_track_presenter.dart';
 import 'package:units/dreams/views/behavior_track_views/dreams_track_behavior_component.dart';
 import 'dreams/presenter/dreams_extra_info_presenter.dart';
 import 'dreams/views/extra_info_views/extra_info_component.dart';
 import 'dreams/views/sleep_calc_views/dreams_sleep_calc_component.dart';
 import 'dreams/presenter/dreams_sleep_calc_presenter.dart';
+import 'dreams/views/sleep_data_page_view/dreams_sleep_data_page_component.dart';
 import 'dreams/views/sleep_track_view/dreams_sleep_track_component.dart';
 import 'package:units/dreams/presenter/dreams_sleep_diary_presenter.dart';
 import 'dreams/views/sleep_diary_view/dreams_sleep_diary_component.dart';
+import 'dreams/presenter/dreams_sleep_data_page_presenter.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -100,7 +104,24 @@ class HomePage extends StatelessWidget {
                               )
                           )
                       ),
-                      Container( // Third button (Track Behaviors)
+                      Container( // Fifth button (Sleep Data)
+                          margin: const EdgeInsets.only(top: 20),
+                          child: SizedBox(
+                              width: 150,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.blueAccent,
+                                ),
+                                child: Text('Sleep Data'),
+                                onPressed: () { // Navigator to Sleep Data screen
+                                  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                                    return SleepDataScreenNav();
+                                  }));
+                                },
+                              )
+                          )
+                      ),
+                      Container( // Sixth button (Extra Info)
                           margin: const EdgeInsets.only(top: 20),
                           child: SizedBox(
                               width: 150,
@@ -109,7 +130,7 @@ class HomePage extends StatelessWidget {
                                   primary: Colors.blueAccent,
                                 ),
                                 child: Text('Extra Info'),
-                                onPressed: () { // Navigator to Track Behaviors screen
+                                onPressed: () { // Navigator to Extra Info screen
                                   Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
                                     return ExtraInfoScreen();
                                   }));
@@ -208,3 +229,14 @@ class _SleepDiaryScreen extends State<SleepDiaryScreen> {
   }
 }
 
+class SleepDataScreenNav extends StatefulWidget {
+  @override
+  _SleepDataScreenNav createState() => _SleepDataScreenNav();
+}
+
+class _SleepDataScreenNav extends State<SleepDataScreenNav> {
+  @override
+  Widget build(BuildContext context) {
+    return new SleepDataPage(new SleepDataPagePresenter(), title: 'Sweet Dreams', key: Key("SleepData"),);
+  }
+}

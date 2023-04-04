@@ -11,59 +11,32 @@ import '../utils/dreams_constant.dart';
 class BehaviorTrackViewModel {
   FirebaseAuth auth = FirebaseAuth.instance;
 
-  Future<void> sendToDatabase(String calories, String caffeineconsumpted, double moodval) async {
+  Future<void> sendToDatabase(String calories, String caffieneConsumed, double moodval) async {
     final User? user = auth.currentUser;
     final uid = user?.uid;
 
 
     DateTime now = new DateTime.now();
-    var formatter = new DateFormat('yyyy-MM-dd');
+    var formatter = new DateFormat('yyyy-MM-dd-ms');
     String dateStr = formatter.format(now);
 
     //DatabaseReference ref = FirebaseDatabase.instance.ref("users/");
 
-    final moodData = {
-       dateStr : moodval
-    };
-
-    final caffeineData = {
-      dateStr: caffeineconsumpted
-    };
-
-    final calorieData = {
-      dateStr: calories
-    };
     DatabaseReference databaseRefCal = FirebaseDatabase.instance.ref('users/$uid/calorie-values/');
     DatabaseReference databaseRefCaf = FirebaseDatabase.instance.ref('users/$uid/caffeine-values/');
     DatabaseReference databaseRefMood = FirebaseDatabase.instance.ref('users/$uid/mood-values/');
 
-    final Map<String, Map> updateToCal = {};
-    final Map<String, Map> updateToCaf = {};
-    final Map<String, Map> updateToMood = {};
+    await databaseRefCal.update({
+      dateStr: calories
+    });
 
-    updateToCal['$dateStr'] = calorieData;
-    updateToMood['$dateStr'] = moodData;
-    updateToCaf['$dateStr'] = caffeineData;
+    await databaseRefCaf.update({
+      dateStr: caffieneConsumed
+    });
 
-    databaseRefCal.update(updateToCal);
-    databaseRefCaf.update(updateToCaf);
-    databaseRefMood.update(updateToMood);
-
-
-    // Update user with new sleep time entry
-    /*await ref.update({
-      uid!: {
-        "Calorie-Data": {
-         dateStr: calories
-        },
-        "Caffeine-Consumption": {
-          dateStr:caffeineconsumpted
-        },
-        "Mood-Value":{
-          dateStr: moodval
-        }
-      }
-    });*/
+    await databaseRefMood.update({
+      dateStr: moodval
+    });
   }
   BehaviorTrackViewModel();
 }
