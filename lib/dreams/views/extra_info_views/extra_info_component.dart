@@ -5,6 +5,8 @@ import 'extra_info_view.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'MyWebView.dart';
+import 'CloudButtonEI.dart';
+
 class ExtraInfoHomePage extends StatefulWidget{
   final EXTRAINFOPresenter extraInfoPresenter;
 
@@ -24,13 +26,19 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
     return Scaffold(
         appBar: AppBar(
         title: Text('Extra Information'),
-    // TODO: Implement behavior track home page
+
     ),
-    body: Column (
+    body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/sunset_extra_infro.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Column (
       children: <Widget>[
         Column(
           children: [
-
             const Padding(
               padding: EdgeInsets.fromLTRB(16, 32, 16, 16),
               child: Text('Enter your age to see your recommended amount of sleep:',
@@ -55,32 +63,61 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
         Column(
           children: [
             Padding(
-                padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Center (
-                child: ElevatedButton (
-                  child: Text("Tips for Better Sleep"),
-                  onPressed: () {
-                     _url = 'https://www.cdc.gov/sleep/about_sleep/sleep_hygiene.html';
-                    _navigateToWebView(context, _url);
-                  }
+                child: CloudButton (
+                    text: "Tips for Better Sleep",
+                    onPressed: () {
+                      _url = 'https://www.cdc.gov/sleep/about_sleep/sleep_hygiene.html';
+                      _navigateToWebView(context, _url);
+                    },
+                    imageAsset: 'assets/cloud-clipart-md.png',
                 ),
-            ),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Center (
-                child: ElevatedButton (
-                    child: Text("Sleep Data and Statistics"),
+                child: CloudButton (
+                    text: "Health Benefits of Sleep",
+                    onPressed: () {
+                      _url = 'https://www.sleepfoundation.org/how-sleep-works/benefits-of-sleep';
+                      _navigateToWebView(context, _url);
+                    },
+                  imageAsset: 'assets/cloud-clipart-md.png',
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Center (
+                child: CloudButton (
+                    text: "Nighttime Routine Tips",
+                    onPressed: () {
+                      _url = 'https://www.sleepfoundation.org/sleep-hygiene/bedtime-routine-for-adults';
+                      _navigateToWebView(context, _url);
+                    },
+                  imageAsset: 'assets/cloud-clipart-md.png',
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Center (
+                child: CloudButton (
+                    text: "General Sleep Data",
                     onPressed: () {
                       _url = 'https://www.cdc.gov/sleep/data_statistics.html';
                       _navigateToWebView(context, _url);
-                    }
+                    },
+                  imageAsset: 'assets/cloud-clipart-md.png',
                 ),
               ),
             ),
           ]
         )
     ]
+    )
     )
     );
   }
