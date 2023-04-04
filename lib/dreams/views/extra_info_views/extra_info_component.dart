@@ -4,7 +4,7 @@ import '../../presenter/dreams_extra_info_presenter.dart';
 import 'extra_info_view.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'MyWebView.dart';
 class ExtraInfoHomePage extends StatefulWidget{
   final EXTRAINFOPresenter extraInfoPresenter;
 
@@ -17,24 +17,7 @@ class ExtraInfoHomePage extends StatefulWidget{
 
 class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAINFOView {
 
-  //late Uri _url = Uri.parse('https://flutter.dev');
-
-  _launchURLApp() async {
-    var url = Uri.parse("https://www.geeksforgeeks.org/");
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-  void _launchURL() async {
-    const url = 'https://www.cdc.gov/sleep/about_sleep/sleep_hygiene.html';
-    try {
-        await launchUrlString(url);
-    } catch (e) {
-      print('Error launching URL: $e');
-    }
-  }
+  String _url = 'url';
   @override
   Widget build(BuildContext context) {
     var agePicked;
@@ -76,7 +59,10 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
               child: Center (
                 child: ElevatedButton (
                   child: Text("Tips for Better Sleep"),
-                  onPressed: _launchURL
+                  onPressed: () {
+                     _url = 'https://www.cdc.gov/sleep/about_sleep/sleep_hygiene.html';
+                    _navigateToWebView(context, _url);
+                  }
                 )
             ),
             ),
@@ -97,4 +83,12 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
   set extraInfoView(EXTRAINFOView value) {
   }
 
+}
+void _navigateToWebView(BuildContext context, String url) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => MyWebView(url: url),
+    ),
+  );
 }
