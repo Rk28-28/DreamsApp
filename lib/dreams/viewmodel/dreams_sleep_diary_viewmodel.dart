@@ -19,17 +19,18 @@ class SleepDiaryViewModel {
     var formatter = new DateFormat('yyyy-MM-dd');
     String dateStr = formatter.format(now);
 
-    // Convert sleep time to string
+    DatabaseReference databaseRefDiary = FirebaseDatabase.instance.ref('users/$uid/diary-entries/');
 
-    DatabaseReference ref = FirebaseDatabase.instance.ref("users/");
+    final diaryData = {
+      dateStr : diaryEntryIn
+    };
 
-    // Update user with new sleep time entry
-    await ref.update({
-      uid!: {
-        "diary-entries": {
-          dateStr : diaryEntryIn
-        }
-      }
-    });
+    final Map<String, Map> updateToEntry = {};
+
+    updateToEntry['$dateStr'] = diaryData;
+
+    databaseRefDiary.update(updateToEntry);
+
+
   }
 }
