@@ -21,16 +21,17 @@ class SleepDataViewModel {
     String dateStr = formatter.format(now);
 
 
-    DatabaseReference ref = FirebaseDatabase.instance.ref("users/");
+    DatabaseReference databaseRefSleepData = FirebaseDatabase.instance.ref('users/$uid/sleep-information/');
 
-    // Update user with new sleep time entry
-    await ref.update({
-      uid!: {
-        "sleep-information": {
-          dateStr: _sleepFeelings,
-        }
-      }
-    });
+    final sleepData = {
+      dateStr : _sleepFeelings
+    };
+
+    final Map<String, Map> updateToSleepData = {};
+
+    updateToSleepData['$dateStr'] = sleepData;
+
+    databaseRefSleepData.update(updateToSleepData);
   }
 
 
