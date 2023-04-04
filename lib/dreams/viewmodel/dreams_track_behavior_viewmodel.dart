@@ -20,10 +20,38 @@ class BehaviorTrackViewModel {
     var formatter = new DateFormat('yyyy-MM-dd');
     String dateStr = formatter.format(now);
 
-    DatabaseReference ref = FirebaseDatabase.instance.ref("users/");
+    //DatabaseReference ref = FirebaseDatabase.instance.ref("users/");
+
+    final moodData = {
+      'Calorie-Data': calories,
+      'Caffeine-Consumption': caffeineconsumpted,
+       dateStr : moodval
+    };
+
+    final caffeineData = {
+      dateStr: caffeineconsumpted;
+    };
+
+    final calorieData = {
+      dateStr: calories;
+    };
+    DatabaseReference databaseRefCal = FirebaseDatabase.instance.ref('users/$uid/calorie-values/');
+    DatabaseReference databaseRefMood = FirebaseDatabase.instance.ref('users/$uid/mood-values/');
+
+    final Map<String, Map> updateToCal = {};
+    final Map<String, Map> updateToCaf = {};
+    final Map<String, Map> updateToMood = {};
+
+    updates['$dateStr'] = moodData;
+    updates['$date'] =
+
+    databaseRefCal.update(updateToCal);
+    databaseRefCaf.update(updateToCaf);
+    databaseRefMood.update(updateToMood);
+
 
     // Update user with new sleep time entry
-    await ref.update({
+    /*await ref.update({
       uid!: {
         "Calorie-Data": {
          dateStr: calories
@@ -35,7 +63,7 @@ class BehaviorTrackViewModel {
           dateStr: moodval
         }
       }
-    });
+    });*/
   }
   BehaviorTrackViewModel();
 }
