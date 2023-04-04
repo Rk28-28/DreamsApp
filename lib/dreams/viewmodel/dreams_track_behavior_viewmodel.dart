@@ -23,27 +23,27 @@ class BehaviorTrackViewModel {
     //DatabaseReference ref = FirebaseDatabase.instance.ref("users/");
 
     final moodData = {
-      'Calorie-Data': calories,
-      'Caffeine-Consumption': caffeineconsumpted,
        dateStr : moodval
     };
 
     final caffeineData = {
-      dateStr: caffeineconsumpted;
+      dateStr: caffeineconsumpted
     };
 
     final calorieData = {
-      dateStr: calories;
+      dateStr: calories
     };
     DatabaseReference databaseRefCal = FirebaseDatabase.instance.ref('users/$uid/calorie-values/');
+    DatabaseReference databaseRefCaf = FirebaseDatabase.instance.ref('users/$uid/caffeine-values/');
     DatabaseReference databaseRefMood = FirebaseDatabase.instance.ref('users/$uid/mood-values/');
 
     final Map<String, Map> updateToCal = {};
     final Map<String, Map> updateToCaf = {};
     final Map<String, Map> updateToMood = {};
 
-    updates['$dateStr'] = moodData;
-    updates['$date'] =
+    updateToCal['$dateStr'] = calorieData;
+    updateToMood['$dateStr'] = moodData;
+    updateToCaf['$dateStr'] = caffeineData;
 
     databaseRefCal.update(updateToCal);
     databaseRefCaf.update(updateToCaf);
