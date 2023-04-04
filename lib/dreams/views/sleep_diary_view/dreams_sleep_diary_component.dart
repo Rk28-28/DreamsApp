@@ -135,7 +135,16 @@ class DiaryHistorypage extends StatelessWidget {
         child: Container(
             width: 300,
             height: 400,
-            child: Text()
+            child: TextFormField(
+              maxLines: 10,
+              decoration: InputDecoration(
+                border: OutlineInputBorder()
+
+              ),
+            ),
+            //child: Text(
+
+           // ),
 
             )
 
