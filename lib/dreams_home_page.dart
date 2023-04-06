@@ -27,7 +27,6 @@ class HomePage extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-              child: Center(
                   child: Column(
                     children: <Widget>[
                       Padding(
@@ -37,9 +36,13 @@ class HomePage extends StatelessWidget {
                       Padding( // Displays the current user logged in to the app
                         padding: EdgeInsets.only(top: 0, bottom: 20),
                         child: Text(" User: " + FirebaseAuth.instance.currentUser!.displayName!,
-                          style: const TextStyle(fontSize: 20, color: Colors.white))
-
+                          style: const TextStyle(fontSize: 20, color: Colors.white)
+                        ),
                       ),
+              Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
                       Container( // First button ( Sleep Calculator)
                         margin: const EdgeInsets.only(top: 30),
                         child: SizedBox(
@@ -144,8 +147,10 @@ class HomePage extends StatelessWidget {
                     ],
                   )
               ),
-            )
-        )
+            ],
+            ),
+        ),
+    ),
         ),
     );
   }
