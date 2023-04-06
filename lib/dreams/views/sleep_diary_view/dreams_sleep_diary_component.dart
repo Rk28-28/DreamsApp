@@ -37,10 +37,11 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
         padding: const EdgeInsets.all(16.0),
         child: Form(
             key: _formKey,
-
+            child: SingleChildScrollView(
             child: Column(
+    mainAxisSize: MainAxisSize.min,
 
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+    crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
 
                 Padding( //Text for displaying current date
@@ -86,17 +87,17 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
                   padding: EdgeInsets.fromLTRB(0,16,0,16),
                   child: ElevatedButton(
                     onPressed:() {
-                      this.widget.sleepDiaryPresenter.onSubmitClicked(getDiaryEntry()); //Submits diary entry to database
+                      this.widget.sleepDiaryPresenter.onSubmitClicked(getDiaryEntry());//Submits diary entry to database
+                      this.widget.sleepDiaryPresenter.printdiary(); //stores all the diary entries
 
                     ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Processing Data')));
                     },
-
                     child: const Text("Submit", style: TextStyle(fontSize: 18.0)),
                   ),
                 ),
 
-                Expanded(
+                Flexible(
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: ElevatedButton(
@@ -119,6 +120,7 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
 
     // TODO: implement build
    // throw UnimplementedError();
+        ),
     );
   }
 }

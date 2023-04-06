@@ -24,7 +24,13 @@ class HomePage extends StatelessWidget {
               appBar: AppBar(
                 title: Text("Sweet Dreams"),
               ),
-              body: Center(
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/firefly.jpg'),
+              fit: BoxFit.cover,
+            ),
+          ),
                   child: Column(
                     children: <Widget>[
                       Padding(
@@ -34,17 +40,23 @@ class HomePage extends StatelessWidget {
                       Padding( // Displays the current user logged in to the app
                         padding: EdgeInsets.only(top: 0, bottom: 20),
                         child: Text(" User: " + FirebaseAuth.instance.currentUser!.displayName!,
-                          style: const TextStyle(fontSize: 20))
+                          style: const TextStyle(fontSize: 20, color: Colors.white)
+                        ),
                       ),
+              Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
                       Container( // First button ( Sleep Calculator)
                         margin: const EdgeInsets.only(top: 30),
                         child: SizedBox(
                           width: 150,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.blueAccent,
+                              backgroundColor: Colors.blueAccent,
                             ),
-                            child: Text('Sleep Calculator'),
+                            child: Text('Sleep Calculator',
+                                style: const TextStyle(color: Colors.white)),
                             onPressed: () { // Navigator to Sleep Calculator page
                               Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
                                 return SleepCalcScreen();
@@ -59,7 +71,7 @@ class HomePage extends StatelessWidget {
                               width: 150,
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  primary: Colors.blueAccent,
+                                  backgroundColor: Colors.blueAccent,
                                 ),
                                 child: Text('Track Sleep'),
                                 onPressed: () { // Navigator to Track Sleep screen
@@ -76,7 +88,7 @@ class HomePage extends StatelessWidget {
                               width: 150,
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  primary: Colors.blueAccent,
+                                  backgroundColor: Colors.blueAccent,
                                 ),
                                 child: Text('Track Behaviors'),
                                 onPressed: () { // Navigator to Track Behaviors screen
@@ -93,7 +105,7 @@ class HomePage extends StatelessWidget {
                               width: 150,
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  primary: Colors.blueAccent,
+                                  backgroundColor: Colors.blueAccent,
                                 ),
                                 child: Text('Sleep Diary'),
                                 onPressed: () { // Navigator to Diary screen
@@ -127,7 +139,7 @@ class HomePage extends StatelessWidget {
                               width: 150,
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  primary: Colors.blueAccent,
+                                  backgroundColor: Colors.blueAccent,
                                 ),
                                 child: Text('Extra Info'),
                                 onPressed: () { // Navigator to Extra Info screen
@@ -144,7 +156,7 @@ class HomePage extends StatelessWidget {
                           width: 150,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.redAccent,
+                              backgroundColor: Colors.redAccent,
                             ),
                             child: Text('Logout'),
                             onPressed: () {
@@ -156,8 +168,11 @@ class HomePage extends StatelessWidget {
                     ],
                   )
               ),
-            )
-        )
+            ],
+            ),
+        ),
+    ),
+        ),
     );
   }
 }

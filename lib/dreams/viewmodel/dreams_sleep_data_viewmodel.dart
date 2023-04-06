@@ -17,15 +17,17 @@ class SleepDataViewModel {
 
     // Format date for database
     DateTime now = new DateTime.now();
-    var formatter = new DateFormat('yyyy-MM-dd-ms');
+    var formatter = new DateFormat('yyyy-MM-dd');
     String dateStr = formatter.format(now);
 
 
     DatabaseReference databaseRefSleepData = FirebaseDatabase.instance.ref('users/$uid/sleep-information/');
 
-    await databaseRefSleepData.update({
+    final sleepData = {
       dateStr : _sleepFeelings
-    });
+    };
+
+    databaseRefSleepData.update(sleepData);
   }
 
 

@@ -67,6 +67,9 @@ flutter:
   assets:
     - assets/googlelogo.png
     - assets/sleeping_icon.png
+    - assets/cloud-clipart-md.png
+    - assets/sunset_extra_infro.jpg
+    - assets/firefly.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
