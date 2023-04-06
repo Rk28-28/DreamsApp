@@ -37,10 +37,11 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
         padding: const EdgeInsets.all(16.0),
         child: Form(
             key: _formKey,
-
+            child: SingleChildScrollView(
             child: Column(
+    mainAxisSize: MainAxisSize.min,
 
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+    crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
 
                 Padding( //Text for displaying current date
@@ -96,7 +97,7 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
                   ),
                 ),
 
-                Expanded(
+                Flexible(
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: ElevatedButton(
@@ -119,6 +120,7 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
 
     // TODO: implement build
    // throw UnimplementedError();
+        ),
     );
   }
 }

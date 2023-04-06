@@ -39,7 +39,7 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                key: _formKey,
     child: SingleChildScrollView(
     child: Column(
-    mainAxisSize: MainAxisSize.min,
+      mainAxisSize: MainAxisSize.min,
     children: <Widget>[
     Flexible(
     child: Column( //First inner column
