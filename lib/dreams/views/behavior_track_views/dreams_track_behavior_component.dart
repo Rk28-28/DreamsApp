@@ -37,10 +37,12 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
             padding: const EdgeInsets.all(16.0),
             child: Form( //form
                key: _formKey,
-               child: Column( //Outer column
-                 children: <Widget>[
-
-              Column( //First inner column
+    child: SingleChildScrollView(
+    child: Column(
+    mainAxisSize: MainAxisSize.min,
+    children: <Widget>[
+    Flexible(
+    child: Column( //First inner column
                 children: [
 
               const Padding(
@@ -70,7 +72,9 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
               )],
 
               ),
-
+    ),
+              Flexible(
+                child:
               Column( //Second inner column
                 children: [
 
@@ -100,7 +104,9 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                 ),
               ]    //children
              ),
-
+              ),
+      Flexible(
+          child:
               Column(//Third inner column
                 children: [
                   const Padding(
@@ -132,7 +138,7 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                   ),
                 ],//children
               ),
-
+      ),
               Padding(
                 padding:EdgeInsets.fromLTRB(16,8,32,8),
                 child: Text('',
@@ -141,7 +147,7 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                 ),
 
               ),
-              Expanded(
+              Flexible(
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: ElevatedButton(
@@ -162,9 +168,12 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
 
                     ],
               ),
-          ),
-          ),
-        );
+    ),
+            ),
+    ),
+          );
+
+
 
   }
   BehaviorTrackViewModel viewModel = new BehaviorTrackViewModel();
