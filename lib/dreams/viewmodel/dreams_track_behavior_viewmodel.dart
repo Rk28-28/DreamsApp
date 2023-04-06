@@ -37,33 +37,12 @@ class BehaviorTrackViewModel {
     DatabaseReference databaseRefCaf = FirebaseDatabase.instance.ref('users/$uid/caffeine-values/');
     DatabaseReference databaseRefMood = FirebaseDatabase.instance.ref('users/$uid/mood-values/');
 
-    final Map<String, Map> updateToCal = {};
-    final Map<String, Map> updateToCaf = {};
-    final Map<String, Map> updateToMood = {};
 
-    updateToCal['$dateStr'] = calorieData;
-    updateToMood['$dateStr'] = moodData;
-    updateToCaf['$dateStr'] = caffeineData;
-
-    databaseRefCal.update(updateToCal);
-    databaseRefCaf.update(updateToCaf);
-    databaseRefMood.update(updateToMood);
+    databaseRefCal.update(calorieData);
+    databaseRefCaf.update(caffeineData);
+    databaseRefMood.update(moodData);
 
 
-    // Update user with new sleep time entry
-    /*await ref.update({
-      uid!: {
-        "Calorie-Data": {
-         dateStr: calories
-        },
-        "Caffeine-Consumption": {
-          dateStr:caffeineconsumpted
-        },
-        "Mood-Value":{
-          dateStr: moodval
-        }
-      }
-    });*/
   }
   BehaviorTrackViewModel();
 }

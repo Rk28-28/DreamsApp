@@ -30,11 +30,7 @@ class SleepDiaryViewModel {
       dateStr: diaryEntryIn
     };
 
-    final Map<String, Map> updateToEntry = {};
-
-    updateToEntry['$dateStr'] = diaryData;
-
-    databaseRefDiary.update(updateToEntry);
+    databaseRefDiary.update(diaryData);
   }
 
 
@@ -43,8 +39,7 @@ class SleepDiaryViewModel {
     DatabaseReference databaseRefDiary = FirebaseDatabase.instance.ref(
         'users/$x/');
     await databaseRefDiary.child("diary-entries").get().then((event) {
-      // you can access the values by
-      print(event.value);
+      print(event.value); //could store values into an array/list, and  run a for loop and send the 5 most recent entries.
     });
   }
 }

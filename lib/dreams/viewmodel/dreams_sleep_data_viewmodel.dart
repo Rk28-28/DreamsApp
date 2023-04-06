@@ -27,11 +27,7 @@ class SleepDataViewModel {
       dateStr : _sleepFeelings
     };
 
-    final Map<String, Map> updateToSleepData = {};
-
-    updateToSleepData['$dateStr'] = sleepData;
-
-    databaseRefSleepData.update(updateToSleepData);
+    databaseRefSleepData.update(sleepData);
   }
 
 

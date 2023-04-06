@@ -94,11 +94,8 @@ class SleepTrackViewModel {
       dateStr : sleepTimeStr
     };
 
-    final Map<String, Map> updateToSleepTime = {};
 
-    updateToSleepTime['$dateStr'] = sleepTimeData;
-
-    databaseRefSleepTime.update(updateToSleepTime);
+    databaseRefSleepTime.update(sleepTimeData);
   }
 
 
