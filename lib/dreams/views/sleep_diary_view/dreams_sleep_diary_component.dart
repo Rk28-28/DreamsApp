@@ -87,12 +87,12 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
                   padding: EdgeInsets.fromLTRB(0,16,0,16),
                   child: ElevatedButton(
                     onPressed:() {
-                      this.widget.sleepDiaryPresenter.onSubmitClicked(getDiaryEntry()); //Submits diary entry to database
+                      this.widget.sleepDiaryPresenter.onSubmitClicked(getDiaryEntry());//Submits diary entry to database
+                      this.widget.sleepDiaryPresenter.printdiary(); //stores all the diary entries
 
                     ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Processing Data')));
                     },
-
                     child: const Text("Submit", style: TextStyle(fontSize: 18.0)),
                   ),
                 ),
@@ -138,6 +138,7 @@ class DiaryHistorypage extends StatelessWidget {
             width: 300,
             height: 400,
             child: TextFormField(
+              //style: Text(),
               maxLines: 10,
               decoration: InputDecoration(
                 border: OutlineInputBorder()

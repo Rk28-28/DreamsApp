@@ -10,8 +10,9 @@ class SleepDiaryViewModel {
 
   String diaryEntry = "";
 
-  getuid()
-  {
+  List? diaries;
+
+  getuid() {
     final User? user = auth.currentUser;
     final uid = user?.uid;
     return uid;
@@ -24,10 +25,11 @@ class SleepDiaryViewModel {
     var formatter = new DateFormat('yyyy-MM-dd');
     String dateStr = formatter.format(now);
 
-    DatabaseReference databaseRefDiary = FirebaseDatabase.instance.ref('users/$x/diary-entries/');
+    DatabaseReference databaseRefDiary = FirebaseDatabase.instance.ref(
+        'users/$x/diary-entries/');
 
     final diaryData = {
-      dateStr : diaryEntryIn
+      dateStr: diaryEntryIn
     };
 
     final Map<String, Map> updateToEntry = {};
@@ -35,7 +37,19 @@ class SleepDiaryViewModel {
     updateToEntry['$dateStr'] = diaryData;
 
     databaseRefDiary.update(updateToEntry);
-
-
   }
+
+  Future<void> getdiary() async
+  {
+    final x = getuid();
+    DatabaseReference databaseRefDiary = FirebaseDatabase.instance.ref(
+        'users/$x/diary-entries/');
+
+   diaries?.add(databaseRefDiary.get()); //diaries list stores entries
+    print(diaries);
+  }
+
 }
+
+
+
