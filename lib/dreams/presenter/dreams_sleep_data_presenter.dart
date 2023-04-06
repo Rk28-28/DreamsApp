@@ -29,7 +29,7 @@ class SleepDataPresenter implements SLEEPDATAPresenter{
     _sleepFeelings = myController.text.toString();
     print(myController);
 
-  viewModel.sendToDatabase(_sleepFeelings);
+  viewModel.sendToDatabase(_sleepFeelings, firstGroupValue, secondGroupValue);
   }
 
   @override
