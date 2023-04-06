@@ -39,7 +39,7 @@ class TrackSleepPresenter implements TRACKPresenter {
         bedAmPm, wakeHour, wakeMinute, wakeAmPm);
     print(totalSleepInHours);
     
-    viewModel.sendToDatabase(totalSleepInHours);
+    viewModel.sendToDatabase(totalSleepInHours, sleepRating);
     }
 
   @override

@@ -73,7 +73,7 @@ class SleepTrackViewModel {
     }
   }
 
-  Future<void> sendToDatabase(double sleepTime) async {
+  Future<void> sendToDatabase(double sleepTime, double sleepRating) async {
     final User? user = auth.currentUser;
     final uid = user?.uid;
 
@@ -89,13 +89,18 @@ class SleepTrackViewModel {
 
     // Update user with new sleep time entry
     DatabaseReference databaseRefSleepTime = FirebaseDatabase.instance.ref('users/$uid/sleep-times/');
+    DatabaseReference databaseRefQuality = FirebaseDatabase.instance.ref('users/$uid/sleep-Quality/');
 
     final sleepTimeData = {
       dateStr : sleepTimeStr
     };
+    final sleepQuality = {
+      dateStr : sleepRating
+    };
 
 
     databaseRefSleepTime.update(sleepTimeData);
+    databaseRefQuality.update(sleepQuality);
   }
 
 
