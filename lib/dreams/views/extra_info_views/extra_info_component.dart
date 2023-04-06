@@ -60,7 +60,7 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
                 child: DropdownButton<String>(
                   hint: Text("Select Age"),
                   value: agePicked,
-                  items: <String>['0-3 months', '4-12 months', '1-2 years', '3-5 years', '6-12 years', '13-18 years', '18-60 years', '61-64 years', '65+ years'].map((String value){
+                  items: <String>['1-2 years', '3-5 years', '6-12 years', '13-18 years', '18-60 years', '61-64 years', '65+ years'].map((String value){
                     return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value),
@@ -74,11 +74,9 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
                     txt.text = agePicked;
                   }),
             ),
-            TextField(
-              controller: txt,
-            )
-          ],
+          ]
         ),
+
 
         Column(
           children: [
