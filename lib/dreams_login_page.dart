@@ -115,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
+/* Most likely not needed; Will create entries on input instead
 Future<void> createDatabaseUser() async {
   final FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -147,7 +147,7 @@ Future<void> createDatabaseUser() async {
          "diary-entries": ""},
     });
   }
-}
+}*/
 
 // Adapted from ms471841 on GeeksForGeeks
 
@@ -165,7 +165,7 @@ Future<void> signup(BuildContext context) async {
 
     UserCredential result = await auth.signInWithCredential(authCredential);
 
-    await createDatabaseUser();
+    //await createDatabaseUser();
   }
 }
 
