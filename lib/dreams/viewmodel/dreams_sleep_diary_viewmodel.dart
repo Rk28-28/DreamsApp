@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,14 +11,11 @@ class SleepDiaryViewModel {
 
   String diaryEntry = "";
 
-  List? diaries;
-
   getuid() {
     final User? user = auth.currentUser;
     final uid = user?.uid;
     return uid;
   }
-
   Future<void> sendToDatabase(String diaryEntryIn) async {
     final x = getuid();
     // Format date for database
@@ -39,16 +37,16 @@ class SleepDiaryViewModel {
     databaseRefDiary.update(updateToEntry);
   }
 
-  Future<void> getdiary() async
-  {
+
+  Future<void> loadUserData() async {
     final x = getuid();
     DatabaseReference databaseRefDiary = FirebaseDatabase.instance.ref(
-        'users/$x/diary-entries/');
-
-   diaries?.add(databaseRefDiary.get()); //diaries list stores entries
-    print(diaries);
+        'users/$x/');
+    await databaseRefDiary.child("diary-entries").get().then((event) {
+      // you can access the values by
+      print(event.value);
+    });
   }
-
 }
 
 

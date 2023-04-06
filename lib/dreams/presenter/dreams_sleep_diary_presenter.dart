@@ -28,7 +28,7 @@ class SleepDiaryPresenter implements BEHAVIORPresenter{
   @override
   void printdiary()
   {
-   viewModel.getdiary();
+   viewModel.loadUserData();
   }
   @override
   set diaryView(SleepDiaryView value) {
