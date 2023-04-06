@@ -18,7 +18,7 @@ class ExtraInfoHomePage extends StatefulWidget{
 }
 
 class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAINFOView {
-
+  var txt = TextEditingController();
   String _url = 'url';
   @override
   Widget build(BuildContext context) {
@@ -42,24 +42,44 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
             const Padding(
               padding: EdgeInsets.fromLTRB(16, 32, 16, 16),
               child: Text('Enter your age to see your recommended amount of sleep:',
-                style: TextStyle(fontSize: 18.0))
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18.0,
+                    backgroundColor: Colors.white70),
+                    )
             ),
+        ]
+        ),
 
-            DropdownButton<int>(
-              value: agePicked,
-              items: <int>[0, 1, 3].map((int value){
-                return DropdownMenuItem<int>(
-                    value: value,
-                    child: Text(value.toString()),
-              );
-              }).toList(),
-              onChanged: (newValue) async {
-                setState(() {
-                  agePicked = newValue;
-                });
-              })
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              decoration: BoxDecoration( color: Colors.white70),
+
+                child: DropdownButton<String>(
+                  hint: Text("Select Age"),
+                  value: agePicked,
+                  items: <String>['0-3 months', '4-12 months', '1-2 years', '3-5 years', '6-12 years', '13-18 years', '18-60 years', '61-64 years', '65+ years'].map((String value){
+                    return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      agePicked = newValue;
+                    });
+                    print(agePicked);
+                    txt.text = agePicked;
+                  }),
+            ),
+            TextField(
+              controller: txt,
+            )
           ],
         ),
+
         Column(
           children: [
             Padding(
@@ -141,3 +161,4 @@ void _navigateToWebView(BuildContext context, String url) {
     ),
   );
 }
+
