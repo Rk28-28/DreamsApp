@@ -10,16 +10,21 @@ class SleepDiaryViewModel {
 
   String diaryEntry = "";
 
-  Future<void> sendToDatabase(String diaryEntryIn) async {
+  getuid()
+  {
     final User? user = auth.currentUser;
     final uid = user?.uid;
+    return uid;
+  }
 
+  Future<void> sendToDatabase(String diaryEntryIn) async {
+    final x = getuid();
     // Format date for database
     DateTime now = new DateTime.now();
     var formatter = new DateFormat('yyyy-MM-dd');
     String dateStr = formatter.format(now);
 
-    DatabaseReference databaseRefDiary = FirebaseDatabase.instance.ref('users/$uid/diary-entries/');
+    DatabaseReference databaseRefDiary = FirebaseDatabase.instance.ref('users/$x/diary-entries/');
 
     final diaryData = {
       dateStr : diaryEntryIn
