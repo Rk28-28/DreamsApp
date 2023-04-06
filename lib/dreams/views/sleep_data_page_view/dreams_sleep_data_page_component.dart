@@ -8,8 +8,12 @@ class SleepDataPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Sleep Data'),
+      ),
       body: Column(
         children: [
+          Expanded(child: gradient()),
 
         ],
       ),
