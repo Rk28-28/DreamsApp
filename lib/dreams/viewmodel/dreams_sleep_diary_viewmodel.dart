@@ -1,5 +1,4 @@
 //import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:stack/stack.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -37,7 +36,7 @@ int count = 0;
   }
 
 
-  Future<void> loadUserData() async {
+  Future<List> loadUserData() async {
     final x = getuid();
     DatabaseReference databaseRefDiary = FirebaseDatabase.instance.ref(
         'users/$x/diary-entries/');
@@ -67,8 +66,8 @@ int count = 0;
       print(val); //could store values into an array/list, and  run a for loop and send the 5 most recent entries.
     });*/
     
-    Query query = databaseRefDiary.limitToLast(2);
-    DataSnapshot event = await query.get();
+    Query query = databaseRefDiary.limitToLast(5);
+    DataSnapshot event = query.get() as DataSnapshot;
     
     String data = event.value.toString();
 
@@ -83,15 +82,17 @@ int count = 0;
           break;
         if(data.substring(i, i+1) == ",")
           {
-            entriesToPrint[entryPos] = data.substring(commaPos + 1, i-1);
+            entriesToPrint[entryPos] = data.substring(commaPos + 1, i);
             commaPos = i;
             entryPos++;
           }
       }
+    return entriesToPrint;
 
 
     //event.count;
 for(String entry in entriesToPrint) {print(entry);}
+
 
   }
 }

@@ -453,14 +453,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
-  stack:
-    dependency: "direct dev"
-    description:
-      name: stack
-      sha256: a3ef5b4a207033dd7055fc9e0ac0566684974d19e40bfac115e9df197f7e0593
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.2"
   stack_trace:
     dependency: transitive
     description:
