@@ -49,10 +49,14 @@ class HomePage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                      Container(// First button ( Sleep Calculator)
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          // First button ( Sleep Calculator)
                        // margin: const EdgeInsets.all(8.0),
-                          width: 100,
-                        child: SizedBox(
+                        children:[
+                         SizedBox(
+                           height: 120,
+                        width: 120,
                           child: PlanetButton(
                             text:'Calculator',
                             onPressed: () { // Navigator to Sleep Calculator page
@@ -61,12 +65,11 @@ class HomePage extends StatelessWidget {
                               }));
                             },
                             imageAsset: 'assets/blueplanet.png',
+                            delay: Duration(milliseconds:500),
                           ),
                        ),
-                      ),
-                      Container( // Second Button (Track Sleep)
-                          margin: const EdgeInsets.only(top: 20),
-                          child: SizedBox(
+                       SizedBox(
+                           height: 100,
                               width: 100,
                               child: PlanetButton(
                                 text:'Track Sleep',
@@ -75,14 +78,17 @@ class HomePage extends StatelessWidget {
                                     return TrackSleepScreen();
                                   }));
                                 },
-                                imageAsset: 'assets/yellowworld.png'
+                                imageAsset: 'assets/yellowworld.png',
+                                delay: Duration(seconds:1),
                               )
-                          )
+                          ),
+                        ]
                       ),
                       Container( // Third button (Track Behaviors)
                           margin: const EdgeInsets.only(top: 20),
                           child: SizedBox(
-                              width: 100,
+                            height: 120,
+                              width: 120,
                               child: PlanetButton(
                                 text:'Behaviors',
                                 onPressed: () { // Navigator to Track Behaviors screen
@@ -90,13 +96,15 @@ class HomePage extends StatelessWidget {
                                     return BehaviorTrackScreen();
                                   }));
                                 },
-                                imageAsset: 'assets/purple.png'
+                                imageAsset: 'assets/purple.png',
+                                  delay: Duration(milliseconds:500)
                               )
                           )
                       ),
-                      Container( // Fourth button (Sleep Diary)
-                          margin: const EdgeInsets.only(top: 20),
-                          child: SizedBox(
+                      Row( mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children:[
+                          SizedBox(
+                              height: 100,
                               width: 100,
                               child: PlanetButton(
                                 text: 'Sleep Diary',
@@ -105,14 +113,13 @@ class HomePage extends StatelessWidget {
                                     return SleepDiaryScreen();//
                                   }));
                                 },
-                                  imageAsset: 'assets/world.png'
+                                  imageAsset: 'assets/world.png',
+                                delay:Duration(milliseconds:800)
                               )
-                          )
-                      ),
-                      Container( // Fifth button (Sleep Data)
-                          margin: const EdgeInsets.only(top: 20),
-                          child: SizedBox(
-                              width: 100,
+                          ),
+                      SizedBox( // Fifth button (Sleep Data)
+                        height: 120,
+                              width: 120,
                               child: PlanetButton(
                                 text:'Sleep Data',
                                 onPressed: () { // Navigator to Sleep Data screen
@@ -121,13 +128,16 @@ class HomePage extends StatelessWidget {
                                   }));
                                 },
                                 imageAsset: 'assets/redmars.png',
+                                delay: Duration(milliseconds:500),
                               )
                           )
+                  ]
                       ),
                       Container( // Sixth button (Extra Info)
-                          margin: const EdgeInsets.only(top: 20),
+                          margin: const EdgeInsets.only(top: 20, bottom:50),
                           child: SizedBox(
-                              width: 100,
+                            height: 130,
+                              width: 130,
                               child: PlanetButton(
                                 text: 'Extra Info',
                                 onPressed: () { // Navigator to Extra Info screen
@@ -135,12 +145,13 @@ class HomePage extends StatelessWidget {
                                     return ExtraInfoScreen();
                                   }));
                                 },
-                                  imageAsset: 'assets/brownheart.png'
+                                  imageAsset: 'assets/brownheart.png',
+                                delay: Duration(seconds:1),
                               )
                           )
                       ),
                       Container( // Logout Button
-                        margin: const EdgeInsets.only(top: 50),
+                        margin: const EdgeInsets.only(top: 100),
                         child: SizedBox(
                           width: 125,
                           child: ElevatedButton(
