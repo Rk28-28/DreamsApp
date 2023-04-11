@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../../presenter/dreams_extra_info_presenter.dart';
+import 'ButtonPages/sleep_amount_component.dart';
+import 'ButtonPages/sleep_links_component.dart';
+import 'ButtonPages/video_page_component.dart';
+import 'ButtonPages/white_noise_component.dart';
 import 'extra_info_view.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -223,6 +227,57 @@ void _navigateToWebView(BuildContext context, String url) {
       builder: (context) => MyWebView(url: url),
     ),
   );
+}
+
+
+class SleepLinksScreen extends StatefulWidget {
+  @override
+  _SleepLinksScreen createState() => _SleepLinksScreen();
+}
+
+class _SleepLinksScreen extends State<SleepLinksScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return new SleepLinksHomePage( title: 'Sleep Links', key: Key("SleepLinks"),);
+  }
+}
+
+class SleepAmountScreen extends StatefulWidget {
+  @override
+  _SleepAmountScreen createState() => _SleepAmountScreen();
+}
+
+class _SleepAmountScreen extends State<SleepAmountScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return new SleepAmountHomePage( title: 'Sleep Amount', key: Key("SleepAmount"),);
+  }
+}
+
+
+class VideoLinksScreen extends StatefulWidget {
+  @override
+  _VideoLinksScreen createState() => _VideoLinksScreen();
+}
+
+class _VideoLinksScreen extends State<VideoLinksScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return new VideoLinksHomePage( title: 'Video Links', key: Key("VideoLinks"),);
+  }
+}
+
+
+class WhiteNoiseScreen extends StatefulWidget {
+  @override
+  _WhiteNoiseScreen createState() => _WhiteNoiseScreen();
+}
+
+class _WhiteNoiseScreen extends State<WhiteNoiseScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return new WhiteNoiseHomePage( title: 'White Noise', key: Key("WhiteNoise"),);
+  }
 }
 
 String _calculateRecommendedSleep(String age) {
