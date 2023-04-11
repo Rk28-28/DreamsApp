@@ -12,26 +12,22 @@ class SleepDataViewModel {
 
   FirebaseAuth auth = FirebaseAuth.instance;
 
-  Future<void> sendToDatabase(String _sleepFeelings,int firstGroupValue, int secondGroupValue) async {
+  Future<void> sendToDatabase(String sleepFeelings,int firstGroupValue, int secondGroupValue) async {
     final User? user = auth.currentUser;
     final uid = user?.uid;
 
     // Format date for database
     DateTime now = new DateTime.now();
-    var formatter = new DateFormat('yyyy-MM-dd');
+    var formatter = new DateFormat('yyyy-MM-dd-hh-mm-ss');
     String dateStr = formatter.format(now);
 
     DocumentReference<Map<String, dynamic>> sleepInformationRef = FirebaseFirestore.instance.collection('users')
         .doc(auth.currentUser?.uid).collection('sleep-information').doc(dateStr);
 
-    sleepInformationRef.collection('sleep-feelings').add({
-      'Sleep Feelings': _sleepFeelings,
-    });
-    sleepInformationRef.collection('sleep-wake').add({
+    sleepInformationRef.set({
       'Wake Up': firstGroupValue,
-    });
-    sleepInformationRef.collection('sleep-dream').add({
-      'Dream/Nightmare': secondGroupValue,
+      'Dream or Nightmare': secondGroupValue,
+      'Sleep Feelings': sleepFeelings,
     });
   }
 
