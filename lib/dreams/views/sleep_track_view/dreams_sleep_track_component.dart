@@ -62,7 +62,8 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Radio<int>(
-          activeColor: Colors.blueAccent.shade700,
+          activeColor: Colors.white,
+          fillColor: MaterialStateColor.resolveWith((states) => Colors.white),
           value: 0, groupValue: _bedAmPm, onChanged: (value) {
           setState(() {
             _bedAmPm = value!;
@@ -71,10 +72,11 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
         ),
         Text(
           'AM',
-          style: TextStyle(color: Colors.blueAccent.shade700),
+          style: TextStyle(color: Colors.white),
         ),
         Radio<int>(
-          activeColor: Colors.blueAccent.shade700,
+          activeColor: Colors.white,
+          fillColor: MaterialStateColor.resolveWith((states) => Colors.white),
           value: 1, groupValue: _bedAmPm, onChanged: (value) {
           setState(() {
             _bedAmPm = value!;
@@ -83,7 +85,7 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
         ),
         Text(
           'PM',
-          style: TextStyle(color: Colors.blueAccent.shade700),
+          style: TextStyle(color: Colors.white),
         ),
       ],
     );
@@ -92,7 +94,8 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Radio<int>(
-          activeColor: Colors.blueAccent.shade700,
+          activeColor: Colors.white,
+          fillColor: MaterialStateColor.resolveWith((states) => Colors.white),
           value: 0, groupValue: _wakeAmPm, onChanged: (value) {
           setState(() {
             _wakeAmPm = value!;
@@ -101,10 +104,11 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
         ),
         Text(
           'AM',
-          style: TextStyle(color: Colors.blueAccent.shade700),
+          style: TextStyle(color: Colors.white),
         ),
         Radio<int>(
-          activeColor: Colors.blueAccent.shade700,
+          activeColor: Colors.white,
+          fillColor: MaterialStateColor.resolveWith((states) => Colors.white),
           value: 1, groupValue: _wakeAmPm, onChanged: (value) {
           setState(() {
             _wakeAmPm = value!;
@@ -113,7 +117,7 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
         ),
         Text(
           'PM',
-          style: TextStyle(color: Colors.blueAccent.shade700),
+          style: TextStyle(color: Colors.white),
         ),
       ],
     );
@@ -126,7 +130,7 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.only(top: 6.0),
-                child: Text("I went to bed at:",style: const TextStyle(fontWeight: FontWeight.bold), textScaleFactor: 1.5,)
+                child: Text("I went to bed at:",style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white), textScaleFactor: 1.5,)
                 ,),
               //_unitView,
               Row(
@@ -142,7 +146,7 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
               _unitViewBedTime,
               Padding(
                 padding: EdgeInsets.only(top: 6.0),
-                child: Text("I woke up at:",style: const TextStyle(fontWeight: FontWeight.bold), textScaleFactor: 1.5,)
+                child: Text("I woke up at:",style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white), textScaleFactor: 1.5,)
                 ,),
               Row(
                 children: <Widget>[
@@ -169,7 +173,16 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
           backgroundColor: Colors.blueAccent.shade700,
         ),
         backgroundColor: Colors.white,
-        body: Column(
+        body: Container(
+        width: double.infinity,
+    height: double.infinity,
+    decoration: BoxDecoration(
+    image: DecorationImage(
+    image: AssetImage('assets/backgrounds/yellowplanetbg.png'),
+    fit: BoxFit.cover,
+    ),
+    ),
+        child: Column(
           children: <Widget>[
             Padding(padding: EdgeInsets.all(4.0)),
             _mainPartView,
@@ -177,7 +190,7 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
             _resultView,*/
           Text(
             'Rate your quality of sleep',
-            style: TextStyle(color: Colors.blueAccent.shade700, fontSize: 16.0),
+            style: TextStyle(color: Colors.white, fontSize: 16.0),
           ),
 
           // Slider for rating quality of sleep
@@ -188,8 +201,8 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Bad (1)'),
-                    Text('Good (5)'),
+                    Text('Bad (1)', style: TextStyle(color: Colors.white)),
+                    Text('Good (5)', style: TextStyle(color: Colors.white)),
                   ],
                 ),
                 Slider(
@@ -221,6 +234,7 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
             child: Text('Next: Enter sleep data'),
           ),
           ],
+        ),
         ),
     );
   }
@@ -258,10 +272,15 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
         _wakeMinute = int.parse(value!);
       },
       decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white.withOpacity(0.3),
+          border: OutlineInputBorder(),
           hintText: 'e.g.) 40',
+          hintStyle: TextStyle(color:Colors.white),
           labelText: 'Minute',
+          labelStyle: TextStyle(color:Colors.white),
           icon: Icon(Icons.assessment),
-          fillColor: Colors.white
+
       ),
     );
   }
@@ -285,9 +304,12 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
       },
       decoration: InputDecoration(
         hintText: "e.g.) 7",
+        hintStyle: TextStyle(color:Colors.white),
         labelText: "Hour",
+        labelStyle: TextStyle(color:Colors.white),
         icon: Icon(Icons.assessment),
-        fillColor: Colors.white,
+        filled: true,
+        fillColor: Colors.white.withOpacity(0.3),
       ),
     );
   }
@@ -311,9 +333,12 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
       },
       decoration: InputDecoration(
         hintText: 'e.g.) 6',
+        hintStyle: TextStyle(color:Colors.white),
         labelText: 'Hour',
+        labelStyle: TextStyle(color:Colors.white),
         icon: Icon(Icons.assessment),
-        fillColor: Colors.white,
+        filled: true,
+        fillColor: Colors.white.withOpacity(0.3),
       ),
     );
   }
@@ -337,9 +362,12 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
       },
       decoration: InputDecoration(
         hintText: 'e.g.) 30',
+        hintStyle: TextStyle(color:Colors.white),
         labelText: 'Minute',
+        labelStyle: TextStyle(color:Colors.white),
         icon: Icon(Icons.assessment),
-        fillColor: Colors.white,
+        filled: true,
+        fillColor: Colors.white.withOpacity(0.3),
       ),
     );
   }

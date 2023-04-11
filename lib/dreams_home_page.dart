@@ -14,6 +14,7 @@ import 'dreams/views/sleep_track_view/dreams_sleep_track_component.dart';
 import 'package:units/dreams/presenter/dreams_sleep_diary_presenter.dart';
 import 'dreams/views/sleep_diary_view/dreams_sleep_diary_component.dart';
 import 'dreams/presenter/dreams_sleep_data_page_presenter.dart';
+import'dreams/planetbutton.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -22,138 +23,137 @@ class HomePage extends StatelessWidget {
         home: Builder(
             builder: (context) => Scaffold(
               appBar: AppBar(
-                title: Text("Sweet Dreams"),
+                title: Text("Sweet Dreams: " + greeting()),
               ),
         body: Container(
+          width: double.infinity,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/firefly.jpg'),
+              image: AssetImage('assets/sunbackground.png'),
               fit: BoxFit.cover,
             ),
           ),
-                  child: Column(
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
-                        child: Text("Welcome to the sweet dreams app!",style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent), textScaleFactor: 2.6, textAlign: TextAlign.center,)
-                        ,),
-                      Padding( // Displays the current user logged in to the app
-                        padding: EdgeInsets.only(top: 0, bottom: 20),
-                        child: Text(" User: " + FirebaseAuth.instance.currentUser!.displayName!,
+          child: Column(
+              children: <Widget>[
+                /*Padding(
+                    padding: EdgeInsets.only(top: 20.0, bottom: 10.0),
+                        child: Text("",style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent), textScaleFactor: 2.6, textAlign: TextAlign.center,)
+                        ,),*/
+                Padding( // Displays the current user logged in to the app
+                        padding: EdgeInsets.only(top: 10, bottom: 10),
+                        child: Text(" User: " ,//+ FirebaseAuth.instance.currentUser!.displayName!,
                           style: const TextStyle(fontSize: 20, color: Colors.white)
                         ),
                       ),
               Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container( // First button ( Sleep Calculator)
-                        margin: const EdgeInsets.only(top: 30),
-                        child: SizedBox(
-                          width: 150,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blueAccent,
-                            ),
-                            child: Text('Sleep Calculator',
-                                style: const TextStyle(color: Colors.white)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          // First button ( Sleep Calculator)
+                       // margin: const EdgeInsets.all(8.0),
+                        children:[
+                         SizedBox(
+                           height: 120,
+                        width: 120,
+                          child: PlanetButton(
+                            text:'Calculator',
                             onPressed: () { // Navigator to Sleep Calculator page
                               Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
                                 return SleepCalcScreen();
                               }));
                             },
+                            imageAsset: 'assets/brownheart.png',
+                            delay: Duration(milliseconds:500),
                           ),
-                        ),
-                      ),
-                      Container( // Second Button (Track Sleep)
-                          margin: const EdgeInsets.only(top: 20),
-                          child: SizedBox(
-                              width: 150,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.blueAccent,
-                                ),
-                                child: Text('Track Sleep'),
+                       ),
+                       SizedBox(
+                           height: 100,
+                              width: 100,
+                              child: PlanetButton(
+                                text:'Track Sleep',
                                 onPressed: () { // Navigator to Track Sleep screen
                                   Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
                                     return TrackSleepScreen();
                                   }));
                                 },
+                                imageAsset: 'assets/yellowworld.png',
+                                delay: Duration(seconds:1),
                               )
-                          )
+                          ),
+                        ]
                       ),
                       Container( // Third button (Track Behaviors)
                           margin: const EdgeInsets.only(top: 20),
                           child: SizedBox(
-                              width: 150,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.blueAccent,
-                                ),
-                                child: Text('Track Behaviors'),
+                            height: 120,
+                              width: 120,
+                              child: PlanetButton(
+                                text:'Behaviors',
                                 onPressed: () { // Navigator to Track Behaviors screen
                                   Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
                                     return BehaviorTrackScreen();
                                   }));
                                 },
+                                imageAsset: 'assets/purple.png',
+                                  delay: Duration(milliseconds:500)
                               )
                           )
                       ),
-                      Container( // Fourth button (Sleep Diary)
-                          margin: const EdgeInsets.only(top: 20),
-                          child: SizedBox(
-                              width: 150,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.blueAccent,
-                                ),
-                                child: Text('Sleep Diary'),
+                      Row( mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children:[
+                          SizedBox(
+                              height: 100,
+                              width: 100,
+                              child: PlanetButton(
+                                text: 'Sleep Diary',
                                 onPressed: () { // Navigator to Diary screen
                                   Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
                                     return SleepDiaryScreen();//
                                   }));
                                 },
+                                  imageAsset: 'assets/earth2.png',
+                                delay:Duration(milliseconds:800)
                               )
-                          )
-                      ),
-                      Container( // Fifth button (Sleep Data)
-                          margin: const EdgeInsets.only(top: 20),
-                          child: SizedBox(
-                              width: 150,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: Colors.blueAccent,
-                                ),
-                                child: Text('Sleep Data'),
+                          ),
+                      SizedBox( // Fifth button (Sleep Data)
+                        height: 120,
+                              width: 120,
+                              child: PlanetButton(
+                                text:'Sleep Data',
                                 onPressed: () { // Navigator to Sleep Data screen
                                   Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
                                     return SleepDataScreenNav();
                                   }));
                                 },
+                                imageAsset: 'assets/redmars.png',
+                                delay: Duration(milliseconds:500),
                               )
                           )
+                  ]
                       ),
                       Container( // Sixth button (Extra Info)
-                          margin: const EdgeInsets.only(top: 20),
+                          margin: const EdgeInsets.only(top: 20, bottom:50),
                           child: SizedBox(
-                              width: 150,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.blueAccent,
-                                ),
-                                child: Text('Extra Info'),
+                            height: 130,
+                              width: 130,
+                              child: PlanetButton(
+                                text: 'Extra Info',
                                 onPressed: () { // Navigator to Extra Info screen
                                   Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
                                     return ExtraInfoScreen();
                                   }));
                                 },
+                                  imageAsset: 'assets/blueplanet.png',
+                                delay: Duration(seconds:1),
                               )
                           )
                       ),
                       Container( // Logout Button
-                        margin: const EdgeInsets.only(top: 150),
+                        margin: const EdgeInsets.only(top: 100),
                         child: SizedBox(
-                          width: 150,
+                          width: 125,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.redAccent,
@@ -175,7 +175,18 @@ class HomePage extends StatelessWidget {
         ),
     );
   }
+  String greeting() {
+    var hour = DateTime.now().hour;
+    if (hour < 12) {
+      return 'Good Morning!';
+    }
+    if (hour < 17) {
+      return 'Good Afternoon!';
+    }
+    return 'Good Evening!';
+  }
 }
+
 
 // ignore: slash_for_doc_comments
 /*****************************

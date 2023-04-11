@@ -2,9 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:units/dreams/presenter/dreams_sleep_diary_presenter.dart';
+import 'package:units/dreams/presenter/dreams_sleep_diaryview_presenter.dart';
 import 'package:units/dreams/views/sleep_diary_view/dreams_sleep_diary_view.dart';
 import 'package:units/dreams/viewmodel/dreams_sleep_diary_viewmodel.dart';
 import 'package:intl/intl.dart';
+import 'package:units/dreams/views/sleep_diaryview_view/dreams_sleep_diaryview_component.dart';
+import 'package:units/dreams_home_page.dart';
 
 class SleepDiaryHomePage extends StatefulWidget{
   final SleepDiaryPresenter sleepDiaryPresenter;
@@ -33,7 +36,16 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
         title: Text('Sleep Diary Page'),
     // TODO: Implement Sleep Diary Page home page
     ),
-        body: Padding(
+        body: Container(
+      width: double.infinity,
+      height: double.infinity,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/backgrounds/earthbg.png'),
+          fit: BoxFit.cover,
+        ),
+      ),
+    child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
             key: _formKey,
@@ -47,7 +59,7 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
                 Padding( //Text for displaying current date
                   padding: EdgeInsets.fromLTRB(16,32,16,16),
                   child: Text(("Today's Date: " + formattedDate),
-                      style: TextStyle(fontSize: 28.0), textAlign: TextAlign.center),
+                      style: TextStyle(fontSize: 28.0, color:Colors.white), textAlign: TextAlign.center),
                   ),
 
               Container( //Text box for typing in a diary entry
@@ -60,23 +72,21 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
                     maxLength: 200,
                     expands: true,
                     keyboardType: TextInputType.multiline,
-                    style: TextStyle(fontSize: 25),
+                    style: TextStyle(fontSize: 25, color: Colors.white),
                     textAlignVertical: TextAlignVertical.top,
                     inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.deny(RegExp("\n")),
+                      FilteringTextInputFormatter.deny(RegExp(r'\n')),
+                      FilteringTextInputFormatter.deny(RegExp(r',')),
                     ], // Only numbers can be entered
-                    /* To be implemented
-                    validator: (value) {
-                      if(value == null || value.isEmpty|| !regex.hasMatch(value))
-                        return "Error: ";
-
-                      return null;
-                    },*/
 
                     decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.3),
                       border: OutlineInputBorder(),
                       hintText: 'Talk about dreams you had, your sleeping habits, bedtime routines, etc.',
+                      hintStyle: TextStyle(color: Colors.white),
                       hintMaxLines: 3,
+
 
                     ),
 
@@ -88,7 +98,7 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
                   child: ElevatedButton(
                     onPressed:() {
                       this.widget.sleepDiaryPresenter.onSubmitClicked(getDiaryEntry());//Submits diary entry to database
-                      this.widget.sleepDiaryPresenter.printdiary(); //stores all the diary entries
+                      //stores all the diary entries
 
                     ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Processing Data')));
@@ -102,10 +112,10 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
                       alignment: Alignment.bottomCenter,
                       child: ElevatedButton(
                           child: const Text('View Diary Entries', style: TextStyle(fontSize: 18.0)),
-                          onPressed: () {  Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const DiaryHistorypage()),
-                          );},
+                          onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                            return SleepViewDiaryScreen();
+                          }));},
 
                       ),
                     )
@@ -117,41 +127,21 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
             ),
           ),
         ),
-
-    // TODO: implement build
-   // throw UnimplementedError();
+        ),
         ),
     );
   }
 }
-class DiaryHistorypage extends StatelessWidget {
-  const DiaryHistorypage();
 
+class SleepViewDiaryScreen extends StatefulWidget {
+  @override
+  _SleepViewDiaryScreen createState() => _SleepViewDiaryScreen();
+}
+
+class _SleepViewDiaryScreen extends State<SleepViewDiaryScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Diary History'),
-      ),
-      body: Center(
-        child: Container(
-            width: 300,
-            height: 400,
-            child: TextFormField(
-              maxLines: 10,
-              decoration: InputDecoration(
-                border: OutlineInputBorder()
-
-              ),
-            ),
-            //child: Text(
-
-           // ),
-
-            )
-
-        ),
-      );
+    return new SleepDiaryViewHomePage(new SleepDiaryViewPresenter(), title: 'Sweet Dreams', key: Key("View Sleep Diarys"),);
   }
 }
 
@@ -160,6 +150,7 @@ class DiaryHistorypage extends StatelessWidget {
   {
     return diaryEntryController.text;
   }
+
 
 
 

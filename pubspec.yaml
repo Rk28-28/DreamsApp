@@ -48,6 +48,7 @@ dev_dependencies:
   firebase_core:
   google_sign_in:
 
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -70,7 +71,24 @@ flutter:
     - assets/cloud-clipart-md.png
     - assets/sunset_extra_infro.jpg
     - assets/firefly.jpg
-  # An image asset can refer to one or more resolution-specific "variants", see
+    - assets/sunbackground.png
+    - assets/cloudbackground.jpg
+    - assets/blueplanet.png
+    - assets/brownheart.png
+    - assets/purple.png
+    - assets/redmars.png
+    - assets/earth2.png
+    - assets/yellowworld.png
+    - assets/backgrounds/blueplanetbg.png
+    - assets/backgrounds/earthbg.png
+    - assets/backgrounds/greenplanetbg.png
+    - assets/backgrounds/heartplanetbg.png
+    - assets/backgrounds/moonbg.png
+    - assets/backgrounds/purpleplanetbg.png
+    - assets/backgrounds/redplanetbg.png
+    - assets/backgrounds/yellowplanetbg.png
+
+        # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
   # For details regarding adding assets from package dependencies, see
@@ -82,9 +100,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  #  - family: Oswald
+  #    fonts:
+  #      - asset: assets/Schyler-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

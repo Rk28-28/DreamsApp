@@ -20,6 +20,8 @@ class ExtraInfoHomePage extends StatefulWidget{
 class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAINFOView {
   var txt = TextEditingController();
   String _url = 'url';
+  List<String> ageRanges = <String>['1-2 years', '3-5 years', '6-12 years', '13-18 years', '18-60 years', '61-64 years', '65+ years'];
+
   @override
   Widget build(BuildContext context) {
     var agePicked;
@@ -31,7 +33,7 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
     body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/sunset_extra_infro.jpg'),
+            image: AssetImage('assets/backgrounds/blueplanetbg.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -51,7 +53,7 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
         ]
         ),
 
-        Row(
+        Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
@@ -60,7 +62,8 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
                 child: DropdownButton<String>(
                   hint: Text("Select Age"),
                   value: agePicked,
-                  items: <String>['1-2 years', '3-5 years', '6-12 years', '13-18 years', '18-60 years', '61-64 years', '65+ years'].map((String value){
+                  items: ageRanges.map<DropdownMenuItem<String>>((String value){
+
                     return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value),
@@ -77,6 +80,13 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
           ]
         ),
 
+        Column(
+          children: [
+            TextField(
+              controller: txt,
+            )
+          ],
+        ),
 
         Column(
           children: [
@@ -123,9 +133,9 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
               padding: const EdgeInsets.all(16.0),
               child: Center (
                 child: CloudButton (
-                    text: "General Sleep Data",
+                    text: "Not Enough Sleep Effects",
                     onPressed: () {
-                      _url = 'https://www.cdc.gov/sleep/data_statistics.html';
+                      _url = 'https://www.healthline.com/health/sleep-deprivation/effects-on-body#Respiratory-system';
                       _navigateToWebView(context, _url);
                     },
                   imageAsset: 'assets/cloud-clipart-md.png',
