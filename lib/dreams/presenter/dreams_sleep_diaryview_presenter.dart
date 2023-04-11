@@ -10,8 +10,14 @@ class DiaryViewPresenter {
   SleepDiaryViewModel viewModel = new SleepDiaryViewModel();
 
   set trackView(SleepDiaryView value) {
-
+    @override
+    List<String> printdiary()
+    {
+      List<String> s = viewModel.loadUserData();
+      return s;
+    }
   }
+
 
 }
 
@@ -25,5 +31,12 @@ class SleepDiaryViewPresenter implements DiaryViewPresenter{
 
   @override
   SleepDiaryViewModel viewModel = new SleepDiaryViewModel();
+
+  @override
+  List<String> printdiary()
+  {
+    List<String> s = viewModel.loadUserData();
+    return s;
+  }
 
 }
