@@ -25,11 +25,7 @@ class SleepDiaryPresenter implements BEHAVIORPresenter{
 
     viewModel.sendToDatabase(diaryEntry);
   }
-  @override
-  void printdiary()
-  {
-   viewModel.loadUserData();
-  }
+
   @override
   set diaryView(SleepDiaryView value) {
     // TODO: implement behaviorView

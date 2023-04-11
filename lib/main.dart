@@ -7,7 +7,7 @@ import 'dreams_login_page.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(HomePage());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
