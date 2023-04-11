@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -20,25 +21,18 @@ class SleepDataViewModel {
     var formatter = new DateFormat('yyyy-MM-dd');
     String dateStr = formatter.format(now);
 
+    DocumentReference<Map<String, dynamic>> sleepInformationRef = FirebaseFirestore.instance.collection('users')
+        .doc(auth.currentUser?.uid).collection('sleep-information').doc(dateStr);
 
-    DatabaseReference databaseRefSleepData = FirebaseDatabase.instance.ref('users/$uid/sleep-information/');
-    DatabaseReference databaseRefAwake = FirebaseDatabase.instance.ref('users/$uid/sleep-Awake/');
-    DatabaseReference databaseRefMemory = FirebaseDatabase.instance.ref('users/$uid/sleep-Memory/');
-
-    final sleepData = {
-      dateStr : _sleepFeelings
-    };
-    final awakeData = {
-      dateStr : firstGroupValue
-    };
-    final memoryData = {
-      dateStr : secondGroupValue
-    };
-
-
-    databaseRefSleepData.update(sleepData);
-    databaseRefAwake.update(awakeData);
-    databaseRefMemory.update(memoryData);
+    sleepInformationRef.collection('sleep-feelings').add({
+      'Sleep Feelings': _sleepFeelings,
+    });
+    sleepInformationRef.collection('sleep-wake').add({
+      'Wake Up': firstGroupValue,
+    });
+    sleepInformationRef.collection('sleep-dream').add({
+      'Dream/Nightmare': secondGroupValue,
+    });
   }
 
 
