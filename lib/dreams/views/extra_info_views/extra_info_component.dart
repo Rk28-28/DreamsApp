@@ -39,6 +39,7 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
         ),
         child: Column (
       children: <Widget>[
+        /*
         Column(
           children: [
             const Padding(
@@ -74,19 +75,73 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
                       agePicked = newValue;
                     });
                     print(agePicked);
-                    txt.text = agePicked;
+                    String sleep = _calculateRecommendedSleep(agePicked);
+                    txt.text = sleep;
                   }),
             ),
           ]
         ),
 
         Column(
-          children: [
-            TextField(
+          children: <Widget>[
+            Container(
+              decoration: BoxDecoration( color: Colors.white70),
+            child: TextField(
               controller: txt,
+            ),
             )
           ],
         ),
+        */
+      Container(
+        decoration: BoxDecoration( color: Colors.white70),
+        child : Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Padding(
+                  padding: EdgeInsets.fromLTRB(16, 32, 16, 16),
+                  child: Text('Enter your age to see your recommended amount of sleep:',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18.0,
+                        //backgroundColor: Colors.white70
+                    ),
+                  )
+              ),
+
+              Container(
+                //decoration: BoxDecoration( color: Colors.white70),
+
+                child: DropdownButton<String>(
+                    hint: Text("Select Age"),
+                    value: agePicked,
+                    items: ageRanges.map<DropdownMenuItem<String>>((String value){
+
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        agePicked = newValue;
+                      });
+                      print(agePicked);
+                      String sleep = _calculateRecommendedSleep(agePicked);
+                      txt.text = sleep;
+                    }),
+              ),
+              Container(
+                //decoration: BoxDecoration( color: Colors.white70),
+                child: TextField(
+                  controller: txt,
+                ),
+              )
+            ]
+        ),
+      ),
+
+
 
         Column(
           children: [
@@ -168,5 +223,31 @@ void _navigateToWebView(BuildContext context, String url) {
       builder: (context) => MyWebView(url: url),
     ),
   );
+}
+
+String _calculateRecommendedSleep(String age) {
+  var sleepAmount;
+  if(age == "1-2 years") {
+    sleepAmount = "11-14 hours";
+  }
+  else if(age == "3-5 years") {
+    sleepAmount = "10-13 hours";
+  }
+  else if(age == "6-12 years") {
+  sleepAmount = "9-12 hours";
+  }
+  else if(age == "13-18 years") {
+  sleepAmount = "8-10 hours";
+  }
+  else if(age == "18-60 years") {
+  sleepAmount = "7+ hours";
+  }
+  else if(age == "61-64 years") {
+  sleepAmount = "7-9 hours";
+  }
+  else if(age == "65+ years") {
+  sleepAmount = "7-8 hours";
+  }
+  return sleepAmount;
 }
 
