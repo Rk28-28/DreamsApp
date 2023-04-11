@@ -36,7 +36,16 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
           title: Text('Sleep Data'),
           // TODO: Implement SleepData home page
         ),
-        body: Column(
+        body: Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: BoxDecoration(
+          image: DecorationImage(
+          image: AssetImage('assets/backgrounds/yellowplanetbg.png'),
+          fit: BoxFit.cover,
+          ),
+          ),
+        child: Column(
             children: <Widget>[
 
               Column( //First inner column
@@ -45,29 +54,31 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
                     const Padding(
                       padding: EdgeInsets.fromLTRB(16, 32, 16, 16),
                       child: Text('Did you wake up during the night?',
-                          style: TextStyle(fontSize: 18.0)
+                          style: TextStyle(fontSize: 18, color: Colors.white)
                       ),
                     ),
                     Row (
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Radio<int>(
-                          activeColor: Colors.blueAccent.shade700,
+                          activeColor: Colors.white,
+                          fillColor: MaterialStateColor.resolveWith((states) => Colors.white),
                           //value: 0, groupValue: 0, onChanged: handleRadioValueChanged,
                           value: 0, groupValue: _firstGroupValue, onChanged: (newValue) => setState(() => _firstGroupValue = newValue!),
                         ),
                         Text(
                           'Yes',
-                          style: TextStyle(color: Colors.blueAccent.shade700),
+                          style: TextStyle(color: Colors.white),
                         ),
                         Radio<int>(
-                          activeColor: Colors.blueAccent.shade700,
+                          activeColor: Colors.white,
+                          fillColor: MaterialStateColor.resolveWith((states) => Colors.white),
                           //value: 1, groupValue: 0, onChanged: handleRadioValueChanged,
                           value: 1, groupValue: _firstGroupValue, onChanged: (newValue) => setState(() => _firstGroupValue = newValue!),
                         ),
                         Text(
                           'No',
-                          style: TextStyle(color: Colors.blueAccent.shade700),
+                          style: TextStyle(color: Colors.white),
                         ),
                       ],
                     )
@@ -80,38 +91,41 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
                     const Padding(
                       padding: EdgeInsets.fromLTRB(16, 32, 16, 16),
                       child: Text('Did you have a dream or a nightmare?',
-                      style: TextStyle(fontSize: 18.0)
+                      style: TextStyle(fontSize: 18.0, color: Colors.white)
                       ),
                     ),
                     Row (
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Radio<int>(
-                          activeColor: Colors.blueAccent.shade700,
+                          activeColor: Colors.white,
+                          fillColor: MaterialStateColor.resolveWith((states) => Colors.white),
                           //value: 0, groupValue: 0, onChanged: handleRadioValueChanged,
                           value: 2, groupValue: _secondGroupValue, onChanged: (newValue) => setState(() => _secondGroupValue = newValue!),
                         ),
                         Text(
                           'Dream',
-                          style: TextStyle(color: Colors.blueAccent.shade700),
+                          style: TextStyle(color: Colors.white),
                         ),
                         Radio<int>(
-                          activeColor: Colors.blueAccent.shade700,
+                          activeColor: Colors.white,
+                          fillColor: MaterialStateColor.resolveWith((states) => Colors.white),
                           //value: 1, groupValue: 0, onChanged: handleRadioValueChanged,
                           value: 3, groupValue: _secondGroupValue, onChanged: (newValue) => setState(() => _secondGroupValue = newValue!),
                         ),
                         Text(
                           'Nightmare',
-                          style: TextStyle(color: Colors.blueAccent.shade700),
+                          style: TextStyle(color: Colors.white),
                         ),
                         Radio<int>(
-                          activeColor: Colors.blueAccent.shade700,
+                          activeColor: Colors.white,
+                          fillColor: MaterialStateColor.resolveWith((states) => Colors.white),
                           //value: 2, groupValue: 0, onChanged: handleRadioValueChanged,
                           value: 4, groupValue: _secondGroupValue, onChanged: (newValue) => setState(() => _secondGroupValue = newValue!),
                         ),
                         Text(
                           'Neither',
-                          style: TextStyle(color: Colors.blueAccent.shade700),
+                          style: TextStyle(color: Colors.white),
                         ),
                       ],
                     )
@@ -127,7 +141,10 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
                     maxLines: 5,
                     decoration: InputDecoration(
                       hintText: 'Enter a short description',
-                      filled: true
+                      hintStyle: TextStyle(color: Colors.white),
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.3),
+
                     ),
                   )
                 ]
@@ -157,6 +174,7 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
 
 
             ]
+        )
         )
     );
 

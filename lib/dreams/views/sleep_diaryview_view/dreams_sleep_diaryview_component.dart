@@ -23,13 +23,24 @@ class _SleepDiaryViewHomePageState extends State<SleepDiaryViewHomePage> impleme
         title: Text('Sleep Diary View Page'),
     // TODO: Implement Sleep Diary Page home page
     ),
-      body: Column(
+    body: Container(
+    width: double.infinity,
+    height: double.infinity,
+    decoration: BoxDecoration(
+    image: DecorationImage(
+    image: AssetImage('assets/backgrounds/earthbg.png'),
+    fit: BoxFit.cover,
+    ),
+    ),
+      child: Column(
          children: [
            Padding(
              padding: const EdgeInsets.all(16.0),
              child: TextField(
 
                  decoration: InputDecoration(
+                   filled: true,
+                   fillColor: Colors.white.withOpacity(0.3),
                    border: OutlineInputBorder(),
 
                  )
@@ -41,6 +52,8 @@ class _SleepDiaryViewHomePageState extends State<SleepDiaryViewHomePage> impleme
                child: TextField(
 
                    decoration: InputDecoration(
+                     filled: true,
+                     fillColor: Colors.white.withOpacity(0.3),
                      border: OutlineInputBorder(),
 
                    )
@@ -52,6 +65,8 @@ class _SleepDiaryViewHomePageState extends State<SleepDiaryViewHomePage> impleme
                child: TextField(
 
                    decoration: InputDecoration(
+                     filled: true,
+                     fillColor: Colors.white.withOpacity(0.3),
                      border: OutlineInputBorder(),
 
                    )
@@ -63,6 +78,8 @@ class _SleepDiaryViewHomePageState extends State<SleepDiaryViewHomePage> impleme
                child: TextField(
 
                    decoration: InputDecoration(
+                     filled: true,
+                     fillColor: Colors.white.withOpacity(0.3),
                      border: OutlineInputBorder(),
 
                    )
@@ -74,6 +91,8 @@ class _SleepDiaryViewHomePageState extends State<SleepDiaryViewHomePage> impleme
                child: TextField(
 
                    decoration: InputDecoration(
+                     filled: true,
+                     fillColor: Colors.white.withOpacity(0.3),
                      border: OutlineInputBorder(),
 
                    )
@@ -83,6 +102,7 @@ class _SleepDiaryViewHomePageState extends State<SleepDiaryViewHomePage> impleme
 
          ],
       )
+    )
     );
     // TODO: implement build
   }

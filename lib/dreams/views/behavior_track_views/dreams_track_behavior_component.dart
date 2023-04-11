@@ -33,7 +33,17 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
           title: Text('Behavior Tracker'),
           // TODO: Implement behavior track home page
         ),
-          body: Padding(
+          body: Container(
+            width: double.infinity,
+            height: double.infinity,
+          decoration: BoxDecoration(
+          image: DecorationImage(
+          image: AssetImage('assets/backgrounds/purpleplanetbg.png'),
+          fit: BoxFit.cover,
+          ),
+          ),
+
+          child:Padding(
             padding: const EdgeInsets.all(16.0),
             child: Form( //form
                key: _formKey,
@@ -48,7 +58,8 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
               const Padding(
                 padding: EdgeInsets.fromLTRB(16,32,16,16),
                 child: Text('How much caffeine did you consume today?',
-                    style: TextStyle(fontSize: 18.0)
+                    style: TextStyle(fontSize: 18.0, color: Colors.white)
+
                 ),
               ),
 
@@ -63,8 +74,11 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                       return null;
                     },
                     decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white.withOpacity(0.3),
                        border: OutlineInputBorder(),
-                       hintText: 'Enter caffeine consumed (in mL)',
+                       hintText: 'Enter caffeine consumed (in mg)',
+                      hintStyle: TextStyle(color: Colors.white)
 
                   ),
 
@@ -81,7 +95,7 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
               const Padding(
                 padding: EdgeInsets.fromLTRB(16,32,16,16),
                 child: Text('How many calories did you consume today?',
-                style: TextStyle(fontSize: 18.0)
+                style: TextStyle(fontSize: 18.0, color: Colors.white)
                 ),
               ),
 
@@ -90,9 +104,12 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                 child: TextFormField(
                   controller: calorieController,
 
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.3),
                     border: OutlineInputBorder(),
                     labelText: 'Enter calories consumed',
+                    labelStyle: TextStyle(color: Colors.white)
                   ),
                   validator: (value) {
                     if(value == null || value.isEmpty || !regex.hasMatch(value)) {
@@ -111,7 +128,8 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                 children: [
                   const Padding(
                     padding:EdgeInsets.fromLTRB(16,32,16,16),
-                    child: Text('How stressed were you today?', style: TextStyle(fontSize: 18.0),)
+                    child: Text('How stressed were you today?', style: TextStyle(fontSize: 18.0,
+                        color: Colors.white),)
                   ),
 
               Slider(
@@ -131,8 +149,9 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                   child: Row( //Contains text for slider
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Little stress'),
-                      Text('Lots of stress')
+                      Text('Little stress', style: TextStyle(color: Colors.white)),
+
+                      Text('Lots of stress', style: TextStyle(color: Colors.white))
                     ],
                   ),
                   ),
@@ -157,7 +176,7 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                               this.widget.behaviorPresenter.onSubmitClicked(calorieController.text.toString(), caffeineController.text.toString(),sliderValue);
 
                             ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Processing Data')));
+                                const SnackBar(content: Text('Processing Data', style: TextStyle(color: Colors.white))));
 
                                 }
 
@@ -171,6 +190,7 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
     ),
             ),
     ),
+          )
           );
 
 

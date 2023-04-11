@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:units/dreams_home_page.dart';
 import 'dreams_login_page.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(HomePage());
 }
 
 class MyApp extends StatelessWidget {

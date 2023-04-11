@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
                         ,),*/
                 Padding( // Displays the current user logged in to the app
                         padding: EdgeInsets.only(top: 10, bottom: 10),
-                        child: Text(" User: " + FirebaseAuth.instance.currentUser!.displayName!,
+                        child: Text(" User: " ,//+ FirebaseAuth.instance.currentUser!.displayName!,
                           style: const TextStyle(fontSize: 20, color: Colors.white)
                         ),
                       ),
@@ -64,7 +64,7 @@ class HomePage extends StatelessWidget {
                                 return SleepCalcScreen();
                               }));
                             },
-                            imageAsset: 'assets/blueplanet.png',
+                            imageAsset: 'assets/brownheart.png',
                             delay: Duration(milliseconds:500),
                           ),
                        ),
@@ -113,7 +113,7 @@ class HomePage extends StatelessWidget {
                                     return SleepDiaryScreen();//
                                   }));
                                 },
-                                  imageAsset: 'assets/world.png',
+                                  imageAsset: 'assets/earth2.png',
                                 delay:Duration(milliseconds:800)
                               )
                           ),
@@ -145,7 +145,7 @@ class HomePage extends StatelessWidget {
                                     return ExtraInfoScreen();
                                   }));
                                 },
-                                  imageAsset: 'assets/brownheart.png',
+                                  imageAsset: 'assets/blueplanet.png',
                                 delay: Duration(seconds:1),
                               )
                           )

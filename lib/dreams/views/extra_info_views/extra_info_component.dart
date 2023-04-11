@@ -33,7 +33,7 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
     body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/cloudbackground.jpg'),
+            image: AssetImage('assets/backgrounds/blueplanetbg.png'),
             fit: BoxFit.cover,
           ),
         ),

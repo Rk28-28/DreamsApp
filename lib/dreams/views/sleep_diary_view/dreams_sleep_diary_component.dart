@@ -36,7 +36,16 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
         title: Text('Sleep Diary Page'),
     // TODO: Implement Sleep Diary Page home page
     ),
-        body: Padding(
+        body: Container(
+      width: double.infinity,
+      height: double.infinity,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/backgrounds/earthbg.png'),
+          fit: BoxFit.cover,
+        ),
+      ),
+    child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
             key: _formKey,
@@ -50,7 +59,7 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
                 Padding( //Text for displaying current date
                   padding: EdgeInsets.fromLTRB(16,32,16,16),
                   child: Text(("Today's Date: " + formattedDate),
-                      style: TextStyle(fontSize: 28.0), textAlign: TextAlign.center),
+                      style: TextStyle(fontSize: 28.0, color:Colors.white), textAlign: TextAlign.center),
                   ),
 
               Container( //Text box for typing in a diary entry
@@ -63,7 +72,7 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
                     maxLength: 200,
                     expands: true,
                     keyboardType: TextInputType.multiline,
-                    style: TextStyle(fontSize: 25),
+                    style: TextStyle(fontSize: 25, color: Colors.white),
                     textAlignVertical: TextAlignVertical.top,
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.deny(RegExp(r'\n')),
@@ -71,9 +80,13 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
                     ], // Only numbers can be entered
 
                     decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.3),
                       border: OutlineInputBorder(),
                       hintText: 'Talk about dreams you had, your sleeping habits, bedtime routines, etc.',
+                      hintStyle: TextStyle(color: Colors.white),
                       hintMaxLines: 3,
+
 
                     ),
 
@@ -113,6 +126,7 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
               ],
             ),
           ),
+        ),
         ),
         ),
     );

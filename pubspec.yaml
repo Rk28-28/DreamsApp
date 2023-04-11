@@ -77,9 +77,18 @@ flutter:
     - assets/brownheart.png
     - assets/purple.png
     - assets/redmars.png
-    - assets/world.png
+    - assets/earth2.png
     - assets/yellowworld.png
-  # An image asset can refer to one or more resolution-specific "variants", see
+    - assets/backgrounds/blueplanetbg.png
+    - assets/backgrounds/earthbg.png
+    - assets/backgrounds/greenplanetbg.png
+    - assets/backgrounds/heartplanetbg.png
+    - assets/backgrounds/moonbg.png
+    - assets/backgrounds/purpleplanetbg.png
+    - assets/backgrounds/redplanetbg.png
+    - assets/backgrounds/yellowplanetbg.png
+
+        # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
   # For details regarding adding assets from package dependencies, see

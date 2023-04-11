@@ -114,25 +114,26 @@ class _CalcHomePageState extends State<CalcHomePage> implements UNITSView {
 
   @override
   Widget build(BuildContext context) {
-
     var _unitView = Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Radio<int>(
-          activeColor: Colors.blueAccent.shade700,
+          activeColor: Colors.white,
+          fillColor: MaterialStateColor.resolveWith((states) => Colors.white),
           value: 0, groupValue: _value, onChanged: handleRadioValueChanged,
         ),
         Text(
           'Wake up at',
-          style: TextStyle(color: Colors.blueAccent.shade700),
+          style: TextStyle(color: Colors.white),
         ),
         Radio<int>(
-          activeColor: Colors.blueAccent.shade700,
+          activeColor: Colors.white,
+          fillColor: MaterialStateColor.resolveWith((states) => Colors.white),
           value: 1, groupValue: _value, onChanged: handleRadioValueChanged,
         ),
         Text(
           'Go to bed at',
-          style: TextStyle(color: Colors.blueAccent.shade700),
+          style: TextStyle(color: Colors.white),
         ),
       ],
     );
@@ -141,20 +142,22 @@ class _CalcHomePageState extends State<CalcHomePage> implements UNITSView {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Radio<int>(
-          activeColor: Colors.blueAccent.shade700,
+          activeColor: Colors.white,
+          fillColor: MaterialStateColor.resolveWith((states) => Colors.white),
           value: 0, groupValue: _valueTime, onChanged: handleRadioValueChangedTime,
         ),
         Text(
           'AM',
-          style: TextStyle(color: Colors.blueAccent.shade700),
+          style: TextStyle(color: Colors.white),
         ),
         Radio<int>(
-          activeColor: Colors.blueAccent.shade700,
+          activeColor: Colors.white,
+          fillColor: MaterialStateColor.resolveWith((states) => Colors.white),
           value: 1, groupValue: _valueTime, onChanged: handleRadioValueChangedTime,
         ),
         Text(
           'PM',
-          style: TextStyle(color: Colors.blueAccent.shade700),
+          style: TextStyle(color: Colors.white),
         ),
       ],
     );
@@ -167,7 +170,7 @@ class _CalcHomePageState extends State<CalcHomePage> implements UNITSView {
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.only(top: 10.0),
-                child: Text("I want to:",style: const TextStyle(fontWeight: FontWeight.bold), textScaleFactor: 1.5,)
+                child: Text("I want to:",style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold), textScaleFactor: 1.5,)
                 ,),
               _unitView,
               Row(
@@ -183,7 +186,7 @@ class _CalcHomePageState extends State<CalcHomePage> implements UNITSView {
               _unitViewTime,
               Padding(
                 padding: EdgeInsets.only(top: 10.0),
-                child: Text("I want to sleep for:",style: const TextStyle(fontWeight: FontWeight.bold), textScaleFactor: 1.5,)
+                child: Text("I want to sleep for:",style: const TextStyle(color: Colors.white,fontWeight: FontWeight.bold), textScaleFactor: 1.5,)
                 ,),
               Row(
                 children: <Widget>[
@@ -211,7 +214,7 @@ class _CalcHomePageState extends State<CalcHomePage> implements UNITSView {
           child: Text(
             '$_message $_resultString $_timeString',
             style: TextStyle(
-                color: Colors.blueAccent.shade700,
+                color: Colors.white,
                 fontSize: 24.0,
                 fontWeight: FontWeight.w700,
                 fontStyle: FontStyle.italic
@@ -228,7 +231,16 @@ class _CalcHomePageState extends State<CalcHomePage> implements UNITSView {
           backgroundColor: Colors.blueAccent.shade700,
         ),
         backgroundColor: Colors.white,
-        body: ListView(
+    body: Container(
+      width: double.infinity,
+      height: double.infinity,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+        image: AssetImage('assets/backgrounds/heartplanetbg.png'),
+          fit: BoxFit.cover,
+    ),
+    ),
+        child: ListView(
           children: <Widget>[
             Padding(padding: EdgeInsets.all(5.0)),
             _mainPartView,
@@ -236,6 +248,7 @@ class _CalcHomePageState extends State<CalcHomePage> implements UNITSView {
             _resultView
           ],
         )
+    )
     );
   }
 
@@ -274,7 +287,8 @@ class _CalcHomePageState extends State<CalcHomePage> implements UNITSView {
           hintText: 'e.g.) 40',
           labelText: 'Minute',
           icon: Icon(Icons.assessment),
-          fillColor: Colors.white
+        filled: true,
+        fillColor: Colors.white.withOpacity(0.6),
       ),
     );
   }
@@ -300,7 +314,8 @@ class _CalcHomePageState extends State<CalcHomePage> implements UNITSView {
         hintText: "e.g.) 7",
         labelText: "Hour",
         icon: Icon(Icons.assessment),
-        fillColor: Colors.white,
+        filled: true,
+        fillColor: Colors.white.withOpacity(0.6),
       ),
     );
   }
@@ -326,7 +341,8 @@ class _CalcHomePageState extends State<CalcHomePage> implements UNITSView {
         hintText: 'e.g.) 6',
         labelText: 'Hour',
         icon: Icon(Icons.assessment),
-        fillColor: Colors.white,
+        filled: true,
+        fillColor: Colors.white.withOpacity(0.6),
       ),
     );
   }
@@ -352,7 +368,8 @@ class _CalcHomePageState extends State<CalcHomePage> implements UNITSView {
         hintText: 'e.g.) 30',
         labelText: 'Minute',
         icon: Icon(Icons.assessment),
-        fillColor: Colors.white,
+        filled: true,
+        fillColor: Colors.white.withOpacity(0.6),
       ),
     );
   }

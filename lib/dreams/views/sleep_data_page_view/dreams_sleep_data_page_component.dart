@@ -13,26 +13,21 @@ class SleepDataPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Expanded(child: gradient()),
+         Expanded(child: container()),
 
         ],
       ),
     );
   }
-  Container gradient() {
-    return Container( // Gradient for background
-      height: double.infinity,
-      width: double.infinity,
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                Colors.tealAccent,
-                Colors.blue,
-              ]
-          )
-      ),
+  Container container() {
+    return  Container(
+    width: double.infinity,
+    decoration: BoxDecoration(
+    image: DecorationImage(
+    image: AssetImage('assets/backgrounds/redplanetbg.png'),
+    fit: BoxFit.cover,
+    ),
+    ),
     );
   }
 }
