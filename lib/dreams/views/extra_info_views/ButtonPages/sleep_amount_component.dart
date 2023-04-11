@@ -24,6 +24,7 @@ class _SleepAmountHomePageState extends State<SleepAmountHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Sleep Information'),
+          backgroundColor: Colors.black
 
       ),
       body: Container(

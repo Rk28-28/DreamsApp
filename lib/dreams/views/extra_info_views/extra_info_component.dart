@@ -31,6 +31,7 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
     var agePicked;
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: Colors.black,
         title: Text('Extra Information'),
 
     ),

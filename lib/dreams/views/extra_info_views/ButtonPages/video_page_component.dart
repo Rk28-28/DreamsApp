@@ -22,7 +22,7 @@ class _VideoLinksHomePageState extends State<VideoLinksHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Sleep Information'),
-
+          backgroundColor: Colors.black
       ),
       body: Container(
         decoration: BoxDecoration(

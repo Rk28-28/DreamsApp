@@ -22,6 +22,7 @@ class _SleepLinksHomePageState extends State<SleepLinksHomePage> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Sleep Information'),
+            backgroundColor: Colors.black
 
         ),
         body: Container(

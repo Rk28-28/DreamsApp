@@ -24,6 +24,7 @@ class HomePage extends StatelessWidget {
             builder: (context) => Scaffold(
               appBar: AppBar(
                 title: Text("Sweet Dreams: " + greeting()),
+                  backgroundColor: Colors.black
               ),
         body: Container(
           width: double.infinity,

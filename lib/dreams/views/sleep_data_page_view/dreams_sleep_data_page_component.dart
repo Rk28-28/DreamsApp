@@ -10,6 +10,7 @@ class SleepDataPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Sleep Data'),
+          backgroundColor: Colors.black
       ),
       body: Column(
         children: [

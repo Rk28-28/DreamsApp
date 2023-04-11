@@ -170,7 +170,7 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
         appBar: AppBar(
           title: Text('Sleep Tracker'),
           centerTitle: true,
-          backgroundColor: Colors.blueAccent.shade700,
+            backgroundColor: Colors.black
         ),
         backgroundColor: Colors.white,
         body: Container(

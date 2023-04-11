@@ -34,7 +34,7 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
     return Scaffold(
         appBar: AppBar(
         title: Text('Sleep Diary Page'),
-    // TODO: Implement Sleep Diary Page home page
+            backgroundColor: Colors.black
     ),
         body: Container(
       width: double.infinity,

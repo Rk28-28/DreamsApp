@@ -22,7 +22,7 @@ class _WhiteNoiseHomePageState extends State<WhiteNoiseHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Sleep Information'),
-
+          backgroundColor: Colors.black
       ),
       body: Container(
         decoration: BoxDecoration(
