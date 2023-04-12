@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
                         ,),*/
                 Padding( // Displays the current user logged in to the app
                         padding: EdgeInsets.only(top: 10, bottom: 10),
-                        child: Text(" User: " ,//+ FirebaseAuth.instance.currentUser!.displayName!,
+                        child: Text(" User: " + FirebaseAuth.instance.currentUser!.displayName!,
                           style: const TextStyle(fontSize: 20, color: Colors.white)
                         ),
                       ),

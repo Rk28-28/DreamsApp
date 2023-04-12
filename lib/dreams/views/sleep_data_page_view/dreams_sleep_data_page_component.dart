@@ -6,41 +6,33 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:units/dreams/presenter/dreams_sleep_data_page_presenter.dart';
 
 class SleepDataPage extends StatelessWidget {
-  SleepDataPage(SleepDataPagePresenter sleepDataPagePresenter, {required String title, required Key key});
-  
-  SleepTimeChart sleepTimeChart = new SleepTimeChart.withSampleData();
+  SleepDataPage(SleepDataPagePresenter sleepDataPagePresenter,
+      {required String title, required Key key});
+
+  SleepTimeChart sleepTimeChart = SleepTimeChart();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Sleep Data'),
-          backgroundColor: Colors.black
-      ),
+      appBar: AppBar(title: Text('Sleep Data'), backgroundColor: Colors.black),
       body: Column(
         children: [
-          Expanded(child: gradient()),
-          Expanded(child: sleepTimeChart)
-
+          Expanded(child: sleepTimeChart),
+          Expanded(child: background()),
         ],
       ),
     );
   }
-  Container gradient() {
-    return Container( // Gradient for background
-      height: double.infinity,
+
+  Container background() {
+    return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                Colors.tealAccent,
-                Colors.blue,
-              ]
-          )
+        image: DecorationImage(
+          image: AssetImage('assets/sunbackground.png'),
+          fit: BoxFit.cover,
+        ),
       ),
-      
     );
   }
 }

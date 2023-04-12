@@ -18,7 +18,7 @@ class BehaviorTrackViewModel {
 
 
     DateTime now = new DateTime.now();
-    var formatter = new DateFormat('yyyy-MM-dd--hh-mm-ss');
+    var formatter = new DateFormat('yyyy-MM-dd hh:mm:ss');
     String dateStr = formatter.format(now);
 
     DocumentReference<Map<String, dynamic>> sleepBehaviorRef = FirebaseFirestore.instance.collection('users')

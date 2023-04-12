@@ -32,18 +32,13 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: Stack(
         children: [
-          Container( // Gradient for background
-            height: double.infinity,
-            width: double.infinity,
+          Container(
+          width: double.infinity,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [
-                  Colors.tealAccent,
-                  Colors.blue,
-                ]
-              )
+              image: DecorationImage(
+                image: AssetImage('assets/sunbackground.png'),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           Column( // Column with elements in it
@@ -57,21 +52,8 @@ class _LoginPageState extends State<LoginPage> {
                 "Sign In",
                 style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, fontFamily: 'OpenSans', color: Colors.white),
               ),
-              SizedBox( // Padding from "Sign In" to image
-                height: 90,
-              ),
-              Container( // Image
-                height: 150,
-                width: 262,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/sleeping_icon.png'),
-                    fit: BoxFit.cover
-                    )
-                  )
-                ),
               SizedBox( // Padding from image to Google sign in
-                height: 300,
+                height: 490,
               ),
               Padding(
                 padding: const EdgeInsets.only(left:100, right: 100),
