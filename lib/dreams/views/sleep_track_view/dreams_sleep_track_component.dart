@@ -50,9 +50,22 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
   void _submission() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      this.widget.trackPresenter.onSubmitClicked(_bedHour, _bedMinute, _bedAmPm, _wakeHour,
-          _wakeMinute,_wakeAmPm, _sleepRating);
+      this.widget.trackPresenter.onSubmitClicked(
+          _bedHour,
+          _bedMinute,
+          _bedAmPm,
+          _wakeHour,
+          _wakeMinute,
+          _wakeAmPm,
+          _sleepRating);
     }
+    ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text(
+            'Processing Data', style: TextStyle(color: Colors.white))));
+
+    ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text('Done!', style: TextStyle(color: Colors.white))));
   }
 
   @override

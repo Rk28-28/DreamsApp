@@ -27,6 +27,11 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
 
   void _submission() {
       this.widget.sleepdataPresenter.onSubmitClicked(_firstGroupValue, _secondGroupValue, myController);
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Processing Data', style: TextStyle(color: Colors.white))));
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Done!', style: TextStyle(color: Colors.white))));
+
   }
 
   @override
