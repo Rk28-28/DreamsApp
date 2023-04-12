@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
         home: Builder(
             builder: (context) => Scaffold(
               appBar: AppBar(
-                title: Text("Sweet Dreams: " + greeting()),
+                title: Text(greeting() + FirebaseAuth.instance.currentUser!.displayName! + "!"),
                   backgroundColor: Colors.black
               ),
         body: Container(
@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
                         ,),*/
                 Padding( // Displays the current user logged in to the app
                         padding: EdgeInsets.only(top: 10, bottom: 10),
-                        child: Text(" User: " + FirebaseAuth.instance.currentUser!.displayName!,
+                        child: Text("",
                           style: const TextStyle(fontSize: 20, color: Colors.white)
                         ),
                       ),
@@ -179,12 +179,12 @@ class HomePage extends StatelessWidget {
   String greeting() {
     var hour = DateTime.now().hour;
     if (hour < 12) {
-      return 'Good Morning!';
+      return 'Good Morning, ';
     }
     if (hour < 17) {
-      return 'Good Afternoon!';
+      return 'Good Afternoon, ';
     }
-    return 'Good Evening!';
+    return 'Good Evening, ';
   }
 }
 
