@@ -136,6 +136,7 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
               Column(
                 children: <Widget>[
                   TextField(
+                    style: TextStyle(color: Colors.white),
                     controller: myController,
                     keyboardType: TextInputType.multiline,
                     minLines: 1,

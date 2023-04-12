@@ -269,6 +269,7 @@ class _CalcHomePageState extends State<CalcHomePage> implements UNITSView {
 
   TextFormField sleepMinuteFormField() {
     return TextFormField(
+      style: TextStyle(color: Colors.white),
       controller: _sleepMinuteController,
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.done,
@@ -287,15 +288,18 @@ class _CalcHomePageState extends State<CalcHomePage> implements UNITSView {
       decoration: InputDecoration(
           hintText: 'e.g.) 40',
           labelText: 'Minute',
+          hintStyle: TextStyle(color: Colors.white),
+        labelStyle: TextStyle(color: Colors.white),
           icon: Icon(Icons.assessment),
         filled: true,
-        fillColor: Colors.white.withOpacity(0.6),
+        fillColor: Colors.white.withOpacity(0.3),
       ),
     );
   }
 
   TextFormField sleepHourFormField(BuildContext context) {
     return TextFormField(
+      style: TextStyle(color: Colors.white),
       controller: _sleepHourController,
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
@@ -314,15 +318,18 @@ class _CalcHomePageState extends State<CalcHomePage> implements UNITSView {
       decoration: InputDecoration(
         hintText: "e.g.) 7",
         labelText: "Hour",
+        hintStyle: TextStyle(color: Colors.white),
+        labelStyle: TextStyle(color: Colors.white),
         icon: Icon(Icons.assessment),
         filled: true,
-        fillColor: Colors.white.withOpacity(0.6),
+        fillColor: Colors.white.withOpacity(0.3),
       ),
     );
   }
 
   TextFormField hourFormField(BuildContext context) {
     return TextFormField(
+      style: TextStyle(color: Colors.white),
       controller: _hourController,
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
@@ -341,15 +348,18 @@ class _CalcHomePageState extends State<CalcHomePage> implements UNITSView {
       decoration: InputDecoration(
         hintText: 'e.g.) 6',
         labelText: 'Hour',
+        hintStyle: TextStyle(color: Colors.white),
+        labelStyle: TextStyle(color: Colors.white),
         icon: Icon(Icons.assessment),
         filled: true,
-        fillColor: Colors.white.withOpacity(0.6),
+        fillColor: Colors.white.withOpacity(0.3),
       ),
     );
   }
 
   TextFormField minFormField(BuildContext context) {
     return TextFormField(
+      style: TextStyle(color: Colors.white),
       controller: _minuteController,
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
@@ -368,9 +378,11 @@ class _CalcHomePageState extends State<CalcHomePage> implements UNITSView {
       decoration: InputDecoration(
         hintText: 'e.g.) 30',
         labelText: 'Minute',
+        hintStyle: TextStyle(color: Colors.white),
+        labelStyle: TextStyle(color: Colors.white),
         icon: Icon(Icons.assessment),
         filled: true,
-        fillColor: Colors.white.withOpacity(0.6),
+        fillColor: Colors.white.withOpacity(0.3),
       ),
     );
   }

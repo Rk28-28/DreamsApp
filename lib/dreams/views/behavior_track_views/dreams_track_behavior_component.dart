@@ -66,6 +66,7 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
               Padding(
                 padding: EdgeInsets.fromLTRB(16,16,16,32),
                 child: TextFormField(
+                  style: TextStyle(color: Colors.white),
                     controller: caffeineController,
                     validator: (value) {
                       if(value == null || value.isEmpty|| !regex.hasMatch(value))
@@ -78,7 +79,8 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
                         fillColor: Colors.white.withOpacity(0.3),
                        border: OutlineInputBorder(),
                        hintText: 'Enter caffeine consumed (in mg)',
-                      hintStyle: TextStyle(color: Colors.white)
+                      hintStyle: TextStyle(color: Colors.white),
+                      labelStyle: TextStyle(color: Colors.white),
 
                   ),
 
@@ -95,13 +97,15 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
               const Padding(
                 padding: EdgeInsets.fromLTRB(16,32,16,16),
                 child: Text('How many calories did you consume today?',
-                style: TextStyle(fontSize: 18.0, color: Colors.white)
+                style: TextStyle(fontSize: 18.0, color: Colors.white),
+
                 ),
               ),
 
               Padding(
                 padding: EdgeInsets.fromLTRB(16,16,16,32),
                 child: TextFormField(
+                  style: TextStyle(color: Colors.white),
                   controller: calorieController,
 
                   decoration: InputDecoration(

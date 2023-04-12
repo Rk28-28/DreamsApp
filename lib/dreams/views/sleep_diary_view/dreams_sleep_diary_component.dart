@@ -66,7 +66,6 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
                 width: 300,
                 height: 400,
                   child: TextFormField(
-
                     controller: diaryEntryController,
                     maxLines: null,
                     maxLength: 200,

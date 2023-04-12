@@ -256,6 +256,7 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
 
   TextFormField wakeMinuteFormField() {
     return TextFormField(
+      style: TextStyle(color: Colors.white),
       controller: _wakeMinuteController,
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.done,
@@ -287,6 +288,7 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
 
   TextFormField wakeHourFormField(BuildContext context) {
     return TextFormField(
+      style: TextStyle(color: Colors.white),
       controller: _wakeHourController,
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
@@ -316,6 +318,7 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
 
   TextFormField bedHourFormField(BuildContext context) {
     return TextFormField(
+      style: TextStyle(color: Colors.white),
       controller: _bedHourController,
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
@@ -345,6 +348,7 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
 
   TextFormField bedMinFormField(BuildContext context) {
     return TextFormField(
+      style: TextStyle(color: Colors.white),
       controller: _bedMinuteController,
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
