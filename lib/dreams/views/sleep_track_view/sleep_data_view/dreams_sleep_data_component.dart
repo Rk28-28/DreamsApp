@@ -34,6 +34,7 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
     return Scaffold(
         appBar: AppBar(
           title: Text('Sleep Data'),
+            backgroundColor: Colors.black
           // TODO: Implement SleepData home page
         ),
         body: Container(

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -79,28 +80,16 @@ class SleepTrackViewModel {
 
     // Format date for database
     DateTime now = new DateTime.now();
-    var formatter = new DateFormat('yyyy-MM-dd');
+    var formatter = new DateFormat('yyyy-MM-dd-hh-mm-ss');
     String dateStr = formatter.format(now);
 
-    // Convert sleep time to string
-    String sleepTimeStr = sleepTime.toString();
+    DocumentReference<Map<String, dynamic>> sleepTrackRef = FirebaseFirestore.instance.collection('users')
+        .doc(auth.currentUser?.uid).collection('sleep-track').doc(dateStr);
 
-    DatabaseReference ref = FirebaseDatabase.instance.ref("users/");
-
-    // Update user with new sleep time entry
-    DatabaseReference databaseRefSleepTime = FirebaseDatabase.instance.ref('users/$uid/sleep-times/');
-    DatabaseReference databaseRefQuality = FirebaseDatabase.instance.ref('users/$uid/sleep-Quality/');
-
-    final sleepTimeData = {
-      dateStr : sleepTimeStr
-    };
-    final sleepQuality = {
-      dateStr : sleepRating
-    };
-
-
-    databaseRefSleepTime.update(sleepTimeData);
-    databaseRefQuality.update(sleepQuality);
+    sleepTrackRef.set({
+      'Sleep Time': sleepTime,
+      'Sleep Rating': sleepRating
+    });
   }
 
 

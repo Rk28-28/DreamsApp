@@ -1,5 +1,6 @@
 
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,32 +18,17 @@ class BehaviorTrackViewModel {
 
 
     DateTime now = new DateTime.now();
-    var formatter = new DateFormat('yyyy-MM-dd');
+    var formatter = new DateFormat('yyyy-MM-dd--hh-mm-ss');
     String dateStr = formatter.format(now);
 
-    //DatabaseReference ref = FirebaseDatabase.instance.ref("users/");
+    DocumentReference<Map<String, dynamic>> sleepBehaviorRef = FirebaseFirestore.instance.collection('users')
+        .doc(auth.currentUser?.uid).collection('sleep-behavior').doc(dateStr);
 
-    final moodData = {
-       dateStr : moodval
-    };
-
-    final caffeineData = {
-      dateStr: caffeineconsumpted
-    };
-
-    final calorieData = {
-      dateStr: calories
-    };
-    DatabaseReference databaseRefCal = FirebaseDatabase.instance.ref('users/$uid/calorie-values/');
-    DatabaseReference databaseRefCaf = FirebaseDatabase.instance.ref('users/$uid/caffeine-values/');
-    DatabaseReference databaseRefMood = FirebaseDatabase.instance.ref('users/$uid/mood-values/');
-
-
-    databaseRefCal.update(calorieData);
-    databaseRefCaf.update(caffeineData);
-    databaseRefMood.update(moodData);
-
-
+    sleepBehaviorRef.set({
+      'Calories': calories,
+      'Caffine': caffeineconsumpted,
+      'Mood': moodval
+    });
   }
   BehaviorTrackViewModel();
 }

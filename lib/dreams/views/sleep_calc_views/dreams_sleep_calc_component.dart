@@ -228,7 +228,8 @@ class _CalcHomePageState extends State<CalcHomePage> implements UNITSView {
         appBar: AppBar(
           title: Text('Sleep Calculator'),
           centerTitle: true,
-          backgroundColor: Colors.blueAccent.shade700,
+            backgroundColor: Colors.black
+
         ),
         backgroundColor: Colors.white,
     body: Container(

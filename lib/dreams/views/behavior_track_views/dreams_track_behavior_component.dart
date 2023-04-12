@@ -31,7 +31,7 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
     return Scaffold(
         appBar: AppBar(
           title: Text('Behavior Tracker'),
-          // TODO: Implement behavior track home page
+            backgroundColor: Colors.black
         ),
           body: Container(
             width: double.infinity,
