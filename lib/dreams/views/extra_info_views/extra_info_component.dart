@@ -20,7 +20,16 @@ class ExtraInfoHomePage extends StatefulWidget{
 class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAINFOView {
   var txt = TextEditingController();
   String _url = 'url';
-  List<String> ageRanges = <String>['1-2 years', '3-5 years', '6-12 years', '13-18 years', '18-60 years', '61-64 years', '65+ years'];
+  //List<String> ageRanges = <String>['1-2 years', '3-5 years', '6-12 years', '13-18 years', '18-60 years', '61-64 years', '65+ years'];
+  List<DropdownMenuItem<String>> ageRanges = [
+    DropdownMenuItem(child: Text("1-2 years"), value: "1-2 years"),
+    DropdownMenuItem(child: Text("3-5 years"), value: "3-5 years"),
+    DropdownMenuItem(child: Text("6-12 years"), value: "6-12 years"),
+    DropdownMenuItem(child: Text("13-18 years"), value: "13-18 years"),
+    DropdownMenuItem(child: Text("18-60 years"), value: "18-60 years"),
+    DropdownMenuItem(child: Text("61-64 years"), value: "61-64 years"),
+    DropdownMenuItem(child: Text("65+ years"), value: "65+ years"),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -39,60 +48,7 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
         ),
         child: Column (
       children: <Widget>[
-        /*
-        Column(
-          children: [
-            const Padding(
-              padding: EdgeInsets.fromLTRB(16, 32, 16, 16),
-              child: Text('Enter your age to see your recommended amount of sleep:',
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18.0,
-                    backgroundColor: Colors.white70),
-                    )
-            ),
-        ]
-        ),
 
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              decoration: BoxDecoration( color: Colors.white70),
-
-                child: DropdownButton<String>(
-                  hint: Text("Select Age"),
-                  value: agePicked,
-                  items: ageRanges.map<DropdownMenuItem<String>>((String value){
-
-                    return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      agePicked = newValue;
-                    });
-                    print(agePicked);
-                    String sleep = _calculateRecommendedSleep(agePicked);
-                    txt.text = sleep;
-                  }),
-            ),
-          ]
-        ),
-
-        Column(
-          children: <Widget>[
-            Container(
-              decoration: BoxDecoration( color: Colors.white70),
-            child: TextField(
-              controller: txt,
-            ),
-            )
-          ],
-        ),
-        */
       Container(
         decoration: BoxDecoration( color: Colors.white70),
         child : Column(
@@ -115,21 +71,15 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
                 child: DropdownButton<String>(
                     hint: Text("Select Age"),
                     value: agePicked,
-                    items: ageRanges.map<DropdownMenuItem<String>>((String value){
-
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
                     onChanged: (String? newValue) {
                       setState(() {
-                        agePicked = newValue;
+                        agePicked = newValue!;
                       });
                       print(agePicked);
                       String sleep = _calculateRecommendedSleep(agePicked);
                       txt.text = sleep;
-                    }),
+                    },
+                    items: ageRanges),
               ),
               Container(
                 //decoration: BoxDecoration( color: Colors.white70),
@@ -250,4 +200,6 @@ String _calculateRecommendedSleep(String age) {
   }
   return sleepAmount;
 }
+
+
 
