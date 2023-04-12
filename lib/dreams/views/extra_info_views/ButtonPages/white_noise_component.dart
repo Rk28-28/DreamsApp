@@ -21,13 +21,13 @@ class _WhiteNoiseHomePageState extends State<WhiteNoiseHomePage> {
     var agePicked;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sleep Information'),
+        title: Text('White Noise'),
           backgroundColor: Colors.black
       ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/backgrounds/blueplanetbg.png'),
+            image: AssetImage('assets/backgrounds/moonbg.png'),
             fit: BoxFit.cover,
           ),
         ),

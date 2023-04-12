@@ -5,6 +5,7 @@ import 'ButtonPages/sleep_amount_component.dart';
 import 'ButtonPages/sleep_links_component.dart';
 import 'ButtonPages/video_page_component.dart';
 import 'ButtonPages/white_noise_component.dart';
+import 'MoonButton.dart';
 import 'extra_info_view.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -53,69 +54,76 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
         ),
         child: Column (
       children: <Widget>[
-
-
-
-
-        Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Center (
-                child: CloudButton (
+        Container(
+          height: 650,
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+                SizedBox(
+                  height: 150,
+                  width: 150,
+                child: MoonButton (
                     text: "Recommended Sleep",
                   onPressed: () { // Navigator to Extra Info screen
                     Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
                       return SleepAmountScreen();
                     }));
                   },
-                    imageAsset: 'assets/cloud-clipart-md.png',
+                    imageAsset: 'assets/moon.png',
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Center (
-                child: CloudButton (
+
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children:[
+                SizedBox(
+                  height: 150,
+                  width: 150,
+                child: MoonButton (
                     text: "Links",
                   onPressed: () { // Navigator to Extra Info screen
                     Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
                       return SleepLinksScreen();
                     }));
                   },
-                  imageAsset: 'assets/cloud-clipart-md.png',
+                  imageAsset: 'assets/moon.png',
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Center (
-                child: CloudButton (
+                SizedBox(
+                  height: 150,
+                  width: 150,
+                child: MoonButton (
                     text: "Videos",
                   onPressed: () { // Navigator to Extra Info screen
                     Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
                       return VideoLinksScreen();
                     }));
                   },
-                  imageAsset: 'assets/cloud-clipart-md.png',
+                  imageAsset: 'assets/moon.png',
                 ),
               ),
-            ),
+          ]
+              ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Center (
-                child: CloudButton (
+                child: SizedBox(
+                  height: 150,
+                  width: 150,
+                child: MoonButton (
                     text: "White Noise",
                   onPressed: () { // Navigator to Extra Info screen
                     Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
                       return WhiteNoiseScreen();
                     }));
                   },
-                  imageAsset: 'assets/cloud-clipart-md.png',
+                  imageAsset: 'assets/moon.png',
                 ),
+              ),
               ),
             ),
           ]
+        )
         )
     ]
     )
