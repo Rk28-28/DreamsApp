@@ -30,7 +30,7 @@ class _SleepAmountHomePageState extends State<SleepAmountHomePage> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/backgrounds/blueplanetbg.png'),
+            image: AssetImage('assets/backgrounds/moonbg.png'),
             fit: BoxFit.cover,
           ),
         ),

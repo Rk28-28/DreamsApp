@@ -21,20 +21,20 @@ class _WhiteNoiseHomePageState extends State<WhiteNoiseHomePage> {
     var agePicked;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sleep Information'),
+        title: Text('White Noise'),
           backgroundColor: Colors.black
       ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/backgrounds/blueplanetbg.png'),
+            image: AssetImage('assets/backgrounds/moonbg.png'),
             fit: BoxFit.cover,
           ),
         ),
         child: Column (
             children: <Widget>[
               Container(
-                  decoration: BoxDecoration( color: Colors.white70),
+                  height: 600,
                   child : Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -44,9 +44,9 @@ class _WhiteNoiseHomePageState extends State<WhiteNoiseHomePage> {
                                 padding: const EdgeInsets.all(16.0),
                                 child: Center (
                                   child: CloudButton (
-                                    text: "Tips for Better Sleep",
+                                    text: "White Noise",
                                     onPressed: () {
-                                      _url = 'https://www.cdc.gov/sleep/about_sleep/sleep_hygiene.html';
+                                      _url = 'https://www.youtube.com/watch?v=wzjWIxXBs_s';
                                       _navigateToWebView(context, _url);
                                     },
                                     imageAsset: 'assets/cloud-clipart-md.png',
@@ -57,9 +57,9 @@ class _WhiteNoiseHomePageState extends State<WhiteNoiseHomePage> {
                                 padding: const EdgeInsets.all(16.0),
                                 child: Center (
                                   child: CloudButton (
-                                    text: "Health Benefits of Sleep",
+                                    text: "Brown Noise",
                                     onPressed: () {
-                                      _url = 'https://www.sleepfoundation.org/how-sleep-works/benefits-of-sleep';
+                                      _url = 'https://www.youtube.com/watch?v=DunIRy0PPCs';
                                       _navigateToWebView(context, _url);
                                     },
                                     imageAsset: 'assets/cloud-clipart-md.png',
@@ -70,9 +70,9 @@ class _WhiteNoiseHomePageState extends State<WhiteNoiseHomePage> {
                                 padding: const EdgeInsets.all(16.0),
                                 child: Center (
                                   child: CloudButton (
-                                    text: "Nighttime Routine Tips",
+                                    text: "Ambient Music",
                                     onPressed: () {
-                                      _url = 'https://www.sleepfoundation.org/sleep-hygiene/bedtime-routine-for-adults';
+                                      _url = 'https://www.youtube.com/watch?v=SqqMS8QBPPE';
                                       _navigateToWebView(context, _url);
                                     },
                                     imageAsset: 'assets/cloud-clipart-md.png',
@@ -83,9 +83,9 @@ class _WhiteNoiseHomePageState extends State<WhiteNoiseHomePage> {
                                 padding: const EdgeInsets.all(16.0),
                                 child: Center (
                                   child: CloudButton (
-                                    text: "Not Enough Sleep Effects",
+                                    text: "Rain Sounds",
                                     onPressed: () {
-                                      _url = 'https://www.healthline.com/health/sleep-deprivation/effects-on-body#Respiratory-system';
+                                      _url = 'https://www.youtube.com/watch?v=QAINEz_TFvs';
                                       _navigateToWebView(context, _url);
                                     },
                                     imageAsset: 'assets/cloud-clipart-md.png',

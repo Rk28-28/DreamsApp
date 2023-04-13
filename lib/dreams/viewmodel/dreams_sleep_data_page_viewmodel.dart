@@ -7,47 +7,47 @@ import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
 class SleepTimeChart extends StatelessWidget{
-  late List<SleepTimeData> sleepTimeData = [];
+  List<SleepTimeData> _sleepTimeData = [];
   List<charts.Series> sleepTimeSeriesList = [];
   FirebaseAuth auth = FirebaseAuth.instance;
   bool animate = false;
   int sleepTime = 0;
 
-  SleepTimeChart(){
-    populateSleepTimeList();
-  }
+  SleepTimeChart(){}
 
   @override
   Widget build(BuildContext context) {
-    return new charts.TimeSeriesChart(
-      _createSampleData(),
-      animate: true,
-    );
+    return FutureBuilder(
+      future: populateSleepTimeList(),
+      builder: (context, future){
+        return new charts.TimeSeriesChart(
+          createChart(),
+          animate: true,
+          );
+      });
   }
 
   Future<void> populateSleepTimeList() async {
     final User? user = auth.currentUser;
     final uid = user?.uid;
-    bool finished = false;
 
-    FirebaseFirestore.instance.collection('users').doc(uid).collection('sleep-track')
+    await FirebaseFirestore.instance.collection('users').doc(uid).collection('sleep-track')
       .get().then((QuerySnapshot snapshot) {
         snapshot.docs.forEach((doc) {
           DateTime dateTime = DateTime.parse(doc.id);
-          sleepTimeData.add(SleepTimeData(dateTime, doc["Sleep Time"]));
+          _sleepTimeData.add(new SleepTimeData(dateTime, doc["Sleep Time"]));
         });
     });
-
   }
 
   List<charts.Series<SleepTimeData, DateTime>> createChart(){
     return [
-      new charts.Series(
+      new charts.Series<SleepTimeData, DateTime>(
         id: 'Sleep Times',
         colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
         domainFn: (SleepTimeData data, _) => data.dateTime,
         measureFn: (SleepTimeData data, _) => data.sleepTime,
-        data: sleepTimeData,
+        data: _sleepTimeData,
       )];
   }
 
@@ -72,8 +72,11 @@ class SleepTimeChart extends StatelessWidget{
 }
 
 class SleepTimeData {
-  double sleepTime;
-  DateTime dateTime;
+  late double sleepTime;
+  late DateTime dateTime;
 
-  SleepTimeData(this.dateTime, this.sleepTime);
+  SleepTimeData(DateTime datetime, double sleeptime) {
+    sleepTime = sleeptime;
+    dateTime = datetime;
+  }
 }

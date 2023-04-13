@@ -21,21 +21,21 @@ class _SleepLinksHomePageState extends State<SleepLinksHomePage> {
     var agePicked;
     return Scaffold(
         appBar: AppBar(
-          title: Text('Sleep Information'),
+          title: Text('Links'),
             backgroundColor: Colors.black
 
         ),
         body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/backgrounds/blueplanetbg.png'),
+                image: AssetImage('assets/backgrounds/moonbg.png'),
                 fit: BoxFit.cover,
               ),
             ),
             child: Column (
                 children: <Widget>[
                   Container(
-                    decoration: BoxDecoration( color: Colors.white70),
+                    height: 600,
                     child : Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -71,7 +71,7 @@ class _SleepLinksHomePageState extends State<SleepLinksHomePage> {
                           padding: const EdgeInsets.all(16.0),
                           child: Center (
                             child: CloudButton (
-                              text: "Nighttime Routine Tips",
+                              text: "Bedtime Routine Tips",
                               onPressed: () {
                                 _url = 'https://www.sleepfoundation.org/sleep-hygiene/bedtime-routine-for-adults';
                                 _navigateToWebView(context, _url);
@@ -86,7 +86,7 @@ class _SleepLinksHomePageState extends State<SleepLinksHomePage> {
                             child: CloudButton (
                               text: "Not Enough Sleep Effects",
                               onPressed: () {
-                                _url = 'https://www.healthline.com/health/sleep-deprivation/effects-on-body#Respiratory-system';
+                                _url = 'https://www.healthline.com/health/sleep-deprivation/effects-on-body';
                                 _navigateToWebView(context, _url);
                               },
                               imageAsset: 'assets/cloud-clipart-md.png',
