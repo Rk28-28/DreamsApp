@@ -37,7 +37,8 @@ class _MyWebViewState extends State<MyWebView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Extra Information'),
+        title: Text(''),
+          backgroundColor: Colors.black
       ),
       body: WebViewWidget(
         controller: controller,

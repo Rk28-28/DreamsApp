@@ -35,7 +35,7 @@ class _SleepLinksHomePageState extends State<SleepLinksHomePage> {
             child: Column (
                 children: <Widget>[
                   Container(
-                    decoration: BoxDecoration( color: Colors.white70),
+                    height: 600,
                     child : Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

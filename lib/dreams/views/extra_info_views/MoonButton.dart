@@ -28,7 +28,7 @@ class _MoonButtonState extends State<MoonButton>
       vsync: this,
       duration: Duration(seconds: 4),
     )..repeat(reverse: true);
-    _animation = Tween<double>(begin: 1.0, end: 1.1).animate(_controller);
+    _animation = Tween<double>(begin: 1.0, end: 1.15).animate(_controller);
   }
 
   @override
