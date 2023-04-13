@@ -79,6 +79,7 @@ flutter:
     - assets/redmars.png
     - assets/earth2.png
     - assets/yellowworld.png
+    - assets/moon.png
     - assets/backgrounds/blueplanetbg.png
     - assets/backgrounds/earthbg.png
     - assets/backgrounds/greenplanetbg.png
@@ -87,6 +88,7 @@ flutter:
     - assets/backgrounds/purpleplanetbg.png
     - assets/backgrounds/redplanetbg.png
     - assets/backgrounds/yellowplanetbg.png
+    - assets/backgrounds/spaceshipbg.png
 
         # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

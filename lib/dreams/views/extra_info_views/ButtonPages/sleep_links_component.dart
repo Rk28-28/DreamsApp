@@ -21,14 +21,14 @@ class _SleepLinksHomePageState extends State<SleepLinksHomePage> {
     var agePicked;
     return Scaffold(
         appBar: AppBar(
-          title: Text('Sleep Information'),
+          title: Text('Links'),
             backgroundColor: Colors.black
 
         ),
         body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/backgrounds/blueplanetbg.png'),
+                image: AssetImage('assets/backgrounds/moonbg.png'),
                 fit: BoxFit.cover,
               ),
             ),

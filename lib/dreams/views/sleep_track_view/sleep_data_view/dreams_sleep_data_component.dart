@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:units/dreams/presenter/dreams_sleep_data_presenter.dart';
+import 'package:units/dreams_home_page.dart';
 import 'dreams_sleep_data_view.dart';
 
 class SleepDataHomePage extends StatefulWidget{
@@ -27,6 +28,11 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
 
   void _submission() {
       this.widget.sleepdataPresenter.onSubmitClicked(_firstGroupValue, _secondGroupValue, myController);
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Processing Data', style: TextStyle(color: Colors.white))));
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Done!', style: TextStyle(color: Colors.white))));
+
   }
 
   @override
@@ -170,7 +176,26 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
 
                     ),
                   )
-                )
+                ),
+                  Container(
+                      margin: const EdgeInsets.only(top: 30),
+                      child: SizedBox(
+                        width: 150,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.blueAccent,
+                          ),
+                          onPressed: () { // Navigator to Track Behaviors screen
+                            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                              return HomeScreenNav();
+                            }));
+                          },
+                          child: Text('Back to Home'),
+                          //onPressed
+
+                        ),
+                      )
+                  )
                 ]
               )
 
@@ -189,4 +214,19 @@ class _SleepDataHomePageState extends State<SleepDataHomePage> implements SLEEPD
   }
 
 
+}
+
+
+
+
+class HomeScreenNav extends StatefulWidget {
+  @override
+  _HomeScreenNav createState() => _HomeScreenNav();
+}
+
+class _HomeScreenNav extends State<HomeScreenNav> {
+  @override
+  Widget build(BuildContext context) {
+    return new HomePage();
+  }
 }

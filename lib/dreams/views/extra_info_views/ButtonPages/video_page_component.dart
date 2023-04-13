@@ -21,13 +21,13 @@ class _VideoLinksHomePageState extends State<VideoLinksHomePage> {
     var agePicked;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sleep Information'),
+        title: Text('Videos'),
           backgroundColor: Colors.black
       ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/backgrounds/blueplanetbg.png'),
+            image: AssetImage('assets/backgrounds/spaceshipbg.png'),
             fit: BoxFit.cover,
           ),
         ),

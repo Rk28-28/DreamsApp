@@ -5,6 +5,7 @@ import 'ButtonPages/sleep_amount_component.dart';
 import 'ButtonPages/sleep_links_component.dart';
 import 'ButtonPages/video_page_component.dart';
 import 'ButtonPages/white_noise_component.dart';
+import 'MoonButton.dart';
 import 'extra_info_view.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -53,106 +54,76 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
         ),
         child: Column (
       children: <Widget>[
-
-      Container(
-        decoration: BoxDecoration( color: Colors.white70),
-        child : Column(
+        Container(
+          height: 650,
+        child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Padding(
-                  padding: EdgeInsets.fromLTRB(16, 32, 16, 16),
-                  child: Text('Enter your age to see your recommended amount of sleep:',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18.0,
-                        //backgroundColor: Colors.white70
-                    ),
-                  )
-              ),
-
-              Container(
-                //decoration: BoxDecoration( color: Colors.white70),
-
-                child: DropdownButton<String>(
-                    hint: Text("Select Age"),
-                    value: agePicked,
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        agePicked = newValue!;
-                      });
-                      print(agePicked);
-                      String sleep = _calculateRecommendedSleep(agePicked);
-                      txt.text = sleep;
-                    },
-                    items: ageRanges),
-              ),
-              Container(
-                //decoration: BoxDecoration( color: Colors.white70),
-                child: TextField(
-                  controller: txt,
+                SizedBox(
+                  height: 150,
+                  width: 150,
+                child: MoonButton (
+                    text: "Recommended Sleep",
+                  onPressed: () { // Navigator to Extra Info screen
+                    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                      return SleepAmountScreen();
+                    }));
+                  },
+                    imageAsset: 'assets/moon.png',
                 ),
-              )
-            ]
-        ),
-      ),
+              ),
 
-
-
-        Column(
-          children: [
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children:[
+                SizedBox(
+                  height: 150,
+                  width: 150,
+                child: MoonButton (
+                    text: "Links",
+                  onPressed: () { // Navigator to Extra Info screen
+                    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                      return SleepLinksScreen();
+                    }));
+                  },
+                  imageAsset: 'assets/moon.png',
+                ),
+              ),
+                SizedBox(
+                  height: 150,
+                  width: 150,
+                child: MoonButton (
+                    text: "Videos",
+                  onPressed: () { // Navigator to Extra Info screen
+                    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                      return VideoLinksScreen();
+                    }));
+                  },
+                  imageAsset: 'assets/moon.png',
+                ),
+              ),
+          ]
+              ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Center (
-                child: CloudButton (
-                    text: "Tips for Better Sleep",
-                    onPressed: () {
-                      _url = 'https://www.cdc.gov/sleep/about_sleep/sleep_hygiene.html';
-                      _navigateToWebView(context, _url);
-                    },
-                    imageAsset: 'assets/cloud-clipart-md.png',
+                child: SizedBox(
+                  height: 150,
+                  width: 150,
+                child: MoonButton (
+                    text: "White Noise",
+                  onPressed: () { // Navigator to Extra Info screen
+                    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                      return WhiteNoiseScreen();
+                    }));
+                  },
+                  imageAsset: 'assets/moon.png',
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Center (
-                child: CloudButton (
-                    text: "Health Benefits of Sleep",
-                    onPressed: () {
-                      _url = 'https://www.sleepfoundation.org/how-sleep-works/benefits-of-sleep';
-                      _navigateToWebView(context, _url);
-                    },
-                  imageAsset: 'assets/cloud-clipart-md.png',
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Center (
-                child: CloudButton (
-                    text: "Nighttime Routine Tips",
-                    onPressed: () {
-                      _url = 'https://www.sleepfoundation.org/sleep-hygiene/bedtime-routine-for-adults';
-                      _navigateToWebView(context, _url);
-                    },
-                  imageAsset: 'assets/cloud-clipart-md.png',
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Center (
-                child: CloudButton (
-                    text: "Not Enough Sleep Effects",
-                    onPressed: () {
-                      _url = 'https://www.healthline.com/health/sleep-deprivation/effects-on-body#Respiratory-system';
-                      _navigateToWebView(context, _url);
-                    },
-                  imageAsset: 'assets/cloud-clipart-md.png',
-                ),
               ),
             ),
           ]
+        )
         )
     ]
     )
