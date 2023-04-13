@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MoonButton extends StatelessWidget {
+class MoonButton extends StatefulWidget {
   final String text;
   final Function onPressed;
   final String imageAsset;
@@ -13,38 +13,65 @@ class MoonButton extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _MoonButtonState createState() => _MoonButtonState();
+}
+
+class _MoonButtonState extends State<MoonButton>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 4),
+    )..repeat(reverse: true);
+    _animation = Tween<double>(begin: 1.0, end: 1.1).animate(_controller);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onPressed as void Function()?,
-      child: Container(
-        height: 150,
-        width: 150,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(imageAsset),
-            fit: BoxFit.fill,
+      onTap: widget.onPressed as void Function()?,
+      child: ScaleTransition(
+        scale: _animation,
+        child: Container(
+          height: 100,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(widget.imageAsset),
+              fit: BoxFit.fill,
+            ),
           ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(top: 18.0),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  text,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 0),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    widget.text,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }
