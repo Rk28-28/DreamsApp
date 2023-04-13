@@ -120,7 +120,12 @@ class _CalcHomePageState extends State<CalcHomePage> implements UNITSView {
         Radio<int>(
           activeColor: Colors.white,
           fillColor: MaterialStateColor.resolveWith((states) => Colors.white),
-          value: 0, groupValue: _value, onChanged: handleRadioValueChanged,
+          value: 0, groupValue: _value, onChanged: (value){
+          setState(() {
+            _value = value!;
+            handleRadioValueChanged(_value);
+          });
+        }
         ),
         Text(
           'Wake up at',
@@ -129,7 +134,12 @@ class _CalcHomePageState extends State<CalcHomePage> implements UNITSView {
         Radio<int>(
           activeColor: Colors.white,
           fillColor: MaterialStateColor.resolveWith((states) => Colors.white),
-          value: 1, groupValue: _value, onChanged: handleRadioValueChanged,
+          value: 1, groupValue: _value, onChanged: (value){
+          setState(() {
+            _value = value!;
+            handleRadioValueChanged(_value);
+          });
+        }
         ),
         Text(
           'Go to bed at',
@@ -144,7 +154,12 @@ class _CalcHomePageState extends State<CalcHomePage> implements UNITSView {
         Radio<int>(
           activeColor: Colors.white,
           fillColor: MaterialStateColor.resolveWith((states) => Colors.white),
-          value: 0, groupValue: _valueTime, onChanged: handleRadioValueChangedTime,
+          value: 0, groupValue: _valueTime, onChanged: (value) {
+          setState(() {
+            _valueTime = value!;
+            handleRadioValueChangedTime(_valueTime);
+          });
+        }
         ),
         Text(
           'AM',
@@ -153,7 +168,12 @@ class _CalcHomePageState extends State<CalcHomePage> implements UNITSView {
         Radio<int>(
           activeColor: Colors.white,
           fillColor: MaterialStateColor.resolveWith((states) => Colors.white),
-          value: 1, groupValue: _valueTime, onChanged: handleRadioValueChangedTime,
+          value: 1, groupValue: _valueTime, onChanged: (value) {
+          setState(() {
+            _valueTime = value!;
+            handleRadioValueChangedTime(_valueTime);
+          });
+        }
         ),
         Text(
           'PM',
