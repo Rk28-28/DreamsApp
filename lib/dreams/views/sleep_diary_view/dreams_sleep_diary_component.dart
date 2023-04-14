@@ -75,7 +75,6 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
                     textAlignVertical: TextAlignVertical.top,
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.deny(RegExp(r'\n')),
-                      FilteringTextInputFormatter.deny(RegExp(r',')),
                     ], // Only numbers can be entered
 
                     decoration: InputDecoration(
