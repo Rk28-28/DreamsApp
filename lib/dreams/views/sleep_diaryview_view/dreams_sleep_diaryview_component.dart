@@ -28,7 +28,10 @@ class _SleepDiaryViewHomePageState extends State<SleepDiaryViewHomePage> impleme
         appBar: AppBar(
           title: Text('Sleep Diary View Entry'),
         ),
-        body: FutureBuilder(
+          body: SafeArea(
+              child: Column(
+                  children: [
+        FutureBuilder(
           builder: (ctx, snapshot) {
             // Checking if future is resolved or not
             if (snapshot.connectionState == ConnectionState.done) {
@@ -50,25 +53,12 @@ class _SleepDiaryViewHomePageState extends State<SleepDiaryViewHomePage> impleme
                   alignment: Alignment.topLeft,
                   child: Text(
                     loop(data),
-                    style: TextStyle(fontSize: 14),
+                    style: TextStyle(fontSize: 15),
                   ),
                 );
               }
             }
-            Container(
-            child:Flexible(
-                child: Align(
-                alignment: Alignment.bottomCenter,
-                child: ElevatedButton(
-                child: const Text('View Specific Diary Entries', style: TextStyle(fontSize: 18.0)),
-            onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-            return SleepViewSpecificDiaryScreen();
-            }));},
-                )
-                )
-            )
-            );
+
 
 
             // Displaying LoadingSpinner to indicate waiting state
@@ -85,7 +75,24 @@ class _SleepDiaryViewHomePageState extends State<SleepDiaryViewHomePage> impleme
 
         ),
 
+    Container(
+    child:Flexible(
+    child: Align(
+    //alignment: Alignment.bottomCenter,
+    child: ElevatedButton(
+    child: const Text('View Specific Diary Entries', style: TextStyle(fontSize: 18.0)),
+    onPressed: () {
+    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+    return SleepViewSpecificDiaryScreen();
+    }));},
+    )
+    )
+    )
+    )
+                  ],
 
+      ),
+    ),
       ),
     );
   }
