@@ -28,6 +28,7 @@ class _SleepDiaryViewHomePageState extends State<SleepDiaryViewHomePage>
         child: Scaffold(
       appBar: AppBar(
         title: Text('Sleep Diary View Entry'),
+        backgroundColor: Colors.black
       ),
       body: Container(
         width: double.infinity,
@@ -62,7 +63,9 @@ class _SleepDiaryViewHomePageState extends State<SleepDiaryViewHomePage>
                       alignment: Alignment.topLeft,
                       child: Text(
                         loop(data),
-                        style: TextStyle(fontSize: 15),
+                        style: TextStyle(fontSize: 14,color: Colors.white),
+
+
                       ),
                     );
                   }
