@@ -38,7 +38,7 @@ class _SleepAmountHomePageState extends State<SleepAmountHomePage> {
             children: <Widget>[
 
         Container(
-          height: 600.0,
+          height: 300.0,
         //decoration: BoxDecoration( color: Colors.white70),
         child : Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -76,9 +76,27 @@ class _SleepAmountHomePageState extends State<SleepAmountHomePage> {
                     }),
               ),
               Container(
-
-                child: TextField(
+                child: const Padding(
+                    padding: EdgeInsets.fromLTRB(16, 32, 16, 16),
+                    child: Text('RECOMMENDED AMOUNT OF SLEEP:',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 20.0,
+                          color: Colors.white
+                      ),
+                    )
+                ),
+                /*
+                child: Text(
+                  'recommendedSleep',
                   textAlign: TextAlign.center,
+                  style: const TextStyle(fontWeight: FontWeight.bold)
+                ),*/
+              ),
+              Container(
+                child: TextField(
+                  textAlign: TextAlign.right,
                   style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 26.0,
@@ -86,7 +104,8 @@ class _SleepAmountHomePageState extends State<SleepAmountHomePage> {
                   ),
                   controller: txt,
                 ),
-              )
+
+              ),
             ]
         ),
       ),
