@@ -13,88 +13,89 @@ class SleepDiaryViewHomePage extends StatefulWidget {
 
   final String title;
 
-  SleepDiaryViewHomePage(this.sleepDiaryViewPresenter, {required Key? key, required this.title}) : super(key: key);
+  SleepDiaryViewHomePage(this.sleepDiaryViewPresenter,
+      {required Key? key, required this.title})
+      : super(key: key);
   @override
   _SleepDiaryViewHomePageState createState() => _SleepDiaryViewHomePageState();
-
-
 }
 
-class _SleepDiaryViewHomePageState extends State<SleepDiaryViewHomePage> implements SleepDiaryViewView {
+class _SleepDiaryViewHomePageState extends State<SleepDiaryViewHomePage>
+    implements SleepDiaryViewView {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Sleep Diary View Entry'),
+        child: Scaffold(
+      appBar: AppBar(
+        title: Text('Sleep Diary View Entry'),
+      ),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/backgrounds/earthbg.png'),
+            fit: BoxFit.cover,
+          ),
         ),
-          body: SafeArea(
-              child: Column(
-                  children: [
-        FutureBuilder(
-          builder: (ctx, snapshot) {
-            // Checking if future is resolved or not
-            if (snapshot.connectionState == ConnectionState.done) {
-              // If we got an error
-              if (snapshot.hasError) {
+        child: Column(
+          children: [
+            FutureBuilder(
+              builder: (ctx, snapshot) {
+                // Checking if future is resolved or not
+                if (snapshot.connectionState == ConnectionState.done) {
+                  // If we got an error
+                  if (snapshot.hasError) {
+                    return Center(
+                      child: Text(
+                        '${snapshot.error} occurred',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    );
+
+                    // if we got our data
+                  } else if (snapshot.hasData) {
+                    // Extracting data from snapshot object
+                    final data = snapshot.data as List<String>;
+
+                    return Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        loop(data),
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    );
+                  }
+                }
+
+                // Displaying LoadingSpinner to indicate waiting state
                 return Center(
-                  child: Text(
-                    '${snapshot.error} occurred',
-                    style: TextStyle(fontSize: 18),
-                  ),
+                  child: CircularProgressIndicator(),
                 );
+              },
 
-                // if we got our data
-              } else if (snapshot.hasData) {
-                // Extracting data from snapshot object
-                final data = snapshot.data as List<String>;
-
-                return Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    loop(data),
-                    style: TextStyle(fontSize: 15),
-                  ),
-                );
-              }
-            }
-
-
-
-            // Displaying LoadingSpinner to indicate waiting state
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-
-          },
-
-
-          // Future that needs to be resolved
-          // inorder to display something on the Canvas
-          future: getdata(),
-
+              // Future that needs to be resolved
+              // inorder to display something on the Canvas
+              future: getdata(),
+            ),
+            Container(
+                child: Flexible(
+                    child: Align(
+                        //alignment: Alignment.bottomCenter,
+                        child: ElevatedButton(
+              child: const Text('View Specific Diary Entries',
+                  style: TextStyle(fontSize: 18.0)),
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
+                  return SleepViewSpecificDiaryScreen();
+                }));
+              },
+            ))))
+          ],
         ),
-
-    Container(
-    child:Flexible(
-    child: Align(
-    //alignment: Alignment.bottomCenter,
-    child: ElevatedButton(
-    child: const Text('View Specific Diary Entries', style: TextStyle(fontSize: 18.0)),
-    onPressed: () {
-    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-    return SleepViewSpecificDiaryScreen();
-    }));},
-    )
-    )
-    )
-    )
-                  ],
-
       ),
-    ),
-      ),
-    );
+    ));
   }
 
   Future<List<String>> getdata() async {
@@ -104,12 +105,13 @@ class _SleepDiaryViewHomePageState extends State<SleepDiaryViewHomePage> impleme
     int i = 0;
 
     DocumentReference<Map<String, dynamic>> diaryRef = FirebaseFirestore
-        .instance.collection('users')
+        .instance
+        .collection('users')
         .doc(auth.currentUser?.uid);
 
     List<String> x = [];
     await diaryRef.collection("sleep-diary").get().then(
-          (querySnapshot) {
+      (querySnapshot) {
         print("Successfully completed");
         for (var docSnapshot in querySnapshot.docs) {
           x.insert(i, docSnapshot.data().toString());
@@ -130,7 +132,7 @@ class _SleepDiaryViewHomePageState extends State<SleepDiaryViewHomePage> impleme
       counter = data.length;
     }
     while (counter < 5) {
-      str += '\n'+ data[len] + '\n\n';
+      str += '\n' + data[len] + '\n\n';
       --len;
       ++counter;
     }
@@ -140,12 +142,18 @@ class _SleepDiaryViewHomePageState extends State<SleepDiaryViewHomePage> impleme
 
 class SleepViewSpecificDiaryScreen extends StatefulWidget {
   @override
-  _SleepViewSpecificDiaryScreen createState() => _SleepViewSpecificDiaryScreen();
+  _SleepViewSpecificDiaryScreen createState() =>
+      _SleepViewSpecificDiaryScreen();
 }
 
-class _SleepViewSpecificDiaryScreen extends State<SleepViewSpecificDiaryScreen> {
+class _SleepViewSpecificDiaryScreen
+    extends State<SleepViewSpecificDiaryScreen> {
   @override
   Widget build(BuildContext context) {
-    return new SleepDiarySpecificHomePage(new SleepDiarySpecificPresenter(), title: 'Sweet Dreams', key: Key("View Specific Entries"),);
+    return new SleepDiarySpecificHomePage(
+      new SleepDiarySpecificPresenter(),
+      title: 'Sweet Dreams',
+      key: Key("View Specific Entries"),
+    );
   }
 }

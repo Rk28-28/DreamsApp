@@ -15,31 +15,6 @@ class SleepDiaryViewModel {
     final x = getuid();
     DatabaseReference databaseRefDiary = FirebaseDatabase.instance.ref(
         'users/$x/diary-entries/');
-    //List val = [];
-    //int counter =0;
-    // List<String> locations = [];
-    //final data = await databaseRefDiary.child("diary-entries").get();
-
-    /*data.forEach((element) {
-      final map2 = element.data();
-      locations.add(map2[counter]);
-      ++counter;
-      });
-    print(locations);*/
-
-    /* await FirebaseFirestore.instance.collection('users/$x/diary-entries').get().then((event) {
-      event.docs.forEach((doc) {
-        locations.add(doc.data() as String);
-      });
-    });
-    print(locations);*/
-    //could store values into an array/list, and  run a for loop and send the 5 most recent entries.
-    /*await databaseRefDiary.child("diary-entries").get().then((event) {
-     event.value; //this stores all entries into 1 element, instead of a seperate element.
-      ++counter;
-      print(counter);
-      print(val); //could store values into an array/list, and  run a for loop and send the 5 most recent entries.
-    });*/
 
     Query query = databaseRefDiary.limitToLast(5);
     DataSnapshot event = query.get() as DataSnapshot;
