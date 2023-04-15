@@ -1,82 +1,79 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
-class SleepTimeChart extends StatelessWidget{
-  List<SleepTimeData> _sleepTimeData = [];
-  List<charts.Series> sleepTimeSeriesList = [];
+class SleepTimeData {
+  List<_SleepTimeDataPoint> _sleepTimeData = [];
   FirebaseAuth auth = FirebaseAuth.instance;
-  bool animate = false;
-  int sleepTime = 0;
+  double _averageSleepTime = 0;
 
-  SleepTimeChart(){}
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: populateSleepTimeList(),
-      builder: (context, future){
-        return new charts.TimeSeriesChart(
-          createChart(),
-          animate: true,
-          );
-      });
-  }
+  double get averageSleepTime => _averageSleepTime;
 
   Future<void> populateSleepTimeList() async {
+    _sleepTimeData.clear();
     final User? user = auth.currentUser;
     final uid = user?.uid;
 
     await FirebaseFirestore.instance.collection('users').doc(uid).collection('sleep-track')
-      .get().then((QuerySnapshot snapshot) {
-        snapshot.docs.forEach((doc) {
-          DateTime dateTime = DateTime.parse(doc.id);
-          _sleepTimeData.add(new SleepTimeData(dateTime, doc["Sleep Time"]));
-        });
+        .get().then((QuerySnapshot snapshot) {
+      snapshot.docs.forEach((doc) {
+        DateTime dateTime = DateTime.parse(doc.id);
+        _sleepTimeData.add(new _SleepTimeDataPoint(dateTime, doc["Sleep Time"]));
+      });
     });
+    _getSleepTimeAverage();
   }
 
-  List<charts.Series<SleepTimeData, DateTime>> createChart(){
-    return [
-      new charts.Series<SleepTimeData, DateTime>(
-        id: 'Sleep Times',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-        domainFn: (SleepTimeData data, _) => data.dateTime,
-        measureFn: (SleepTimeData data, _) => data.sleepTime,
-        data: _sleepTimeData,
-      )];
+
+  _SleepTimeChart getSleepTimeChart() {
+    return _SleepTimeChart(this);
   }
 
-  static List<charts.Series<SleepTimeData, DateTime>> _createSampleData() {
-    final data = [
-      new SleepTimeData(new DateTime(2017, 9, 19), 5),
-      new SleepTimeData(new DateTime(2017, 9, 26), 25),
-      new SleepTimeData(new DateTime(2017, 10, 3), 100),
-      new SleepTimeData(new DateTime(2017, 10, 10), 75),
-    ];
+  void _getSleepTimeAverage() {
+    double averageSleepTimeTemp = 0;
 
-    return [
-      new charts.Series<SleepTimeData, DateTime>(
-        id: 'Sleep Time',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-        domainFn: (SleepTimeData data, _) => data.dateTime,
-        measureFn: (SleepTimeData data, _) => data.sleepTime,
-        data: data,
-      )
-    ];
+    for ( _SleepTimeDataPoint dataPoint in _sleepTimeData) {
+      averageSleepTimeTemp += dataPoint.sleepTime;
+    }
+
+    _averageSleepTime = (averageSleepTimeTemp / _sleepTimeData.length);
   }
 }
 
-class SleepTimeData {
+class _SleepTimeChart extends StatelessWidget{
+  SleepTimeData dataSet;
+
+  _SleepTimeChart(this.dataSet);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: Colors.transparent,
+      elevation: 2,
+      child: new charts.TimeSeriesChart(
+        createChart(),
+        animate: false,
+        ),
+    );
+  }
+
+  List<charts.Series<_SleepTimeDataPoint, DateTime>> createChart(){
+    return [
+      new charts.Series<_SleepTimeDataPoint, DateTime>(
+        id: 'Sleep Times',
+        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        domainFn: (_SleepTimeDataPoint data, _) => data.dateTime,
+        measureFn: (_SleepTimeDataPoint data, _) => data.sleepTime,
+        data: dataSet._sleepTimeData,
+      )];
+  }
+}
+
+class _SleepTimeDataPoint {
   late double sleepTime;
   late DateTime dateTime;
 
-  SleepTimeData(DateTime datetime, double sleeptime) {
-    sleepTime = sleeptime;
-    dateTime = datetime;
-  }
+  _SleepTimeDataPoint(this.dateTime, this.sleepTime);
 }
