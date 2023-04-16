@@ -62,6 +62,7 @@ class _SleepDiarySpecificHomePageState extends State<SleepDiarySpecificHomePage>
 
     child: TextFormField(
       controller: diaryEntrySpecificController,
+      maxLength: 10,
 
     style: TextStyle(fontSize: 18, color: Colors.white),
     textAlignVertical: TextAlignVertical.top,
