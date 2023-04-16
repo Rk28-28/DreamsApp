@@ -39,10 +39,5 @@ class SleepDiaryViewModel {
     }
     return entriesToPrint;
 
-
-    //event.count;
-    for(String entry in entriesToPrint) {print(entry);}
-
-
   }
 }

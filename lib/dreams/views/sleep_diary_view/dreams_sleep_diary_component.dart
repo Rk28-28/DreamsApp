@@ -68,10 +68,10 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
                   child: TextFormField(
                     controller: diaryEntryController,
                     maxLines: null,
-                    maxLength: 200,
+                    maxLength: 150,
                     expands: true,
                     keyboardType: TextInputType.multiline,
-                    style: TextStyle(fontSize: 25, color: Colors.white),
+                    style: TextStyle(fontSize: 23, color: Colors.white),
                     textAlignVertical: TextAlignVertical.top,
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.deny(RegExp(r'\n')),
