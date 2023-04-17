@@ -17,8 +17,8 @@ class SleepDiarySpecificHomePage extends StatefulWidget{
   _SleepDiarySpecificHomePageState createState() => _SleepDiarySpecificHomePageState();
 }
 late final SleepDiarySpecificPresenter sleepDiaryPresenter;
-TextEditingController diaryEntrySpecificController = new TextEditingController(); //To be used to grab input from diary entry text field
-//final regex = RegExp(r""); //Regex for checking validation of input - Will work on later
+TextEditingController diaryEntrySpecificController = new TextEditingController(); //To be used to grab input from date text field
+final regex = RegExp(r"\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])"); //Regex for checking validation of input - Will work on later
 final _formKey = GlobalKey<FormState>(); //Used to check validation of input
 
 
@@ -31,6 +31,87 @@ class _SleepDiarySpecificHomePageState extends State<SleepDiarySpecificHomePage>
           title: Text('Find Specific Diary Entry'),
           backgroundColor: Colors.black
       ),
+
+    body: Container(
+       width: double.infinity,
+       height: double.infinity,
+       decoration: BoxDecoration(
+       image: DecorationImage(
+       image: AssetImage('assets/backgrounds/earthbg.png'),
+       fit: BoxFit.cover,
+        ),
+      ),
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            child: Column(
+            mainAxisSize: MainAxisSize.min,
+
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+
+    Padding( //Text that displays "Enter a Date"
+    padding: EdgeInsets.fromLTRB(16,32,16,16),
+    child: Text(("Enter a Date:"),
+    style: TextStyle(fontSize: 28.0, color:Colors.white), textAlign: TextAlign.center),
+    ),
+
+    Container( //Text box for typing in a date
+
+    child: TextFormField(
+      controller: diaryEntrySpecificController,
+      maxLength: 10,
+
+    style: TextStyle(fontSize: 18, color: Colors.white),
+    textAlignVertical: TextAlignVertical.top,
+    inputFormatters: <TextInputFormatter>[
+    FilteringTextInputFormatter.deny(RegExp(r'\n')),
+    ], // Only numbers can be entered
+
+    decoration: InputDecoration(
+    filled: true,
+    fillColor: Colors.white.withOpacity(0.3),
+    border: OutlineInputBorder(),
+    hintText: 'Date must be of form "YYYY-MM-DD"',
+    hintStyle: TextStyle(color: Colors.white),
+
+    ),
+
+      validator: (value) {
+        if(value == null || value.isEmpty || !regex.hasMatch(value)) {
+          return "Error: Input must be of form 'YYYY-MM-DD";
+        }
+        return null;
+      },
+
+    ),
+    ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0,16,0,16),
+                child: ElevatedButton(
+                  onPressed:() {
+                    //Print diary entry based on date in text field
+                    if(_formKey.currentState!.validate())
+                    {
+                      this.widget.sleepDiarySpecificPresenter.onSubmitClicked(diaryEntrySpecificController.text.toString());
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Fetching Data', style: TextStyle(color: Colors.white))));
+
+                    }
+                  },
+                  child: const Text("Fetch Entry", style: TextStyle(fontSize: 18.0)),
+                ),
+              ),
+
+    ],
+    ),
+    ),
+    ),
+    ),
+    ),
 
     );
   }

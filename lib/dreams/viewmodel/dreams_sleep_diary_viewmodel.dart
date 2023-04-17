@@ -20,7 +20,7 @@ class SleepDiaryViewModel {
 
     // Format date for database
     DateTime now = new DateTime.now();
-    var formatter = new DateFormat('yyyy-MM-dd hh:mm:ss');
+    var formatter = new DateFormat('yyyy-MM-dd');
     String dateStr = formatter.format(now);
 
     DocumentReference<Map<String, dynamic>> diaryRef = FirebaseFirestore
@@ -28,7 +28,7 @@ class SleepDiaryViewModel {
         .doc(auth.currentUser?.uid).collection('sleep-diary').doc(dateStr);
 
     diaryRef.set({
-      'Diary Entry': diaryEntryIn,
+      '$dateStr' : diaryEntryIn,
     });
   }
 }
