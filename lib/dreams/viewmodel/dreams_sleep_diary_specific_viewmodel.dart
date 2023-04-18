@@ -8,5 +8,28 @@ import 'package:units/dreams/views/sleep_diary_specific_view/dreams_sleep_diary_
 
 class SleepDiarySpecificViewModel {
 
+  FirebaseAuth auth = FirebaseAuth.instance;
 
+  String diaryEntry = "";
+  int count = 0;
+
+  getuid() {
+    final User? user = auth.currentUser;
+    final uid = user?.uid;
+    return uid;
+  }
+
+  Future<String> loadUserData(String date) async {
+    final x = getuid();
+    DatabaseReference databaseRefDiary = FirebaseDatabase.instance.ref(
+        'users/$x/diary-entries/');
+
+    final snapshot = await databaseRefDiary.child(date).get();
+
+    if (snapshot.exists) {
+      return snapshot.value.toString();
+    } else {
+      return 'No data available.';
+    }
+  }
 }
