@@ -26,10 +26,32 @@ class SleepDataPresenter implements SLEEPDATAPresenter{
   @override
   void onSubmitClicked(int firstGroupValue, int secondGroupValue, TextEditingController myController){
     String _sleepFeelings = '';
+    String first = firstGroupValue.toString();
+    String second = secondGroupValue.toString();
+    String _awaken = '';
+    String _memory = '';
+    switch(first){
+      case "-1" : {_awaken = 'no option selected'; }
+      break;
+      case "0" : {_awaken = 'Yes'; }
+      break;
+      case "1" : {_awaken = 'No'; }
+    }
+
+    switch(second){
+      case "-1" : {_memory = 'no option selected'; }
+      break;
+      case "2" : {_memory = 'Dream'; }
+      break;
+      case "3" : {_memory = 'Nightmare'; }
+      break;
+      case "4" : {_memory = 'Neither'; }
+    }
+
     _sleepFeelings = myController.text.toString();
     print(myController);
 
-  viewModel.sendToDatabase(_sleepFeelings, firstGroupValue, secondGroupValue);
+  viewModel.sendToDatabase(_sleepFeelings, _awaken, _memory);
   }
 
   @override
