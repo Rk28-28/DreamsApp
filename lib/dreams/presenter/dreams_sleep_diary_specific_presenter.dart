@@ -17,8 +17,8 @@ class SleepDiarySpecificPresenter implements BEHAVIORPresenter{
   SleepDiarySpecificPresenter() {}
 
   @override
-  void onSubmitClicked(String date){
-
+  Future<String> onSubmitClicked(String date){
+    return viewModel.loadUserData(date);
   }
 
   @override
