@@ -43,7 +43,7 @@ class SleepDataPage extends StatelessWidget {
                   ),
                 ),
                   Text(
-                    sleepData.averageSleepTime.toString(),
+                    " Average sleep time: " + sleepData.averageSleepTime.round().toString() + " hours",
                     style: TextStyle(fontSize: 15, color: Colors.white),
                   )
               ],);

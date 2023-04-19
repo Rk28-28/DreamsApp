@@ -6,11 +6,11 @@ import '../../presenter/dreams_sleep_data_presenter.dart';
 import '../../presenter/dreams_sleep_track_presenter.dart';
 import 'sleep_data_view/dreams_sleep_data_component.dart';
 
-
-class TrackHomePage extends StatefulWidget{
+class TrackHomePage extends StatefulWidget {
   final TRACKPresenter trackPresenter;
 
-  TrackHomePage(this.trackPresenter, {required Key? key, required this.title}) : super(key: key);
+  TrackHomePage(this.trackPresenter, {required Key? key, required this.title})
+      : super(key: key);
   final String title;
 
   @override
@@ -18,7 +18,6 @@ class TrackHomePage extends StatefulWidget{
 }
 
 class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
-
   var _wakeHourController = TextEditingController();
   var _wakeMinuteController = TextEditingController();
   var _bedHourController = TextEditingController();
@@ -37,7 +36,6 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
   late String average = 'Average Sleep: 0.0';
   double _sleepRating = 3;
 
-
   var _formKey = GlobalKey<FormState>();
 
   @override
@@ -46,42 +44,35 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
     this.widget.trackPresenter.trackView = this;
   }
 
-
   void _submission() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      this.widget.trackPresenter.onSubmitClicked(
-          _bedHour,
-          _bedMinute,
-          _bedAmPm,
-          _wakeHour,
-          _wakeMinute,
-          _wakeAmPm,
-          _sleepRating);
+      this.widget.trackPresenter.onSubmitClicked(_bedHour, _bedMinute, _bedAmPm,
+          _wakeHour, _wakeMinute, _wakeAmPm, _sleepRating);
     }
-    ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text(
-            'Processing Data', style: TextStyle(color: Colors.white))));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content:
+            Text('Processing Data', style: TextStyle(color: Colors.white))));
 
-    ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-            content: Text('Done!', style: TextStyle(color: Colors.white))));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Done!', style: TextStyle(color: Colors.white))));
   }
 
   @override
   Widget build(BuildContext context) {
-
     var _unitViewBedTime = Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Radio<int>(
           activeColor: Colors.white,
           fillColor: MaterialStateColor.resolveWith((states) => Colors.white),
-          value: 0, groupValue: _bedAmPm, onChanged: (value) {
-          setState(() {
-            _bedAmPm = value!;
-          });
-        },
+          value: 0,
+          groupValue: _bedAmPm,
+          onChanged: (value) {
+            setState(() {
+              _bedAmPm = value!;
+            });
+          },
         ),
         Text(
           'AM',
@@ -90,11 +81,13 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
         Radio<int>(
           activeColor: Colors.white,
           fillColor: MaterialStateColor.resolveWith((states) => Colors.white),
-          value: 1, groupValue: _bedAmPm, onChanged: (value) {
-          setState(() {
-            _bedAmPm = value!;
-          });
-        },
+          value: 1,
+          groupValue: _bedAmPm,
+          onChanged: (value) {
+            setState(() {
+              _bedAmPm = value!;
+            });
+          },
         ),
         Text(
           'PM',
@@ -109,11 +102,13 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
         Radio<int>(
           activeColor: Colors.white,
           fillColor: MaterialStateColor.resolveWith((states) => Colors.white),
-          value: 0, groupValue: _wakeAmPm, onChanged: (value) {
-          setState(() {
-            _wakeAmPm = value!;
-          });
-        },
+          value: 0,
+          groupValue: _wakeAmPm,
+          onChanged: (value) {
+            setState(() {
+              _wakeAmPm = value!;
+            });
+          },
         ),
         Text(
           'AM',
@@ -122,11 +117,13 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
         Radio<int>(
           activeColor: Colors.white,
           fillColor: MaterialStateColor.resolveWith((states) => Colors.white),
-          value: 1, groupValue: _wakeAmPm, onChanged: (value) {
-          setState(() {
-            _wakeAmPm = value!;
-          });
-        },
+          value: 1,
+          groupValue: _wakeAmPm,
+          onChanged: (value) {
+            setState(() {
+              _wakeAmPm = value!;
+            });
+          },
         ),
         Text(
           'PM',
@@ -139,127 +136,138 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
       child: SingleChildScrollView(
         child: Form(
           key: _formKey,
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(top: 6.0),
-                child: Text("I went to bed at:",style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white), textScaleFactor: 1.5,)
-                ,),
-              //_unitView,
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: bedHourFormField(context),
+          child: Padding(
+            padding: const EdgeInsets.only(right: 30),
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(top: 6.0),
+                  child: Text(
+                    "I went to bed at:",
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.white),
+                    textScaleFactor: 1.5,
                   ),
-                  Expanded(
-                    child: bedMinFormField(context),
-                  )
-                ],
-              ),
-              _unitViewBedTime,
-              Padding(
-                padding: EdgeInsets.only(top: 6.0),
-                child: Text("I woke up at:",style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white), textScaleFactor: 1.5,)
-                ,),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: wakeHourFormField(context),
+                ),
+                //_unitView,
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: bedHourFormField(context),
+                    ),
+                    Expanded(
+                      child: bedMinFormField(context),
+                    )
+                  ],
+                ),
+                _unitViewBedTime,
+                Padding(
+                  padding: EdgeInsets.only(top: 6.0),
+                  child: Text(
+                    "I woke up at:",
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.white),
+                    textScaleFactor: 1.5,
                   ),
-                  Expanded(
-                    child: wakeMinuteFormField(),
-                  ),
-                ],
-              ),
-              _unitViewWakeTime,
-            ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: wakeHourFormField(context),
+                    ),
+                    Expanded(
+                      child: wakeMinuteFormField(),
+                    ),
+                  ],
+                ),
+                _unitViewWakeTime,
+              ],
+            ),
           ),
         ),
       ),
     );
 
-
     return Scaffold(
-        appBar: AppBar(
+      appBar: AppBar(
           title: Text('Sleep Tracker'),
           centerTitle: true,
-            backgroundColor: Colors.black
-        ),
-        backgroundColor: Colors.white,
-        body: Container(
+          backgroundColor: Colors.black),
+      backgroundColor: Colors.white,
+      body: Container(
         width: double.infinity,
-    height: double.infinity,
-    decoration: BoxDecoration(
-    image: DecorationImage(
-    image: AssetImage('assets/backgrounds/yellowplanetbg.png'),
-    fit: BoxFit.cover,
-    ),
-    ),
+        height: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/backgrounds/yellowplanetbg.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Padding(padding: EdgeInsets.all(4.0)),
+            Padding(padding: EdgeInsets.only(top :4.0, bottom: 4.0)),
             _mainPartView,
             /*Padding(padding: EdgeInsets.all(4.0)),
             _resultView,*/
-          Text(
-            'Rate your quality of sleep',
-            style: TextStyle(color: Colors.white, fontSize: 16.0),
-          ),
-
-          // Slider for rating quality of sleep
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Bad (1)', style: TextStyle(color: Colors.white)),
-                    Text('Good (5)', style: TextStyle(color: Colors.white)),
-                  ],
-                ),
-                Slider(
-                  value: _sleepRating,
-                  min: 1,
-                  max: 5,
-                  divisions: 4,
-                  onChanged: (double value) {
-                    setState(() {
-                      _sleepRating = value;
-                    });
-                  },
-                  label: '$_sleepRating',
-                ),
-              ],
+            Text(
+              'Rate your quality of sleep',
+              style: TextStyle(color: Colors.white, fontSize: 16.0),
             ),
-          ),
+
+            // Slider for rating quality of sleep
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Bad (1)', style: TextStyle(color: Colors.white)),
+                      Text('Good (5)', style: TextStyle(color: Colors.white)),
+                    ],
+                  ),
+                  Slider(
+                    value: _sleepRating,
+                    min: 1,
+                    max: 5,
+                    divisions: 4,
+                    onChanged: (double value) {
+                      setState(() {
+                        _sleepRating = value;
+                      });
+                    },
+                    label: '$_sleepRating',
+                  ),
+                ],
+              ),
+            ),
             Padding(
               padding: EdgeInsets.only(top: 6.0),
-              child: submitButton()
-              ,),
+              child: submitButton(),
+            ),
 
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-                return SleepDataScreen();
-              }));
-            },
-            child: Text('Next: Enter sleep data'),
-          ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
+                  return SleepDataScreen();
+                }));
+              },
+              child: Text('Next: Enter sleep data'),
+            ),
           ],
         ),
-        ),
+      ),
     );
   }
-
 
   ElevatedButton submitButton() {
     return ElevatedButton(
       onPressed: _submission,
       style: ElevatedButton.styleFrom(
           backgroundColor: Colors.blueAccent.shade700,
-          textStyle: TextStyle(color: Colors.white70)
-      ),
+          textStyle: TextStyle(color: Colors.white70)),
       child: Text(
         'Submit',
         style: TextStyle(fontSize: 16.0),
@@ -274,11 +282,12 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.done,
       focusNode: _wakeMinuteFocus,
-      onFieldSubmitted: (value){
+      onFieldSubmitted: (value) {
         _wakeMinuteFocus.unfocus();
       },
       validator: (value) {
-        if (value!.length == 0 || (double.parse(value) < 0 || double.parse(value) > 59)) {
+        if (value!.length == 0 ||
+            (double.parse(value) < 0 || double.parse(value) > 59)) {
           return ('Minute between 0 - 59');
         }
       },
@@ -286,15 +295,14 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
         _wakeMinute = int.parse(value!);
       },
       decoration: InputDecoration(
-          filled: true,
-          fillColor: Colors.white.withOpacity(0.3),
-          border: OutlineInputBorder(),
-          hintText: 'e.g.) 40',
-          hintStyle: TextStyle(color:Colors.white),
-          labelText: 'Minute',
-          labelStyle: TextStyle(color:Colors.white),
-          icon: Icon(Icons.assessment),
-
+        filled: true,
+        fillColor: Colors.white.withOpacity(0.3),
+        border: OutlineInputBorder(),
+        hintText: 'e.g.) 40',
+        hintStyle: TextStyle(color: Colors.white),
+        labelText: 'Minute',
+        labelStyle: TextStyle(color: Colors.white),
+        icon: Icon(Icons.assessment),
       ),
     );
   }
@@ -310,7 +318,8 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
         _fieldFocusChange(context, _wakeHourFocus, _wakeMinuteFocus);
       },
       validator: (value) {
-        if (value!.length == 0 || (double.parse(value) < 1 || double.parse(value) > 12)) {
+        if (value!.length == 0 ||
+            (double.parse(value) < 1 || double.parse(value) > 12)) {
           return ('Hour between 1 - 12');
         }
       },
@@ -319,9 +328,9 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
       },
       decoration: InputDecoration(
         hintText: "e.g.) 7",
-        hintStyle: TextStyle(color:Colors.white),
+        hintStyle: TextStyle(color: Colors.white),
         labelText: "Hour",
-        labelStyle: TextStyle(color:Colors.white),
+        labelStyle: TextStyle(color: Colors.white),
         icon: Icon(Icons.assessment),
         filled: true,
         fillColor: Colors.white.withOpacity(0.3),
@@ -336,11 +345,12 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
       focusNode: _bedHourFocus,
-      onFieldSubmitted: (term){
+      onFieldSubmitted: (term) {
         _fieldFocusChange(context, _bedHourFocus, _bedMinuteFocus);
       },
       validator: (value) {
-        if (value!.length == 0 || (double.parse(value) < 1 || double.parse(value) > 12)) {
+        if (value!.length == 0 ||
+            (double.parse(value) < 1 || double.parse(value) > 12)) {
           return ('Hour between 1 - 12');
         }
       },
@@ -349,9 +359,9 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
       },
       decoration: InputDecoration(
         hintText: 'e.g.) 6',
-        hintStyle: TextStyle(color:Colors.white),
+        hintStyle: TextStyle(color: Colors.white),
         labelText: 'Hour',
-        labelStyle: TextStyle(color:Colors.white),
+        labelStyle: TextStyle(color: Colors.white),
         icon: Icon(Icons.assessment),
         filled: true,
         fillColor: Colors.white.withOpacity(0.3),
@@ -366,11 +376,12 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
       focusNode: _bedMinuteFocus,
-      onFieldSubmitted: (term){
+      onFieldSubmitted: (term) {
         _fieldFocusChange(context, _bedMinuteFocus, _wakeHourFocus);
       },
       validator: (value) {
-        if (value!.length == 0 || (double.parse(value) < 0 || double.parse(value) > 59)) {
+        if (value!.length == 0 ||
+            (double.parse(value) < 0 || double.parse(value) > 59)) {
           return ('Minute between 0 - 59');
         }
       },
@@ -379,9 +390,9 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
       },
       decoration: InputDecoration(
         hintText: 'e.g.) 30',
-        hintStyle: TextStyle(color:Colors.white),
+        hintStyle: TextStyle(color: Colors.white),
         labelText: 'Minute',
-        labelStyle: TextStyle(color:Colors.white),
+        labelStyle: TextStyle(color: Colors.white),
         icon: Icon(Icons.assessment),
         filled: true,
         fillColor: Colors.white.withOpacity(0.3),
@@ -389,15 +400,13 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
     );
   }
 
-  _fieldFocusChange(BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
+  _fieldFocusChange(
+      BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
     currentFocus.unfocus();
     FocusScope.of(context).requestFocus(nextFocus);
   }
-
-
-
-
 }
+
 class SleepDataScreen extends StatefulWidget {
   @override
   _SleepDataScreen createState() => _SleepDataScreen();
@@ -407,6 +416,9 @@ class _SleepDataScreen extends State<SleepDataScreen> {
   @override
   Widget build(BuildContext context) {
     return new SleepDataHomePage(
-      new SleepDataPresenter(), title: 'Sweet Dreams', key: Key("SleepData"),);
+      new SleepDataPresenter(),
+      title: 'Sweet Dreams',
+      key: Key("SleepData"),
+    );
   }
 }
