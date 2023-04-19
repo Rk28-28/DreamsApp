@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:units/dreams/presenter/dreams_sleep_diary_specific_presenter.dart';
@@ -43,7 +44,9 @@ class _SleepDiarySpecificHomePageState extends State<SleepDiarySpecificHomePage>
        fit: BoxFit.cover,
         ),
       ),
-    child: Padding(
+      child: Column(
+          children: [
+    Padding(
       padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
@@ -125,10 +128,78 @@ class _SleepDiarySpecificHomePageState extends State<SleepDiarySpecificHomePage>
     ),
     ),
     ),
-    ),
+            FutureBuilder(
+              builder: (ctx, snapshot) {
+                // Checking if future is resolved or not
+                if (snapshot.connectionState == ConnectionState.done) {
+                  // If we got an error
+                  if (snapshot.hasError) {
+                    return Center(
+                      child: Text(
+                        '${snapshot.error} occurred',
+                        style: TextStyle(fontSize: 19),
+                      ),
+                    );
 
+                    // if we got our data
+                  } else if (snapshot.hasData) {
+                    // Extracting data from snapshot object
+                    final data = snapshot.data as String;
+                    //String x = loop(getdata());
+                    return Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        loop(data),
+                        style: TextStyle(fontSize: 14.4,color: Colors.white),
+
+
+                      ),
+                    );
+                  }
+                }
+
+                // Displaying LoadingSpinner to indicate waiting state
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
+
+              // Future that needs to be resolved
+              // inorder to display something on the Canvas
+              future: getdata(),
+            ),
+          ],
+      ),
+    ),
     );
   }
-
 }
 
+  Future<String> getdata() async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    final User? user = auth.currentUser;
+    final uid = user?.uid;
+    int i = 0;
+
+    DocumentReference<Map<String, dynamic>> diaryRef = FirebaseFirestore
+        .instance
+        .collection('users')
+        .doc(auth.currentUser?.uid).collection("sleep-diary").doc(diaryEntrySpecificController.text.toString());
+
+String s = "";
+    await diaryRef.get().then(
+          (querySnapshot) {
+        print("Successfully completed");
+         s+= querySnapshot.data().toString();
+          print("Inside Loop: "+s);
+        }
+    );
+    print("Outside Loop:"+s);
+    return s;
+  }
+
+  String loop(String data) {
+String s = data.toString();
+print("Loop Function: "+s);
+    return s;
+  }
