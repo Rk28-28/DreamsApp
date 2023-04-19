@@ -27,7 +27,8 @@ class _SleepDiaryViewHomePageState extends State<SleepDiaryViewHomePage>
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-        title: Text('Sleep Diary View Entry'),
+        title: Text('Recent Entries'),
+        backgroundColor: Colors.black
       ),
       body: Container(
         width: double.infinity,
@@ -49,7 +50,7 @@ class _SleepDiaryViewHomePageState extends State<SleepDiaryViewHomePage>
                     return Center(
                       child: Text(
                         '${snapshot.error} occurred',
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(fontSize: 19),
                       ),
                     );
 
@@ -62,7 +63,9 @@ class _SleepDiaryViewHomePageState extends State<SleepDiaryViewHomePage>
                       alignment: Alignment.topLeft,
                       child: Text(
                         loop(data),
-                        style: TextStyle(fontSize: 15),
+                        style: TextStyle(fontSize: 14.4,color: Colors.white),
+
+
                       ),
                     );
                   }
@@ -81,7 +84,7 @@ class _SleepDiaryViewHomePageState extends State<SleepDiaryViewHomePage>
             Container(
                 child: Flexible(
                     child: Align(
-                        //alignment: Alignment.bottomCenter,
+                        alignment: Alignment.bottomCenter,
                         child: ElevatedButton(
               child: const Text('View Specific Diary Entries',
                   style: TextStyle(fontSize: 18.0)),
@@ -129,10 +132,11 @@ class _SleepDiaryViewHomePageState extends State<SleepDiaryViewHomePage>
     int counter = 0;
     int len = data.length - 1;
     if (data.length < 5) {
-      counter = data.length;
+      counter = 5-data.length;
     }
+
     while (counter < 5) {
-      str += '\n' + data[len] + '\n\n';
+      str += '\n' + data[len].substring(1,data[len].length-2) + '\n\n';
       --len;
       ++counter;
     }

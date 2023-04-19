@@ -12,7 +12,7 @@ class SleepDataViewModel {
 
   FirebaseAuth auth = FirebaseAuth.instance;
 
-  Future<void> sendToDatabase(String sleepFeelings,int firstGroupValue, int secondGroupValue) async {
+  Future<void> sendToDatabase(String sleepFeelings, String _awaken, String _memory) async {
     final User? user = auth.currentUser;
     final uid = user?.uid;
 
@@ -25,8 +25,8 @@ class SleepDataViewModel {
         .doc(auth.currentUser?.uid).collection('sleep-information').doc(dateStr);
 
     sleepInformationRef.set({
-      'Wake Up': firstGroupValue,
-      'Dream or Nightmare': secondGroupValue,
+      'Wake Up': _awaken,
+      'Dream or Nightmare': _memory,
       'Sleep Feelings': sleepFeelings,
     });
   }
