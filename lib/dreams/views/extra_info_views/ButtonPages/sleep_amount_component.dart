@@ -19,7 +19,7 @@ class _SleepAmountHomePageState extends State<SleepAmountHomePage> {
   var caffeineTextEdit = TextEditingController();
 
   List<String> ageRanges = <String>['0-3 months', '4-12 months', '1-2 years', '3-5 years', '6-12 years', '13-18 years', '18-60 years', '61-64 years', '65+ years'];
-  String recommendedSleep = "Recommendations: ";
+  String recommendedSleep = "Recommendations";
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +39,11 @@ class _SleepAmountHomePageState extends State<SleepAmountHomePage> {
             ),
           ),
           child: Column (
+            mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-
-          Container(
+                Expanded(
+                child: Container(
             height: 300.0,
-          //decoration: BoxDecoration( color: Colors.white70),
           child : Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -157,17 +157,15 @@ class _SleepAmountHomePageState extends State<SleepAmountHomePage> {
                     ),
                     controller: caffeineTextEdit,
                   ),
-
                 ),
               ]
           ),
         ),
-
+                )
             ]
         ),
-
-
       ),
+
 
     );
   }

@@ -19,6 +19,7 @@ class SleepDiarySpecificHomePage extends StatefulWidget{
 }
 late final SleepDiarySpecificPresenter sleepDiaryPresenter;
 TextEditingController diaryEntrySpecificController = new TextEditingController(); //To be used to grab input from date text field
+TextEditingController txtController = new TextEditingController();
 final regex = RegExp(r"\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])"); //Regex for checking validation of input - Will work on later
 final _formKey = GlobalKey<FormState>(); //Used to check validation of input
 
@@ -98,7 +99,12 @@ class _SleepDiarySpecificHomePageState extends State<SleepDiarySpecificHomePage>
                     //Print diary entry based on date in text field
                     if(_formKey.currentState!.validate())
                     {
-                      this.widget.sleepDiarySpecificPresenter.onSubmitClicked(diaryEntrySpecificController.text.toString());
+                      Future<String> retrievedEntry = this.widget.sleepDiarySpecificPresenter.onSubmitClicked(diaryEntrySpecificController.text.toString());
+                      retrievedEntry.then((String result){
+                        setState(() {
+                          txtController.text = result; //Future -> String
+                        });
+                      });
 
                       ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text('Fetching Data', style: TextStyle(color: Colors.white))));
@@ -107,6 +113,13 @@ class _SleepDiarySpecificHomePageState extends State<SleepDiarySpecificHomePage>
                   },
                   child: const Text("Fetch Entry", style: TextStyle(fontSize: 18.0)),
                 ),
+              ),
+
+              Padding( //Text that displays the diary entry
+                padding: EdgeInsets.fromLTRB(16,32,16,16),
+                child: TextField(
+                    controller: txtController,
+                    style: TextStyle(fontSize: 28.0, color:Colors.white), textAlign: TextAlign.center),
               ),
 
     ],

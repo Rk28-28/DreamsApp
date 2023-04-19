@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
 class SleepTimeData {
@@ -17,15 +18,15 @@ class SleepTimeData {
     final uid = user?.uid;
 
     await FirebaseFirestore.instance.collection('users').doc(uid).collection('sleep-track')
-        .get().then((QuerySnapshot snapshot) {
+    .get().then((QuerySnapshot snapshot) {
       snapshot.docs.forEach((doc) {
         DateTime dateTime = DateTime.parse(doc.id);
-        _sleepTimeData.add(new _SleepTimeDataPoint(dateTime, doc["Sleep Time"]));
+        _sleepTimeData
+            .add(new _SleepTimeDataPoint(dateTime, doc["Sleep Time"]));
       });
     });
     _getSleepTimeAverage();
   }
-
 
   _SleepTimeChart getSleepTimeChart() {
     return _SleepTimeChart(this);
@@ -34,7 +35,7 @@ class SleepTimeData {
   void _getSleepTimeAverage() {
     double averageSleepTimeTemp = 0;
 
-    for ( _SleepTimeDataPoint dataPoint in _sleepTimeData) {
+    for (_SleepTimeDataPoint dataPoint in _sleepTimeData) {
       averageSleepTimeTemp += dataPoint.sleepTime;
     }
 
@@ -42,7 +43,7 @@ class SleepTimeData {
   }
 }
 
-class _SleepTimeChart extends StatelessWidget{
+class _SleepTimeChart extends StatelessWidget {
   SleepTimeData dataSet;
 
   _SleepTimeChart(this.dataSet);
@@ -55,11 +56,11 @@ class _SleepTimeChart extends StatelessWidget{
       child: new charts.TimeSeriesChart(
         createChart(),
         animate: false,
-        ),
+      ),
     );
   }
 
-  List<charts.Series<_SleepTimeDataPoint, DateTime>> createChart(){
+  List<charts.Series<_SleepTimeDataPoint, DateTime>> createChart() {
     return [
       new charts.Series<_SleepTimeDataPoint, DateTime>(
         id: 'Sleep Times',
@@ -67,7 +68,8 @@ class _SleepTimeChart extends StatelessWidget{
         domainFn: (_SleepTimeDataPoint data, _) => data.dateTime,
         measureFn: (_SleepTimeDataPoint data, _) => data.sleepTime,
         data: dataSet._sleepTimeData,
-      )];
+      )
+    ];
   }
 }
 
