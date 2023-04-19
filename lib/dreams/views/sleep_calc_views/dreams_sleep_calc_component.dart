@@ -245,6 +245,7 @@ class _CalcHomePageState extends State<CalcHomePage> implements UNITSView {
     );
 
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text('Sleep Calculator'),
           centerTitle: true,

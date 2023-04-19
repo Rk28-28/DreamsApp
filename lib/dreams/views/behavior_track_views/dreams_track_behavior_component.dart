@@ -29,6 +29,7 @@ class _BehaviorHomePageState extends State<BehaviorHomePage> implements BEHAVIOR
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text('Behavior Tracker'),
             backgroundColor: Colors.black

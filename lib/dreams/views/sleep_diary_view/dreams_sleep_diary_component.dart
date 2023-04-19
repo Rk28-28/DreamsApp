@@ -32,6 +32,7 @@ class _SleepDiaryHomePageState extends State<SleepDiaryHomePage> implements Slee
   Widget build(BuildContext context) {
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
         appBar: AppBar(
         title: Text('Sleep Diary Page'),
             backgroundColor: Colors.black
