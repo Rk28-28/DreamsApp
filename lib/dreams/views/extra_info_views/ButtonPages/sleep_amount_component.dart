@@ -158,6 +158,45 @@ class _SleepAmountHomePageState extends State<SleepAmountHomePage> {
                     controller: caffeineTextEdit,
                   ),
                 ),
+                Container(
+                  child: const Padding(
+                      padding: EdgeInsets.fromLTRB(16, 32, 16, 16),
+                      child: Text(' ',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 20.0,
+                            color: Colors.white
+                        ),
+                      )
+                  ),
+                ),
+                Container(
+                  child: const Padding(
+                      padding: EdgeInsets.fromLTRB(16, 32, 16, 16),
+                      child: Text(' ',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 20.0,
+                            color: Colors.white
+                        ),
+                      )
+                  ),
+                ),
+                Container(
+                  child: const Padding(
+                      padding: EdgeInsets.fromLTRB(16, 32, 16, 16),
+                      child: Text(' ',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 20.0,
+                            color: Colors.white
+                        ),
+                      )
+                  ),
+                ),
               ]
           ),
         ),

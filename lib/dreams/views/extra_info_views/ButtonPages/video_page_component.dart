@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../MyWebView.dart';
-import '../CloudButtonEI.dart';
+import '../VideoButton.dart';
 
 class VideoLinksHomePage extends StatefulWidget{
 
@@ -21,7 +21,7 @@ class _VideoLinksHomePageState extends State<VideoLinksHomePage> {
     var agePicked;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Videos'),
+        title: Text('Meditations'),
           backgroundColor: Colors.black
       ),
       body: Container(
@@ -34,7 +34,8 @@ class _VideoLinksHomePageState extends State<VideoLinksHomePage> {
         child: Column (
             children: <Widget>[
               Container(
-                  decoration: BoxDecoration( color: Colors.white70),
+                height: 775,
+                  //decoration: BoxDecoration( color: Colors.white70),
                   child : Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -43,52 +44,39 @@ class _VideoLinksHomePageState extends State<VideoLinksHomePage> {
                               Padding(
                                 padding: const EdgeInsets.all(16.0),
                                 child: Center (
-                                  child: CloudButton (
-                                    text: "Tips for Better Sleep",
+                                  child: VideoButton2 (
+                                    text: "FOR SLEEP",
                                     onPressed: () {
-                                      _url = 'https://www.cdc.gov/sleep/about_sleep/sleep_hygiene.html';
+                                      _url = 'https://www.youtube.com/watch?v=aEqlQvczMJQ';
                                       _navigateToWebView(context, _url);
                                     },
-                                    imageAsset: 'assets/cloud-clipart-md.png',
+                                    imageAsset: 'assets/meditationSleep.png',
                                   ),
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(16.0),
                                 child: Center (
-                                  child: CloudButton (
-                                    text: "Health Benefits of Sleep",
+                                  child: VideoButton1 (
+                                    text: "FOR STRESS",
                                     onPressed: () {
-                                      _url = 'https://www.sleepfoundation.org/how-sleep-works/benefits-of-sleep';
+                                      _url = 'https://www.youtube.com/watch?v=z6X5oEIg6Ak';
                                       _navigateToWebView(context, _url);
                                     },
-                                    imageAsset: 'assets/cloud-clipart-md.png',
+                                    imageAsset: 'assets/meditationStress.png',
                                   ),
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(16.0),
                                 child: Center (
-                                  child: CloudButton (
-                                    text: "Nighttime Routine Tips",
+                                  child: VideoButton (
+                                    text: "FOR MORNINGS",
                                     onPressed: () {
-                                      _url = 'https://www.sleepfoundation.org/sleep-hygiene/bedtime-routine-for-adults';
+                                      _url = 'https://www.youtube.com/watch?v=ENYYb5vIMkU';
                                       _navigateToWebView(context, _url);
                                     },
-                                    imageAsset: 'assets/cloud-clipart-md.png',
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Center (
-                                  child: CloudButton (
-                                    text: "Not Enough Sleep Effects",
-                                    onPressed: () {
-                                      _url = 'https://www.healthline.com/health/sleep-deprivation/effects-on-body#Respiratory-system';
-                                      _navigateToWebView(context, _url);
-                                    },
-                                    imageAsset: 'assets/cloud-clipart-md.png',
+                                    imageAsset: 'assets/meditationMorning.png',
                                   ),
                                 ),
                               ),
