@@ -26,7 +26,7 @@ class BehaviorTrackViewModel {
 
     sleepBehaviorRef.set({
       'Calories': calories,
-      'Caffeine': caffeineconsumpted,
+      'Caffeine': caffeineconsumpted + " mg",
       'Mood': moodval
     });
   }
