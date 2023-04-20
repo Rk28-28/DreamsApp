@@ -29,6 +29,7 @@ class _SleepDiarySpecificHomePageState extends State<SleepDiarySpecificHomePage>
   Widget build(BuildContext context) {
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
           title: Text('Find Specific Diary Entry'),
           backgroundColor: Colors.black
@@ -151,7 +152,6 @@ class _SleepDiarySpecificHomePageState extends State<SleepDiarySpecificHomePage>
                         loop(data),
                         style: TextStyle(fontSize: 14.4,color: Colors.white),
 
-
                       ),
                     );
                   }
@@ -185,20 +185,44 @@ class _SleepDiarySpecificHomePageState extends State<SleepDiarySpecificHomePage>
         .collection('users')
         .doc(auth.currentUser?.uid).collection("sleep-diary").doc(diaryEntrySpecificController.text.toString());
 
-String s = "";
+    DocumentReference<Map<String, dynamic>> diaryRef1 = FirebaseFirestore
+        .instance
+        .collection('users')
+        .doc(auth.currentUser?.uid).collection("sleep-behavior").doc(diaryEntrySpecificController.text.toString());
+
+    String s = "";
     await diaryRef.get().then(
           (querySnapshot) {
         print("Successfully completed");
-         s+= querySnapshot.data().toString();
-          print("Inside Loop: "+s);
+        if(querySnapshot.data().toString() == "null")
+          {
+            s += "No Sleep Diary for this date \n";
+          }
+        else
+          {
+            s+= querySnapshot.data().toString().substring(1,querySnapshot.data().toString().length-1) + "\n";
+          }
         }
     );
-    print("Outside Loop:"+s);
+
+    await diaryRef1.get().then(
+            (querySnapshot) {
+          print("Successfully completed");
+          if(querySnapshot.data().toString() == "null")
+    {
+    s += "No Track Behaviors for this date\n";
+    }
+    else
+    {
+    s+= querySnapshot.data().toString().substring(1,querySnapshot.data().toString().length-1) + "\n";
+    }
+        }
+    );
+
     return s;
   }
 
   String loop(String data) {
 String s = data.toString();
-print("Loop Function: "+s);
     return s;
   }

@@ -26,6 +26,7 @@ class _SleepDiaryViewHomePageState extends State<SleepDiaryViewHomePage>
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text('Recent Entries'),
         backgroundColor: Colors.black
