@@ -189,6 +189,7 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
     );
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
           title: Text('Sleep Tracker'),
           centerTitle: true,

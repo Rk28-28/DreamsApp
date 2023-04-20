@@ -29,6 +29,7 @@ class _SleepDiarySpecificHomePageState extends State<SleepDiarySpecificHomePage>
   Widget build(BuildContext context) {
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
           title: Text('Find Specific Diary Entry'),
           backgroundColor: Colors.black
