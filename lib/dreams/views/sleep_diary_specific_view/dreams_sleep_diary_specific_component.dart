@@ -18,8 +18,7 @@ class SleepDiarySpecificHomePage extends StatefulWidget{
   _SleepDiarySpecificHomePageState createState() => _SleepDiarySpecificHomePageState();
 }
 late final SleepDiarySpecificPresenter sleepDiaryPresenter;
-TextEditingController diaryEntrySpecificController = new TextEditingController(); //To be used to grab input from date text field
-TextEditingController txtController = new TextEditingController();
+TextEditingController dateController = new TextEditingController();
 final regex = RegExp(r"\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])"); //Regex for checking validation of input - Will work on later
 final _formKey = GlobalKey<FormState>(); //Used to check validation of input
 
@@ -65,63 +64,33 @@ class _SleepDiarySpecificHomePageState extends State<SleepDiarySpecificHomePage>
 
                       Container( //Text box for typing in a date
 
-                        child: TextFormField(
-                          controller: diaryEntrySpecificController,
-                          maxLength: 10,
-
-                          style: TextStyle(fontSize: 18, color: Colors.white),
-                          textAlignVertical: TextAlignVertical.top,
-                          inputFormatters: <TextInputFormatter>[
-                            FilteringTextInputFormatter.deny(RegExp(r'\n')),
-                          ], // Only numbers can be entered
-
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white.withOpacity(0.3),
-                            border: OutlineInputBorder(),
-                            hintText: 'Date must be of form "YYYY-MM-DD"',
-                            hintStyle: TextStyle(color: Colors.white),
-
-                          ),
-
-                          validator: (value) {
-                            if(value == null || value.isEmpty || !regex.hasMatch(value)) {
-                              return "Error: Input must be of form 'YYYY-MM-DD";
-                            }
-                            return null;
-                          },
-
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0,16,0,16),
-                        child: ElevatedButton(
-                          onPressed:() {
-                            //Print diary entry based on date in text field
-                            if(_formKey.currentState!.validate())
-                            {
-                              Future<String> retrievedEntry = this.widget.sleepDiarySpecificPresenter.onSubmitClicked(diaryEntrySpecificController.text.toString());
-                              retrievedEntry.then((String result){
-                                setState(() {
-                                  txtController.text = result; //Future -> String
-                                });
-                              });
-
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text('Fetching Data', style: TextStyle(color: Colors.white))));
-
-                            }
-                          },
-                          child: const Text("Fetch Entry", style: TextStyle(fontSize: 18.0)),
-                        ),
-                      ),
-
-                      Padding( //Text that displays the diary entry
-                        padding: EdgeInsets.fromLTRB(16,32,16,16),
                         child: TextField(
-                            controller: txtController,
-                            style: TextStyle(fontSize: 28.0, color:Colors.white), textAlign: TextAlign.center),
+                            controller: dateController, //editing controller of this TextField
+                            style: TextStyle(color: Colors.white),
+                            decoration: const InputDecoration(
+                                icon: Icon(Icons.calendar_today), //icon of text field
+                                filled: true,
+                                fillColor: Colors.grey,
+                            ),
+
+                            readOnly: true,
+                            onTap: () async {
+                              //when click we have to show the datepicker
+                              DateTime? pickedDate = await showDatePicker(
+                                  context: context,
+                                  initialDate: DateTime.now(), //get today's date
+                                  firstDate:DateTime(2023), //DateTime.now() - not to allow to choose before today.
+                                  lastDate: DateTime.now());
+                              if(pickedDate != null ){
+                                String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate); // format date in required form here we use yyyy-MM-dd that means time is removed
+                                setState(() {
+                                  dateController.text = formattedDate; //set formatted date to TextField value.
+                                });
+                              }
+                            }
+                        )
                       ),
+
 
                     ],
                   ),
@@ -183,12 +152,12 @@ Future<String> getdata() async {
   DocumentReference<Map<String, dynamic>> diaryRef = FirebaseFirestore
       .instance
       .collection('users')
-      .doc(auth.currentUser?.uid).collection("sleep-diary").doc(diaryEntrySpecificController.text.toString());
+      .doc(auth.currentUser?.uid).collection("sleep-diary").doc(dateController.text.toString());
 
   DocumentReference<Map<String, dynamic>> diaryRef1 = FirebaseFirestore
       .instance
       .collection('users')
-      .doc(auth.currentUser?.uid).collection("sleep-behavior").doc(diaryEntrySpecificController.text.toString());
+      .doc(auth.currentUser?.uid).collection("sleep-behavior").doc(dateController.text.toString());
 
   String s = "";
   await diaryRef.get().then(
