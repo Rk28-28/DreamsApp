@@ -16,7 +16,7 @@ class SleepDataViewViewModel {
   Future<String> loadUserData(String date) async {
     final x = getuid();
     DatabaseReference databaseRefData =
-        FirebaseDatabase.instance.ref('users/$x//');
+    FirebaseDatabase.instance.ref('users/$x//');
 
     final snapshot = await databaseRefData.child(date).get();
 

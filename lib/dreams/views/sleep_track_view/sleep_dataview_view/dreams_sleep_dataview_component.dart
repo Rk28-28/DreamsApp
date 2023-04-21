@@ -19,7 +19,7 @@ class SleepDataViewHomePage extends StatefulWidget {
 }
 
 TextEditingController dataViewController =
-    new TextEditingController(); //To be used to grab input from date text field
+new TextEditingController(); //To be used to grab input from date text field
 TextEditingController txtController = new TextEditingController();
 final regex = RegExp(
     r"\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])"); //Regex for checking validation of input - Will work on later
@@ -32,7 +32,7 @@ class _SleepDataViewHomePageState extends State<SleepDataViewHomePage>
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar:
-          AppBar(title: Text('Past Data Entry'), backgroundColor: Colors.black),
+      AppBar(title: Text('Past Data Entry'), backgroundColor: Colors.black),
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -58,7 +58,7 @@ class _SleepDataViewHomePageState extends State<SleepDataViewHomePage>
                         padding: EdgeInsets.fromLTRB(16, 32, 16, 16),
                         child: Text(("Enter a Date:"),
                             style:
-                                TextStyle(fontSize: 28.0, color: Colors.white),
+                            TextStyle(fontSize: 28.0, color: Colors.white),
                             textAlign: TextAlign.center),
                       ),
                       Container(
@@ -192,9 +192,9 @@ Future<String> getdata() async {
       s += "No Sleep Data \n";
     } else {
       s += querySnapshot
-              .data()
-              .toString()
-              .substring(1, querySnapshot.data().toString().length - 1) +
+          .data()
+          .toString()
+          .substring(1, querySnapshot.data().toString().length - 1) +
           "\n";
     }
   });

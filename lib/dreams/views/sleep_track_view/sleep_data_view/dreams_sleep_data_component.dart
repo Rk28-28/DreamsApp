@@ -1,15 +1,15 @@
-<<<<<<< Updated upstream
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:units/dreams/presenter/dreams_sleep_data_presenter.dart';
 import 'package:units/dreams_home_page.dart';
 import 'dreams_sleep_data_view.dart';
-=======
+
 import 'package:flutter/material.dart';
 import 'package:units/dreams/presenter/dreams_sleep_data_presenter.dart';
 import 'package:units/dreams/presenter/dreams_sleep_dataview_presenter.dart';
 import 'package:units/dreams/views/sleep_track_view/sleep_dataview_view/dreams_sleep_dataview_component.dart';
->>>>>>> Stashed changes
+
 
 import 'dreams_sleep_data_view.dart';
 
@@ -221,11 +221,11 @@ class _SleepDataHomePageState extends State<SleepDataHomePage>
   }
 }
 
-<<<<<<< Updated upstream
 
 
 
-=======
+
+
 /*
 >>>>>>> Stashed changes
 class HomeScreenNav extends StatefulWidget {
@@ -258,4 +258,4 @@ class _SleepDataViewScreen extends State<SleepDataViewScreen> {
     );
   }
 }
->>>>>>> Stashed changes
+

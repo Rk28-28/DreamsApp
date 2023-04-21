@@ -4,37 +4,37 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:units/dreams/presenter/dreams_sleep_diary_specific_presenter.dart';
 import 'package:units/dreams/views/sleep_diary_specific_view/dreams_sleep_diary_specific_view.dart';
+import 'package:units/dreams/viewmodel/dreams_sleep_diary_specific_viewmodel.dart';
+import 'package:intl/intl.dart';
+import 'package:units/dreams_home_page.dart';
 
-class SleepDiarySpecificHomePage extends StatefulWidget {
+class SleepDiarySpecificHomePage extends StatefulWidget{
   final SleepDiarySpecificPresenter sleepDiarySpecificPresenter;
 
-  SleepDiarySpecificHomePage(this.sleepDiarySpecificPresenter,
-      {required Key? key, required this.title})
-      : super(key: key);
+  SleepDiarySpecificHomePage(this.sleepDiarySpecificPresenter, {required Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
-  _SleepDiarySpecificHomePageState createState() =>
-      _SleepDiarySpecificHomePageState();
+  _SleepDiarySpecificHomePageState createState() => _SleepDiarySpecificHomePageState();
 }
-
 late final SleepDiarySpecificPresenter sleepDiaryPresenter;
-TextEditingController diaryEntrySpecificController =
-    new TextEditingController(); //To be used to grab input from date text field
+TextEditingController diaryEntrySpecificController = new TextEditingController(); //To be used to grab input from date text field
 TextEditingController txtController = new TextEditingController();
-final regex = RegExp(
-    r"\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])"); //Regex for checking validation of input - Will work on later
+final regex = RegExp(r"\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])"); //Regex for checking validation of input - Will work on later
 final _formKey = GlobalKey<FormState>(); //Used to check validation of input
 
-class _SleepDiarySpecificHomePageState extends State<SleepDiarySpecificHomePage>
-    implements SleepDiarySpecificView {
+
+class _SleepDiarySpecificHomePageState extends State<SleepDiarySpecificHomePage> implements SleepDiarySpecificView {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
           title: Text('Find Specific Diary Entry'),
-          backgroundColor: Colors.black),
+          backgroundColor: Colors.black
+      ),
+
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -53,18 +53,17 @@ class _SleepDiarySpecificHomePageState extends State<SleepDiarySpecificHomePage>
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
+
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
-                      Padding(
-                        //Text that displays "Enter a Date"
-                        padding: EdgeInsets.fromLTRB(16, 32, 16, 16),
+
+                      Padding( //Text that displays "Enter a Date"
+                        padding: EdgeInsets.fromLTRB(16,32,16,16),
                         child: Text(("Enter a Date:"),
-                            style:
-                                TextStyle(fontSize: 28.0, color: Colors.white),
-                            textAlign: TextAlign.center),
+                            style: TextStyle(fontSize: 28.0, color:Colors.white), textAlign: TextAlign.center),
                       ),
-                      Container(
-                        //Text box for typing in a date
+
+                      Container( //Text box for typing in a date
 
                         child: TextFormField(
                           controller: diaryEntrySpecificController,
@@ -74,8 +73,7 @@ class _SleepDiarySpecificHomePageState extends State<SleepDiarySpecificHomePage>
                           textAlignVertical: TextAlignVertical.top,
                           inputFormatters: <TextInputFormatter>[
                             FilteringTextInputFormatter.deny(RegExp(r'\n')),
-                          ],
-                          // Only numbers can be entered
+                          ], // Only numbers can be entered
 
                           decoration: InputDecoration(
                             filled: true,
@@ -83,114 +81,53 @@ class _SleepDiarySpecificHomePageState extends State<SleepDiarySpecificHomePage>
                             border: OutlineInputBorder(),
                             hintText: 'Date must be of form "YYYY-MM-DD"',
                             hintStyle: TextStyle(color: Colors.white),
+
                           ),
 
                           validator: (value) {
-                            if (value == null ||
-                                value.isEmpty ||
-                                !regex.hasMatch(value)) {
+                            if(value == null || value.isEmpty || !regex.hasMatch(value)) {
                               return "Error: Input must be of form 'YYYY-MM-DD";
                             }
                             return null;
                           },
+
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+                        padding: EdgeInsets.fromLTRB(0,16,0,16),
                         child: ElevatedButton(
-                          onPressed: () {
+                          onPressed:() {
                             //Print diary entry based on date in text field
-                            if (_formKey.currentState!.validate()) {
-                              Future<String> retrievedEntry = this
-                                  .widget
-                                  .sleepDiarySpecificPresenter
-                                  .onSubmitClicked(diaryEntrySpecificController
-                                      .text
-                                      .toString());
-                              retrievedEntry.then((String result) {
+                            if(_formKey.currentState!.validate())
+                            {
+                              Future<String> retrievedEntry = this.widget.sleepDiarySpecificPresenter.onSubmitClicked(diaryEntrySpecificController.text.toString());
+                              retrievedEntry.then((String result){
                                 setState(() {
-                                  txtController.text =
-                                      result; //Future -> String
+                                  txtController.text = result; //Future -> String
                                 });
                               });
 
                               ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                      content: Text('Fetching Data',
-                                          style:
-                                              TextStyle(color: Colors.white))));
+                                  const SnackBar(content: Text('Fetching Data', style: TextStyle(color: Colors.white))));
+
                             }
                           },
-                          child: const Text("Fetch Entry",
-                              style: TextStyle(fontSize: 18.0)),
+                          child: const Text("Fetch Entry", style: TextStyle(fontSize: 18.0)),
                         ),
                       ),
 
-<<<<<<< Updated upstream
-    decoration: InputDecoration(
-    filled: true,
-    fillColor: Colors.white.withOpacity(0.3),
-    border: OutlineInputBorder(),
-    hintText: 'Date must be of form "YYYY-MM-DD"',
-    hintStyle: TextStyle(color: Colors.white),
+                      Padding( //Text that displays the diary entry
+                        padding: EdgeInsets.fromLTRB(16,32,16,16),
+                        child: TextField(
+                            controller: txtController,
+                            style: TextStyle(fontSize: 28.0, color:Colors.white), textAlign: TextAlign.center),
+                      ),
 
-    ),
-
-      validator: (value) {
-        if(value == null || value.isEmpty || !regex.hasMatch(value)) {
-          return "Error: Input must be of form 'YYYY-MM-DD";
-        }
-        return null;
-      },
-
-    ),
-    ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(0,16,0,16),
-                child: ElevatedButton(
-                  onPressed:() {
-                    //Print diary entry based on date in text field
-                    if(_formKey.currentState!.validate())
-                    {
-                      Future<String> retrievedEntry = this.widget.sleepDiarySpecificPresenter.onSubmitClicked(diaryEntrySpecificController.text.toString());
-                      retrievedEntry.then((String result){
-                        setState(() {
-                          txtController.text = result; //Future -> String
-                        });
-                      });
-
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Fetching Data', style: TextStyle(color: Colors.white))));
-
-                    }
-                  },
-                  child: const Text("Fetch Entry", style: TextStyle(fontSize: 18.0)),
-                ),
-              ),
-
-              /*Padding( //Text that displays the diary entry
-=======
-                      /*Padding( //Text that displays the diary entry
->>>>>>> Stashed changes
-                padding: EdgeInsets.fromLTRB(16,32,16,16),
-                child: TextField(
-                    controller: txtController,
-                    style: TextStyle(fontSize: 28.0, color:Colors.white), textAlign: TextAlign.center),
-              ),*/
-<<<<<<< Updated upstream
-
-    ],
-    ),
-    ),
-    ),
-    ),
-=======
                     ],
                   ),
                 ),
               ),
             ),
->>>>>>> Stashed changes
             FutureBuilder(
               builder: (ctx, snapshot) {
                 // Checking if future is resolved or not
@@ -213,7 +150,8 @@ class _SleepDiarySpecificHomePageState extends State<SleepDiarySpecificHomePage>
                       alignment: Alignment.topLeft,
                       child: Text(
                         loop(data),
-                        style: TextStyle(fontSize: 14.4, color: Colors.white),
+                        style: TextStyle(fontSize: 14.4,color: Colors.white),
+
                       ),
                     );
                   }
@@ -242,44 +180,44 @@ Future<String> getdata() async {
   final uid = user?.uid;
   int i = 0;
 
-  DocumentReference<Map<String, dynamic>> diaryRef = FirebaseFirestore.instance
+  DocumentReference<Map<String, dynamic>> diaryRef = FirebaseFirestore
+      .instance
       .collection('users')
-      .doc(auth.currentUser?.uid)
-      .collection("sleep-diary")
-      .doc(diaryEntrySpecificController.text.toString());
+      .doc(auth.currentUser?.uid).collection("sleep-diary").doc(diaryEntrySpecificController.text.toString());
 
-  DocumentReference<Map<String, dynamic>> diaryRef1 = FirebaseFirestore.instance
+  DocumentReference<Map<String, dynamic>> diaryRef1 = FirebaseFirestore
+      .instance
       .collection('users')
-      .doc(auth.currentUser?.uid)
-      .collection("sleep-behavior")
-      .doc(diaryEntrySpecificController.text.toString());
+      .doc(auth.currentUser?.uid).collection("sleep-behavior").doc(diaryEntrySpecificController.text.toString());
 
   String s = "";
-  await diaryRef.get().then((querySnapshot) {
-    print("Successfully completed");
-    if (querySnapshot.data().toString() == "null") {
-      s += "No Sleep Diary for this date \n";
-    } else {
-      s += querySnapshot
-              .data()
-              .toString()
-              .substring(1, querySnapshot.data().toString().length - 1) +
-          "\n";
-    }
-  });
+  await diaryRef.get().then(
+          (querySnapshot) {
+        print("Successfully completed");
+        if(querySnapshot.data().toString() == "null")
+        {
+          s += "No Sleep Diary for this date \n";
+        }
+        else
+        {
+          s+= querySnapshot.data().toString().substring(1,querySnapshot.data().toString().length-1) + "\n";
+        }
+      }
+  );
 
-  await diaryRef1.get().then((querySnapshot) {
-    print("Successfully completed");
-    if (querySnapshot.data().toString() == "null") {
-      s += "No Track Behaviors for this date\n";
-    } else {
-      s += querySnapshot
-              .data()
-              .toString()
-              .substring(1, querySnapshot.data().toString().length - 1) +
-          "\n";
-    }
-  });
+  await diaryRef1.get().then(
+          (querySnapshot) {
+        print("Successfully completed");
+        if(querySnapshot.data().toString() == "null")
+        {
+          s += "No Track Behaviors for this date\n";
+        }
+        else
+        {
+          s+= querySnapshot.data().toString().substring(1,querySnapshot.data().toString().length-1) + "\n";
+        }
+      }
+  );
 
   return s;
 }
