@@ -116,12 +116,12 @@ class _SleepDiarySpecificHomePageState extends State<SleepDiarySpecificHomePage>
                 ),
               ),
 
-              Padding( //Text that displays the diary entry
+              /*Padding( //Text that displays the diary entry
                 padding: EdgeInsets.fromLTRB(16,32,16,16),
                 child: TextField(
                     controller: txtController,
                     style: TextStyle(fontSize: 28.0, color:Colors.white), textAlign: TextAlign.center),
-              ),
+              ),*/
 
     ],
     ),
