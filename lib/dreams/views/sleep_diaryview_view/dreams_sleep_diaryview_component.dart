@@ -137,7 +137,7 @@ class _SleepDiaryViewHomePageState extends State<SleepDiaryViewHomePage>
     }
 
     while (counter < 5) {
-      str += '\n' + data[len].substring(1,data[len].length-2) + '\n\n';
+      str += '\n' + data[len].substring(1,data[len].length-1) + '\n\n';
       --len;
       ++counter;
     }

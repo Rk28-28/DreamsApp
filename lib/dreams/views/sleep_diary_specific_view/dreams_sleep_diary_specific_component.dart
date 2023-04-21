@@ -90,8 +90,6 @@ class _SleepDiarySpecificHomePageState extends State<SleepDiarySpecificHomePage>
                             }
                         )
                       ),
-
-
                     ],
                   ),
                 ),
