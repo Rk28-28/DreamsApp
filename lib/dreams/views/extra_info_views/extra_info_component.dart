@@ -63,7 +63,7 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
                   height: 150,
                   width: 150,
                 child: MoonButton (
-                    text: "Recommended Sleep",
+                    text: "Recommended Sleep, Calories,   & Caffeine",
                   onPressed: () { // Navigator to Extra Info screen
                     Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
                       return SleepAmountScreen();
@@ -80,7 +80,7 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
                   height: 150,
                   width: 150,
                 child: MoonButton (
-                    text: "Links",
+                    text: "Extra Reading",
                   onPressed: () { // Navigator to Extra Info screen
                     Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
                       return SleepLinksScreen();
@@ -93,7 +93,7 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
                   height: 150,
                   width: 150,
                 child: MoonButton (
-                    text: "Videos",
+                    text: "Meditations",
                   onPressed: () { // Navigator to Extra Info screen
                     Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
                       return VideoLinksScreen();
