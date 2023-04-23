@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 import '../../presenter/dreams_extra_info_presenter.dart';
 import 'ButtonPages/sleep_amount_component.dart';
 import 'ButtonPages/sleep_links_component.dart';
@@ -7,10 +6,6 @@ import 'ButtonPages/video_page_component.dart';
 import 'ButtonPages/white_noise_component.dart';
 import 'MoonButton.dart';
 import 'extra_info_view.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'MyWebView.dart';
-import 'CloudButtonEI.dart';
 
 class ExtraInfoHomePage extends StatefulWidget{
   final EXTRAINFOPresenter extraInfoPresenter;
@@ -24,8 +19,6 @@ class ExtraInfoHomePage extends StatefulWidget{
 
 class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAINFOView {
   var txt = TextEditingController();
-  String _url = 'url';
-  //List<String> ageRanges = <String>['1-2 years', '3-5 years', '6-12 years', '13-18 years', '18-60 years', '61-64 years', '65+ years'];
   List<DropdownMenuItem<String>> ageRanges = [
     DropdownMenuItem(child: Text("1-2 years"), value: "1-2 years"),
     DropdownMenuItem(child: Text("3-5 years"), value: "3-5 years"),
@@ -38,7 +31,6 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
 
   @override
   Widget build(BuildContext context) {
-    var agePicked;
     return Scaffold(
         appBar: AppBar(
             backgroundColor: Colors.black,
@@ -142,14 +134,6 @@ class _ExtraInfoHomePageState extends State<ExtraInfoHomePage> implements EXTRAI
   }
 
 }
-void _navigateToWebView(BuildContext context, String url) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) => MyWebView(url: url),
-    ),
-  );
-}
 
 
 class SleepLinksScreen extends StatefulWidget {
@@ -202,31 +186,6 @@ class _WhiteNoiseScreen extends State<WhiteNoiseScreen> {
   }
 }
 
-String _calculateRecommendedSleep(String age) {
-  var sleepAmount;
-  if(age == "1-2 years") {
-    sleepAmount = "11-14 hours";
-  }
-  else if(age == "3-5 years") {
-    sleepAmount = "10-13 hours";
-  }
-  else if(age == "6-12 years") {
-  sleepAmount = "9-12 hours";
-  }
-  else if(age == "13-18 years") {
-  sleepAmount = "8-10 hours";
-  }
-  else if(age == "18-60 years") {
-  sleepAmount = "7+ hours";
-  }
-  else if(age == "61-64 years") {
-  sleepAmount = "7-9 hours";
-  }
-  else if(age == "65+ years") {
-  sleepAmount = "7-8 hours";
-  }
-  return sleepAmount;
-}
 
 
 
