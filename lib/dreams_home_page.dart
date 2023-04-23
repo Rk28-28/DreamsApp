@@ -34,21 +34,17 @@ class HomePage extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          child: Column(
+          child: ListView(
               children: <Widget>[
-                /*Padding(
-                    padding: EdgeInsets.only(top: 20.0, bottom: 10.0),
-                        child: Text("",style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent), textScaleFactor: 2.6, textAlign: TextAlign.center,)
-                        ,),*/
-                Padding( // Displays the current user logged in to the app
-                        padding: EdgeInsets.only(top: 10, bottom: 10),
-                        child: Text("",
-                          style: const TextStyle(fontSize: 20, color: Colors.white)
-                        ),
-                      ),
-              Expanded(
-                child: Column(
+                Padding(
+                  padding: EdgeInsets.only(top: 10, bottom: 10),
+                  child: Text("",
+                      style: const TextStyle(fontSize: 20, color: Colors.white)
+                  ),
+                ),
+                Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -56,8 +52,8 @@ class HomePage extends StatelessWidget {
                        // margin: const EdgeInsets.all(8.0),
                         children:[
                          SizedBox(
-                           height: 120,
-                        width: 120,
+                           height: 110,
+                        width: 110,
                           child: PlanetButton(
                             text:'Calculator',
                             onPressed: () { // Navigator to Sleep Calculator page
@@ -88,8 +84,8 @@ class HomePage extends StatelessWidget {
                       Container( // Third button (Track Behaviors)
                           margin: const EdgeInsets.only(top: 20),
                           child: SizedBox(
-                            height: 120,
-                              width: 120,
+                            height: 115,
+                              width: 115,
                               child: PlanetButton(
                                 text:'Behaviors',
                                 onPressed: () { // Navigator to Track Behaviors screen
@@ -119,8 +115,8 @@ class HomePage extends StatelessWidget {
                               )
                           ),
                       SizedBox( // Fifth button (Sleep Data)
-                        height: 120,
-                              width: 120,
+                        height: 115,
+                              width: 115,
                               child: PlanetButton(
                                 text:'Sleep Data',
                                 onPressed: () { // Navigator to Sleep Data screen
@@ -137,8 +133,8 @@ class HomePage extends StatelessWidget {
                       Container( // Sixth button (Extra Info)
                           margin: const EdgeInsets.only(top: 20, bottom:50),
                           child: SizedBox(
-                            height: 130,
-                              width: 130,
+                            height: 125,
+                              width: 125,
                               child: PlanetButton(
                                 text: 'Extra Info',
                                 onPressed: () { // Navigator to Extra Info screen
@@ -168,7 +164,6 @@ class HomePage extends StatelessWidget {
                       ),
                     ],
                   )
-              ),
             ],
             ),
         ),
