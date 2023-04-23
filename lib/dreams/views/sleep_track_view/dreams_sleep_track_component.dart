@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:units/dreams/presenter/dreams_sleep_data_page_presenter.dart';
 import 'package:units/dreams/views/sleep_track_view/dreams_sleep_track_view.dart';
 import '../../presenter/dreams_sleep_data_presenter.dart';
 import '../../presenter/dreams_sleep_track_presenter.dart';
@@ -291,6 +289,7 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
             (double.parse(value) < 0 || double.parse(value) > 59)) {
           return ('Minute between 0 - 59');
         }
+        return null;
       },
       onSaved: (value) {
         _wakeMinute = int.parse(value!);
@@ -323,6 +322,7 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
             (double.parse(value) < 1 || double.parse(value) > 12)) {
           return ('Hour between 1 - 12');
         }
+        return null;
       },
       onSaved: (value) {
         _wakeHour = int.parse(value!);
@@ -354,6 +354,7 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
             (double.parse(value) < 1 || double.parse(value) > 12)) {
           return ('Hour between 1 - 12');
         }
+        return null;
       },
       onSaved: (value) {
         _bedHour = int.parse(value!);
@@ -385,6 +386,7 @@ class _TrackHomePageState extends State<TrackHomePage> implements TRACKView {
             (double.parse(value) < 0 || double.parse(value) > 59)) {
           return ('Minute between 0 - 59');
         }
+        return null;
       },
       onSaved: (value) {
         _bedMinute = int.parse(value!);

@@ -1,13 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:units/dreams/presenter/dreams_sleep_diary_presenter.dart';
 import 'package:units/dreams/presenter/dreams_sleep_diaryview_presenter.dart';
 import 'package:units/dreams/views/sleep_diary_view/dreams_sleep_diary_view.dart';
-import 'package:units/dreams/viewmodel/dreams_sleep_diary_viewmodel.dart';
 import 'package:intl/intl.dart';
 import 'package:units/dreams/views/sleep_diaryview_view/dreams_sleep_diaryview_component.dart';
-import 'package:units/dreams_home_page.dart';
 
 class SleepDiaryHomePage extends StatefulWidget{
   final SleepDiaryPresenter sleepDiaryPresenter;

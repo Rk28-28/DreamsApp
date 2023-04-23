@@ -1,17 +1,12 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:units/dreams/presenter/dreams_sleep_data_presenter.dart';
-import 'package:units/dreams_home_page.dart';
 import 'dreams_sleep_data_view.dart';
 
-import 'package:flutter/material.dart';
-import 'package:units/dreams/presenter/dreams_sleep_data_presenter.dart';
 import 'package:units/dreams/presenter/dreams_sleep_dataview_presenter.dart';
 import 'package:units/dreams/views/sleep_track_view/sleep_dataview_view/dreams_sleep_dataview_component.dart';
 
 
-import 'dreams_sleep_data_view.dart';
 
 class SleepDataHomePage extends StatefulWidget {
   final SleepDataPresenter sleepdataPresenter;
@@ -33,7 +28,6 @@ class _SleepDataHomePageState extends State<SleepDataHomePage>
   int _secondGroupValue = -1;
   final myController = TextEditingController();
 
-  var _formKey = GlobalKey<FormState>();
 
   void _submission() {
     this
@@ -52,7 +46,6 @@ class _SleepDataHomePageState extends State<SleepDataHomePage>
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(title: Text('Sleep Data'), backgroundColor: Colors.black
-            // TODO: Implement SleepData home page
             ),
         body: Container(
             width: double.infinity,
@@ -182,7 +175,7 @@ class _SleepDataHomePageState extends State<SleepDataHomePage>
                       width: 150,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.blueAccent,
+                          backgroundColor: Colors.blueAccent,
                         ),
                         onPressed: () {
                           _submission();
@@ -197,7 +190,7 @@ class _SleepDataHomePageState extends State<SleepDataHomePage>
                       width: 150,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.blueAccent,
+                          backgroundColor: Colors.blueAccent,
                         ),
                         onPressed: () {
                           // Navigator to Track Behaviors screen
