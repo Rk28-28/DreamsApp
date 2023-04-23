@@ -18,7 +18,6 @@ class _SleepLinksHomePageState extends State<SleepLinksHomePage> {
   String _url = 'url';
   @override
   Widget build(BuildContext context) {
-    var agePicked;
     return Scaffold(
         appBar: AppBar(
           title: Text('Links'),

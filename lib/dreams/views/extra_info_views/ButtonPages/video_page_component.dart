@@ -18,7 +18,6 @@ class _VideoLinksHomePageState extends State<VideoLinksHomePage> {
   String _url = 'url';
   @override
   Widget build(BuildContext context) {
-    var agePicked;
     return Scaffold(
       appBar: AppBar(
         title: Text('Meditations'),

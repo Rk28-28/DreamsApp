@@ -18,7 +18,6 @@ class _WhiteNoiseHomePageState extends State<WhiteNoiseHomePage> {
   String _url = 'url';
   @override
   Widget build(BuildContext context) {
-    var agePicked;
     return Scaffold(
       appBar: AppBar(
         title: Text('White Noise'),
