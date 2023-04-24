@@ -80,6 +80,7 @@ flutter:
     - assets/earth2.png
     - assets/yellowworld.png
     - assets/moon.png
+    - assets/greenplanet.png
     - assets/meditationMorning.png
     - assets/meditationSleep.png
     - assets/meditationStress.png
