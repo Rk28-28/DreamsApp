@@ -1,18 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
 class SleepTimeData {
-  List<_SleepTimeDataPoint> _sleepTimeData = [];
   FirebaseAuth auth = FirebaseAuth.instance;
+  List<_SleepTimeDataPoint> _sleepTimeData = [];
   double _averageSleepTime = 0;
+  int _averageCaffeine = 0;
 
+  int get averageCaffeine => _averageCaffeine;
   double get averageSleepTime => _averageSleepTime;
 
-  Future<void> populateSleepTimeList() async {
+  Future<void> getDatabaseData() async {
     _sleepTimeData.clear();
     final User? user = auth.currentUser;
     final uid = user?.uid;
@@ -28,8 +31,34 @@ class SleepTimeData {
     _getSleepTimeAverage();
   }
 
+  Future<void> findAverageCaffeine() async {
+    final User? user = auth.currentUser;
+    final uid = user?.uid;
+
+    List<int> caffeineData = [];
+
+    await FirebaseFirestore.instance.collection('users').doc(uid).collection('sleep-behavior')
+        .get().then((QuerySnapshot snapshot) {
+      snapshot.docs.forEach((doc) {
+        caffeineData.add(int.parse(doc["Caffeine"]));
+      });
+    });
+    _averageCaffeine = _calculateAverage(caffeineData);
+  }
+
   _SleepTimeChart getSleepTimeChart() {
     return _SleepTimeChart(this);
+  }
+
+  int _calculateAverage(List<dynamic> list) {
+    double averageTmp = 0;
+
+    for (dynamic data in list) {
+      averageTmp += data;
+    }
+
+    print(averageTmp);
+    return (averageTmp / list.length).round();
   }
 
   void _getSleepTimeAverage() {

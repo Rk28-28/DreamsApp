@@ -25,7 +25,7 @@ class SleepDataPage extends StatelessWidget {
           ),
         ),
         child: FutureBuilder(
-          future: sleepData.populateSleepTimeList(),
+          future: sleepData.getDatabaseData(),
           builder: (context, future) {
             return Column(
               children: [
@@ -42,10 +42,27 @@ class SleepDataPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                  Text(
-                    " Average sleep time: " + sleepData.averageSleepTime.round().toString() + " hours",
-                    style: TextStyle(fontSize: 15, color: Colors.white),
-                  )
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        " Average sleep: " + sleepData.averageSleepTime.round().toString() + " hours",
+                        style: TextStyle(fontSize: 17, color: Colors.white),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      FutureBuilder(
+                          future: sleepData.findAverageCaffeine(),
+                          builder: (context, future) {
+                            return Text(
+                              " Average caffeine: " + sleepData.averageCaffeine.toString() + " mg",
+                              style: TextStyle(fontSize: 17, color: Colors.white),
+                            );
+                          }
+                      )
+                    ],
+                  ),
               ],);
           }
         ),
