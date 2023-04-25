@@ -19,7 +19,7 @@ class SleepDataViewHomePage extends StatefulWidget {
 }
 
 TextEditingController dataViewController =
-new TextEditingController(); //To be used to grab input from date text field
+    new TextEditingController(); //To be used to grab input from date text field
 TextEditingController txtController = new TextEditingController();
 final regex = RegExp(
     r"\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])"); //Regex for checking validation of input - Will work on later
@@ -32,7 +32,7 @@ class _SleepDataViewHomePageState extends State<SleepDataViewHomePage>
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar:
-      AppBar(title: Text('Past Data Entry'), backgroundColor: Colors.black),
+          AppBar(title: Text('Past Data Entry'), backgroundColor: Colors.black),
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -58,7 +58,7 @@ class _SleepDataViewHomePageState extends State<SleepDataViewHomePage>
                         padding: EdgeInsets.fromLTRB(16, 32, 16, 16),
                         child: Text(("Enter a Date:"),
                             style:
-                            TextStyle(fontSize: 28.0, color: Colors.white),
+                                TextStyle(fontSize: 28.0, color: Colors.white),
                             textAlign: TextAlign.center),
                       ),
                       Container(
@@ -96,33 +96,11 @@ class _SleepDataViewHomePageState extends State<SleepDataViewHomePage>
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
                         child: ElevatedButton(
-                          onPressed: () {
-                            //Print diary entry based on date in text field
-                            /*if(_formKey.currentState!.validate())
-                            {
-                              Future<String> retrievedEntry = this.widget.sleepDataViewPresenter.onSubmitClicked(dataViewController.text.toString());
-                              retrievedEntry.then((String result){
-                                setState(() {
-                                  txtController.text = result; //Future -> String
-                                });
-                              });
-
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text('Fetching Data', style: TextStyle(color: Colors.white))));
-
-                            }*/
-                          },
+                          onPressed: () {},
                           child: const Text("Fetch Entry",
                               style: TextStyle(fontSize: 18.0)),
                         ),
                       ),
-
-                      /*Padding( //Text that displays the diary entry
-                        padding: EdgeInsets.fromLTRB(16,32,16,16),
-                        child: TextField(
-                            controller: txtController,
-                            style: TextStyle(fontSize: 28.0, color:Colors.white), textAlign: TextAlign.center),
-                      ),*/
                     ],
                   ),
                 ),
@@ -145,7 +123,7 @@ class _SleepDataViewHomePageState extends State<SleepDataViewHomePage>
                   } else if (snapshot.hasData) {
                     // Extracting data from snapshot object
                     final data = snapshot.data as String;
-                    //String x = loop(getdata());
+
                     return Align(
                       alignment: Alignment.topLeft,
                       child: Text(
@@ -192,9 +170,9 @@ Future<String> getdata() async {
       s += "No Sleep Data \n";
     } else {
       s += querySnapshot
-          .data()
-          .toString()
-          .substring(1, querySnapshot.data().toString().length - 1) +
+              .data()
+              .toString()
+              .substring(1, querySnapshot.data().toString().length - 1) +
           "\n";
     }
   });

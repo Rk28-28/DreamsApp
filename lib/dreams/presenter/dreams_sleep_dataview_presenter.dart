@@ -2,9 +2,7 @@ import 'package:units/dreams/viewmodel/dreams_sleep_dataview_viewmodel.dart';
 import 'package:units/dreams/views/sleep_track_view/sleep_dataview_view/dreams_sleep_dataview_view.dart';
 
 class DataViewPresenter {
-  set dataView(SleepDataViewView value) {
-    void onSubmitClicked(String date) {}
-  }
+  set dataView(SleepDataViewView value) {}
 }
 
 class SleepDataViewPresenter implements DataViewPresenter {
@@ -14,12 +12,5 @@ class SleepDataViewPresenter implements DataViewPresenter {
   SleepDataViewPresenter();
 
   @override
-  Future<String> onSubmitClicked(String date) {
-    return viewModel.loadUserData(date);
-  }
-
-  @override
-  set dataView(SleepDataViewView value) {
-    // TODO: implement dataView
-  }
+  set dataView(SleepDataViewView value) {}
 }

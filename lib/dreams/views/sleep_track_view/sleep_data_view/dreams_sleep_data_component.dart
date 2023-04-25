@@ -1,12 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:units/dreams/presenter/dreams_sleep_data_presenter.dart';
-import 'dreams_sleep_data_view.dart';
-
 import 'package:units/dreams/presenter/dreams_sleep_dataview_presenter.dart';
 import 'package:units/dreams/views/sleep_track_view/sleep_dataview_view/dreams_sleep_dataview_component.dart';
 
-
+import 'dreams_sleep_data_view.dart';
 
 class SleepDataHomePage extends StatefulWidget {
   final SleepDataPresenter sleepdataPresenter;
@@ -28,7 +25,6 @@ class _SleepDataHomePageState extends State<SleepDataHomePage>
   int _secondGroupValue = -1;
   final myController = TextEditingController();
 
-
   void _submission() {
     this
         .widget
@@ -45,8 +41,8 @@ class _SleepDataHomePageState extends State<SleepDataHomePage>
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: AppBar(title: Text('Sleep Data'), backgroundColor: Colors.black
-            ),
+        appBar:
+            AppBar(title: Text('Sleep Data'), backgroundColor: Colors.black),
         body: Container(
             width: double.infinity,
             height: double.infinity,
@@ -71,7 +67,6 @@ class _SleepDataHomePageState extends State<SleepDataHomePage>
                       activeColor: Colors.white,
                       fillColor: MaterialStateColor.resolveWith(
                           (states) => Colors.white),
-                      //value: 0, groupValue: 0, onChanged: handleRadioValueChanged,
                       value: 0,
                       groupValue: _firstGroupValue,
                       onChanged: (newValue) =>
@@ -85,7 +80,6 @@ class _SleepDataHomePageState extends State<SleepDataHomePage>
                       activeColor: Colors.white,
                       fillColor: MaterialStateColor.resolveWith(
                           (states) => Colors.white),
-                      //value: 1, groupValue: 0, onChanged: handleRadioValueChanged,
                       value: 1,
                       groupValue: _firstGroupValue,
                       onChanged: (newValue) =>
@@ -112,7 +106,6 @@ class _SleepDataHomePageState extends State<SleepDataHomePage>
                       activeColor: Colors.white,
                       fillColor: MaterialStateColor.resolveWith(
                           (states) => Colors.white),
-                      //value: 0, groupValue: 0, onChanged: handleRadioValueChanged,
                       value: 2,
                       groupValue: _secondGroupValue,
                       onChanged: (newValue) =>
@@ -126,7 +119,6 @@ class _SleepDataHomePageState extends State<SleepDataHomePage>
                       activeColor: Colors.white,
                       fillColor: MaterialStateColor.resolveWith(
                           (states) => Colors.white),
-                      //value: 1, groupValue: 0, onChanged: handleRadioValueChanged,
                       value: 3,
                       groupValue: _secondGroupValue,
                       onChanged: (newValue) =>
@@ -140,7 +132,6 @@ class _SleepDataHomePageState extends State<SleepDataHomePage>
                       activeColor: Colors.white,
                       fillColor: MaterialStateColor.resolveWith(
                           (states) => Colors.white),
-                      //value: 2, groupValue: 0, onChanged: handleRadioValueChanged,
                       value: 4,
                       groupValue: _secondGroupValue,
                       onChanged: (newValue) =>
@@ -181,7 +172,6 @@ class _SleepDataHomePageState extends State<SleepDataHomePage>
                           _submission();
                         },
                         child: Text('Submit'),
-                        //onPressed
                       ),
                     )),
                 Container(
@@ -200,7 +190,6 @@ class _SleepDataHomePageState extends State<SleepDataHomePage>
                           }));
                         },
                         child: Text('Past Sleep Data'),
-                        //onPressed
                       ),
                     ))
               ])
@@ -213,28 +202,6 @@ class _SleepDataHomePageState extends State<SleepDataHomePage>
     this.widget.sleepdataPresenter.SleepDataView = this;
   }
 }
-
-
-
-
-
-
-/*
->>>>>>> Stashed changes
-class HomeScreenNav extends StatefulWidget {
-  @override
-  _HomeScreenNav createState() => _HomeScreenNav();
-}
-
-class _HomeScreenNav extends State<HomeScreenNav> {
-  @override
-  Widget build(BuildContext context) {
-    return new HomePage();
-  }
-<<<<<<< Updated upstream
-}
-=======
-}*/
 
 class SleepDataViewScreen extends StatefulWidget {
   @override
@@ -251,4 +218,3 @@ class _SleepDataViewScreen extends State<SleepDataViewScreen> {
     );
   }
 }
-

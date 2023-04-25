@@ -1,3 +1,1 @@
-class SleepDataViewView{
-
-}
+class SleepDataViewView {}
